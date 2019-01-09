@@ -49,7 +49,7 @@ ForEach ($appId in
 # ui settings
 
 "Configuring startlayout ..."
-Import-StartLayout -LayoutPath "D:\startlayout.xml" -MountPath "C:\"
+Import-StartLayout -LayoutPath ($PSScriptRoot + "\startlayout.xml") -MountPath "C:\"
 
 "Hiding People icon..."
 If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People")) {
@@ -82,13 +82,13 @@ ForEach ($tweak in
 
 if ($mode -eq "config") {
   # only run configs, instead of installing programs
-  & ($PSScriptRoot + "\configs\programs.ps1")
+  & .\configs\csgo.ps1
   
 } else {
   # install chocolatey and other programs
-  & ($PSScriptRoot + "\programs.ps1")
-
-  # wait 30 seconds and restart pc
-  Start-Sleep 30
-  Restart-Computer
+  & .\programs.ps1
 }
+
+# wait 30 seconds and restart pc
+Start-Sleep 30
+Restart-Computer
