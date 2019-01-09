@@ -1,3 +1,7 @@
+param(
+  [string]$mode="setup"
+)
+
 # import modules
 
 Import-Module -Name ($PSScriptRoot + "\settings.psm1")
@@ -76,11 +80,15 @@ ForEach ($tweak in
   Invoke-Expression $tweak
 }
 
-# install chocolatey and other programs
+if ($mode -eq "config") {
+  # only run configs, instead of installing programs
+  & ($PSScriptRoot + "\configs\programs.ps1")
+  
+} else {
+  # install chocolatey and other programs
+  & ($PSScriptRoot + "\programs.ps1")
 
-& .\programs.ps1
-
-# wait 30 seconds and restart pc
-
-Start-Sleep 30
-Restart-Computer
+  # wait 30 seconds and restart pc
+  Start-Sleep 30
+  Restart-Computer
+}
