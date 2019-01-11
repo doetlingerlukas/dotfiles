@@ -7,12 +7,8 @@ New-Item -ItemType Directory -Force -Path $config_dir_user1
 New-Item -ItemType Directory -Force -Path $config_dir_user2
 
 $autoexec = @"
-# Crosshair
+// Crosshair
 cl_crosshair_drawoutline "0"
-cl_crosshair_dynamic_maxdist_splitratio "0.35"
-cl_crosshair_dynamic_splitalpha_innermod "1"
-cl_crosshair_dynamic_splitalpha_outermod "0.5"
-cl_crosshair_dynamic_splitdist "7"
 cl_crosshair_outlinethickness "0.100000"
 cl_crosshair_sniper_show_normal_inaccuracy "0"
 cl_crosshair_sniper_width "1"
@@ -31,26 +27,19 @@ cl_crosshairstyle "4"
 cl_crosshairthickness "0.5"
 cl_crosshairusealpha "1"
 
-# Display damage given in game
+// Display damage given in game
 developer "1"
+con_enable "1"
 con_filter_text "Damage"
 con_filter_text_out "Player:"
 con_filter_enable "2"
 
-# Show teammates equipment
-cl_teamid_overhead_always 1
+// Show teammates equipment
+cl_teamid_overhead_always "1"
 bind tab "+score;+cl_show_team_equipment"
 
-# Mouse settings
+// Mouse settings
 sensitivity "3.450000"
-m_customaccel "3"
-m_customaccel_exponent "1.052000"
-m_customaccel_max "0"
-m_customaccel_scale "0.04"
-m_forward "1"
-m_mouseaccel1 "0"
-m_mouseaccel2 "0"
-m_mousespeed "1"
 "@
 
 $training = @"
