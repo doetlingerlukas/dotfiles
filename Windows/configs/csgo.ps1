@@ -40,6 +40,8 @@ bind tab "+score;+cl_show_team_equipment"
 
 // Mouse settings
 sensitivity "3.450000"
+
+host_writeconfig
 "@
 
 $training = @"
@@ -60,8 +62,8 @@ sv_grenade_trajectory 1
 bind n noclip
 "@
 
-$autoexec | Out-File ($config_dir_user1 + "\autoexec.cfg")
-$autoexec | Out-File ($config_dir_user2 + "\autoexec.cfg")
+$autoexec | Out-File -Encoding "UTF8" ($config_dir_user1 + "\autoexec.cfg")
+$autoexec | Out-File -Encoding "UTF8" ($config_dir_user2 + "\autoexec.cfg")
 
-$training | Out-File ($config_dir_user1 + "\training.cfg")
-$training | Out-File ($config_dir_user2 + "\training.cfg")
+$training | Out-File -Encoding "UTF8" ($config_dir_user1 + "\training.cfg")
+$training | Out-File -Encoding "UTF8" ($config_dir_user2 + "\training.cfg")
