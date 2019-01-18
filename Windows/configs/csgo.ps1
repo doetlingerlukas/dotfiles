@@ -1,4 +1,4 @@
-"Setting up CS:Go config ..."
+"Setting up CS:GO config ..."
 
 $config_dir_user1 = "C:\Program Files (x86)\Steam\userdata\136275020\730\local\cfg"
 $config_dir_user2 = "C:\Program Files (x86)\Steam\userdata\241388330\730\local\cfg"
