@@ -41,6 +41,13 @@ bind tab "+score;+cl_show_team_equipment"
 // Mouse settings
 sensitivity "3.450000"
 
+// Sound settings
+snd_tensecondwarning_volume 0.15
+
+// Matchmaking 
+cl_color 0
+
+
 host_writeconfig
 "@
 
