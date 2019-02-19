@@ -6,7 +6,7 @@ if ($mode -eq "config") {
   # only run configs, instead of installing programs
   & .\configs\windows.ps1
   & .\configs\csgo.ps1
-
+  & .\configs\battlefield5.ps1
 } else {
   # install chocolatey and other programs
   & .\programs.ps1
