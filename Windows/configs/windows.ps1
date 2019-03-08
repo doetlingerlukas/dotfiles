@@ -43,11 +43,6 @@ ForEach ($appId in
 "Configuring startlayout ..."
 Import-StartLayout -LayoutPath ($PSScriptRoot + "\..\res\startlayout.xml") -MountPath "C:\"
 
-"Hiding People icon..."
-If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People")) {
-	New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" | Out-Null
-}
-Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" -Name "PeopleBand" -Type DWord -Value 0
 
 ForEach ($tweak in 
   "DisableTelemetry",                           # disable telemetry (data transmission to microsoft)
@@ -64,7 +59,8 @@ ForEach ($tweak in
   "ShowKnownExtensions",                        # show file extensions
   "ShowHiddenFiles",                            # show hidden files
   "HideRecentShortcuts",                        # hide recent files section in explorer
-  "Hide3DObjectsFromExplorer"                   # hide 3D objects in explorer
+  "Hide3DObjectsFromExplorer",                  # hide 3D objects in explorer
+  "HidePeopleIcon"                              # hide people icon in right side of taskbar
 ) {
   Invoke-Expression $tweak
 }
