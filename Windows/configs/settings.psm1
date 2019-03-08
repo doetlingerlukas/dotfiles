@@ -2,6 +2,7 @@
 # functions by Disassembler0: https://github.com/Disassembler0/Win10-Initial-Setup-Script
 
 Function HidePeopleIcon {
+  Write-Output "Hiding people icon..."
   If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People")) {
     New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" | Out-Null
   }

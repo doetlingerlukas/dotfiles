@@ -1,7 +1,7 @@
 "Installing chocolatey package manager ..."
 
 if ($false -eq $(Test-Path -Path "$env:ProgramData\Chocolatey")) {
-    Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+  Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
 
 "Installing packages ..."
