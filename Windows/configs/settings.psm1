@@ -1,5 +1,9 @@
+Function DisableNTFSCompression () {
+  fsutil behavior set disablecompression 1
+}
+
 # functions to tweak settings 
-# functions by Disassembler0: https://github.com/Disassembler0/Win10-Initial-Setup-Script
+# curtesy of Disassembler0: https://github.com/Disassembler0/Win10-Initial-Setup-Script
 
 Function HidePeopleIcon {
   Write-Output "Hiding people icon..."
