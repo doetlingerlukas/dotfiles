@@ -7,6 +7,10 @@ New-Item -ItemType Directory -Force -Path $config_dir_user1
 New-Item -ItemType Directory -Force -Path $config_dir_user2
 
 $autoexec = @"
+// General
+gameinstructor_enable 0
+cl_autowepswitch 0
+
 // Crosshair
 cl_crosshair_drawoutline "0"
 cl_crosshair_outlinethickness "0.100000"
