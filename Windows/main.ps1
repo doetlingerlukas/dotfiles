@@ -2,14 +2,22 @@ param(
   [string]$mode="setup"
 )
 
-if ($mode -eq "config") {
-  # only run configs, instead of installing programs
-  & .\configs\windows.ps1
-  & .\configs\csgo.ps1
-  & .\configs\battlefield5.ps1
-} else {
-  # install chocolatey and other programs
-  & .\programs.ps1
+Function executedConfigs () {
+  Get-ChildItem -Filter '*.ps1' '.\configs\' | ForEach-Object {
+    & $_.FullName
+  }
+}
+
+switch ($mode) {
+  "config" {
+    Invoke-Expression executedConfigs
+    break
+  }
+  "setup" {
+    & .\programs.ps1
+    Invoke-Expression executedConfigs
+    break
+  }
 }
 
 "Restarting in 30 seconds ..."
