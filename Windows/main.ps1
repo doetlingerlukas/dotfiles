@@ -2,7 +2,7 @@ param(
   [string]$mode="setup"
 )
 
-Function executedConfigs () {
+Function executeConfigs () {
   Get-ChildItem -Filter '*.ps1' '.\configs\' | ForEach-Object {
     & $_.FullName
   }
@@ -10,12 +10,12 @@ Function executedConfigs () {
 
 switch ($mode) {
   "config" {
-    Invoke-Expression executedConfigs
+    Invoke-Expression executeConfigs
     break
   }
   "setup" {
     & .\programs.ps1
-    Invoke-Expression executedConfigs
+    Invoke-Expression executeConfigs
     break
   }
 }
