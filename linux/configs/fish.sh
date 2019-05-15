@@ -2,8 +2,8 @@
 
 echo "Installing fish shell ..."
 sudo apt-add-repository ppa:fish-shell/release-3
-sudo apt update
-sudo apt install fish -y
+sudo apt-get update
+sudo apt-get install fish -y
 
 echo "Configuring fish to be the default shell ..."
 chsh -s /usr/local/bin/fish
