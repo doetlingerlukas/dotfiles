@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Configuring Pantheon-Files ..."
+echo "Configuring basic stuff in elementary os ..."
 
 # show hidden files
 gsettings set org.pantheon.files.preferences show-hiddenfiles true
