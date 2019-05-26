@@ -6,5 +6,5 @@ echo "Configuring basic stuff in elementary os ..."
 gsettings set org.pantheon.files.preferences show-hiddenfiles true
 gsettings set io.elementary.files.preferences single-click false
 
-# add minimize button
+# minimize window on right-click
 gsettings set org.gnome.desktop.wm.preferences action-right-click-titlebar 'minimize'
