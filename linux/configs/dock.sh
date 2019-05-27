@@ -19,6 +19,8 @@ dock_items="
 
 for dock_item in ${dock_items//,/ }
 do
+  touch ${dock_item}.dockitem
+
   if [[ $dock_item == "io.elementary*" ]]
   then
     cat > ${dock_item}.dockitem << EOF
@@ -31,4 +33,6 @@ EOF
       Launcher=file:///var/lib/snapd/desktop/applications/${dock_item}.desktop
 EOF
   fi
+
+  mv -f ${dock_item}.dockitem ~/.config/plank/dock1/launchers/
 done
