@@ -25,7 +25,8 @@ ForEach($Package in
   "postman",
   "telegram.install",
   "office365proplus",
-  "virtualbox"
+  "virtualbox",
+  "mongodb.install"
 ) {
     choco install $Package -y
 }
