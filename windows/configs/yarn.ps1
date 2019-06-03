@@ -8,7 +8,8 @@ ForEach ($package in
   "create-react-app",
   "react-native",
   "react-native-cli",
-  "serve"
+  "serve",
+  "init"
 ) {
   yarn global add $package
 }
