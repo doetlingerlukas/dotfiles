@@ -26,7 +26,12 @@ ForEach($Package in
   "telegram.install",
   "office365proplus",
   "virtualbox",
-  "mongodb.install"
+  "mongodb.install",
+  "steam",
+  "origin",
+  "chocolatey-core.extension",
+  "awscli",
+  "yed"
 ) {
     choco install $Package -y
 }
