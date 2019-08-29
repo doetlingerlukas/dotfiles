@@ -20,3 +20,12 @@ if ((Get-WmiObject -Class:Win32_ComputerSystem).Model -eq "Blade Stealth") {
 }
 
 $settings | ConvertTo-Json -Depth 5 | Out-File -Encoding "ASCII" ($config_dir + "\settings.json")
+
+
+# install extensions for vs code
+ForEach ($extension in 
+  "ms-vscode.powershell",
+  "ms-vscode.cpptools"
+) {
+  code --install-extension $extension
+}
