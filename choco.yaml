@@ -2,7 +2,6 @@ common:
   - chocolatey-core.extension
   - adobereader
   - jdk8
-  - jdk11
   - openjdk
   - winrar
   - firefox
@@ -28,5 +27,15 @@ common:
   - awscli
   - yed
   - vlc
+  - mingw
+  - advanced-ip-scanner
 desktop:
   - geforce-experience
+  - teamspeak
+  - cue
+  - logitechgaming
+  - teamviewer
+  - uplay
+laptop:
+  - jdk11
+  - razer-synapse-2
