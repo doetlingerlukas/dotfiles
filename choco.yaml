@@ -1,0 +1,32 @@
+common:
+  - chocolatey-core.extension
+  - adobereader
+  - jdk8
+  - jdk11
+  - openjdk
+  - winrar
+  - firefox
+  - googlechrome
+  - notepadplusplus.install
+  - git.install
+  - gitkraken
+  - git-fork
+  - nodejs.install
+  - yarn
+  - python
+  - ruby
+  - intellijidea-ultimate
+  - vscode
+  - vscode-powershell
+  - postman
+  - telegram.install
+  - office365proplus
+  - virtualbox
+  - mongodb.install
+  - steam
+  - origin
+  - awscli
+  - yed
+  - vlc
+desktop:
+  - geforce-experience
