@@ -8,6 +8,13 @@ Function executeConfigs () {
   }
 }
 
+# Add powershell-package provider
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+
+# Install YAML module
+Install-Module powershell-yaml -Force
+Import-Module powershell-yaml
+
 switch ($mode) {
   "config" {
     Invoke-Expression executeConfigs

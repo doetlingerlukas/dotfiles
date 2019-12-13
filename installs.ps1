@@ -6,12 +6,12 @@ function installChocoPackages {
   }
 }
 
-# Add powershell-package provider
-Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+"Installing chocolatey package manager ..."
 
-# Install YAML module
-Install-Module powershell-yaml -Force
-Import-Module powershell-yaml
+if ($false -eq $(Test-Path -Path "$env:ProgramData\Chocolatey")) {
+  Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+}
+
 
 [string[]]$fileContent = Get-Content '.\choco.yaml'
 $content = ''
