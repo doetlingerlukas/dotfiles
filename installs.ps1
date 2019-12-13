@@ -1,4 +1,4 @@
-function installChocoPackages {
+Function installChocoPackages {
   Param([String[]]$packages)
 
   foreach ($p in $packages) {
