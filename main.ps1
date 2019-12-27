@@ -4,7 +4,7 @@ param(
 
 Function executeConfigs {
   Get-ChildItem -Filter '*.rake' '.\lib\tasks\' | ForEach-Object {
-    rake $_.FullName
+    rake $_.BaseName
   }
 }
 
