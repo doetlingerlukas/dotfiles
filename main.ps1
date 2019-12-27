@@ -3,12 +3,12 @@ param(
 )
 
 Function executeConfigs {
-  Get-ChildItem -Filter '*.ps1' '.\configs\' | ForEach-Object {
-    & $_.FullName
+  Get-ChildItem -Filter '*.rake' '.\lib\tasks\' | ForEach-Object {
+    rake $_.FullName
   }
 }
 
-Function validateRubyInstallation {
+Function verifyRubyInstallation {
   try {
     $ruby = ruby -v
     if ($ruby.StartsWith("ruby 2")) {
@@ -30,6 +30,20 @@ Function validateRubyInstallation {
   }
 }
 
+Function verifyRakeInstallation {
+  try {
+    $rake = rake --version
+    if ($rake.StartsWith("rake, version")) {
+      Write-Host "Rake is installed and available."
+    } else {
+      gem install rake
+    }
+  } catch {
+    Write-Error "Ruby is not available on this system. Exiting now!"
+    exit
+  }
+}
+
 # Add powershell-package provider
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 
@@ -39,13 +53,15 @@ Import-Module powershell-yaml
 
 switch ($mode) {
   "config" {
-    validateRubyInstallation
+    verifyRubyInstallation
+    verifyRakeInstallation
     executeConfigs
     break
   }
   "setup" {
     & .\installs.ps1
-    validateRubyInstallation
+    verifyRubyInstallation
+    verifyRakeInstallation
     executeConfigs
     break
   }
