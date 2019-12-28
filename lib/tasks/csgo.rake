@@ -78,4 +78,6 @@ task :csgo do
 
   FileUtils.cp "#{config_dir_user1}/autoexec.cfg", "#{config_dir_user2}/autoexec.cfg"
   FileUtils.cp "#{config_dir_user1}/training.cfg", "#{config_dir_user2}/training.cfg"
+
+  puts "CS:GO config setup successfully!"
 end
