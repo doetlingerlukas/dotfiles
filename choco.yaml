@@ -1,0 +1,42 @@
+common:
+  - chocolatey-core.extension
+  - adobereader
+  - jdk8
+  - openjdk
+  - winrar
+  - firefox
+  - googlechrome
+  - notepadplusplus.install
+  - git.install
+  - gitkraken
+  - git-fork
+  - nodejs.install
+  - yarn
+  - python
+  - ruby
+  - intellijidea-ultimate
+  - vscode
+  - vscode-powershell
+  - postman
+  - telegram.install
+  - office365proplus
+  - virtualbox
+  - vagrant
+  - mongodb.install
+  - steam
+  - origin
+  - awscli
+  - yed
+  - vlc
+  - mingw
+  - advanced-ip-scanner
+desktop:
+  - geforce-experience
+  - teamspeak
+  - cue
+  - logitechgaming
+  - teamviewer
+  - uplay
+laptop:
+  - jdk11
+  - razer-synapse-2
