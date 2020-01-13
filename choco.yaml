@@ -21,6 +21,7 @@ common:
   - telegram.install
   - office365proplus
   - virtualbox
+  - vagrant
   - mongodb.install
   - steam
   - origin
