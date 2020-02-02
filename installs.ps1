@@ -23,6 +23,6 @@ installChocoPackages($choco.common)
 # install system specific programs
 if ($env:COMPUTERNAME.ToLower().contains("razer")) {
   installChocoPackages($choco.laptop)
-} elseif ($env:COMPUTERNAME.ToLower().contains("desktop")) {
+} elseif ($env:COMPUTERNAME.ToLower().contains("pc")) {
   installChocoPackages($choco.desktop)
 }

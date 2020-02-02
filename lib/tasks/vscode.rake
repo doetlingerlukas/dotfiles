@@ -4,6 +4,8 @@ require 'json'
 require 'laptop'
 require 'open3'
 
+task :vscode => [:'vscode:config', :'vscode:extensions']
+
 namespace :vscode do
   desc "Setup config file."
   task :config do
