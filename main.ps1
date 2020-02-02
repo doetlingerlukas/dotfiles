@@ -44,6 +44,17 @@ Function verifyRakeInstallation {
   }
 }
 
+Function verifyChocolateyInstallation {
+  try {
+    $choco = choco -v
+    if (!$choco -match '[0-9.]') {
+      Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    }
+  } catch {
+
+  }
+}
+
 # Add powershell-package provider
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 

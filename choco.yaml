@@ -38,5 +38,4 @@ desktop:
   - teamviewer
   - uplay
 laptop:
-  - jdk11
   - razer-synapse-2
