@@ -6,9 +6,8 @@ Function installChocoPackages {
   }
 }
 
-"Installing chocolatey package manager ..."
-
 if ($false -eq $(Test-Path -Path "$env:ProgramData\Chocolatey")) {
+  "Installing chocolatey package manager ..."
   Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
 

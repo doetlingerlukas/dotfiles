@@ -11,17 +11,16 @@ Function executeConfigs {
 Function verifyRubyInstallation {
   try {
     $ruby = ruby -v
-    if ($ruby.StartsWith("ruby 2")) {
+    if ($ruby.StartsWith("ruby")) {
       Write-Host "Ruby is installed and available."
     }
   } catch {
-    $Env:Path += ";C:\tools\ruby26\bin"
-    refreshenv | Out-Null
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
     try {
       $ruby = ruby -v
-      if ($ruby.StartsWith("ruby 2")) {
-        Write-Host "Ruby has been added to the PATH."
+      if ($ruby.StartsWith("ruby")) {
+        Write-Host "Ruby is available after updating PATH."
       }
     } catch {
       Write-Error "Ruby is not available on this system. Exiting now!"
@@ -51,7 +50,8 @@ Function verifyChocolateyInstallation {
       Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
     }
   } catch {
-
+    "Installing chocolatey package manager ..."
+    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
   }
 }
 
