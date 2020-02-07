@@ -2,6 +2,7 @@
 
 # import windows settings
 Import-Module -Name ($PSScriptRoot + "\settings.psm1")
+Import-Module -Name ($PSScriptRoot + "\powershell.psm1")
 
 "Uninstalling useless default apps ..."
 
@@ -40,7 +41,6 @@ ForEach ($appId in
   Get-AppXProvisionedPackage -Online | Where-Object DisplayNam -like "$appId" | Remove-AppxProvisionedPackage -Online
 }
 
-
 ForEach ($tweak in 
   "DisableTelemetry",                           # disable telemetry (data transmission to microsoft)
   "DisableAppSuggestions",                      # disable app suggestion and automatic installation
@@ -59,7 +59,8 @@ ForEach ($tweak in
   "Hide3DObjectsFromExplorer",                  # hide 3D objects in explorer
   "HidePeopleIcon",                             # hide people icon in right side of taskbar
 
-  "DisableNTFSCompression"                      # disable the builtin NTFS compression
+  "DisableNTFSCompression",                     # disable the builtin NTFS compression
+  "SetupOpenPowershellHere"                     # adds a menue tile in explorer to open powershell here as admin
 ) {
   Invoke-Expression $tweak
 }

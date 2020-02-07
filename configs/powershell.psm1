@@ -1,9 +1,9 @@
-"Configuring Powershell ..."
-
-New-PSDrive -PSProvider registry -Root HKEY_CLASSES_ROOT -Name HKCR | Out-Null
-
 # Creates a menue item in Explorer to open the powershell as Admin on the current path.
-Function setupOpenPowershellHere() {
+Function SetupOpenPowershellHere() {
+  "Configuring Powershell ..."
+
+  New-PSDrive -PSProvider registry -Root HKEY_CLASSES_ROOT -Name HKCR | Out-Null
+
   $menu = 'Open Windows PowerShell Here as Administrator'
   $command = "$PSHOME\powershell.exe -NoExit -NoProfile -Command ""Set-Location '%V'"""
  
@@ -15,5 +15,3 @@ Function setupOpenPowershellHere() {
     Set-ItemProperty -Name 'Icon' -Value 'powershell.exe'
   }
 }
-
-Invoke-Expression setupOpenPowershellHere
