@@ -15,8 +15,11 @@ Function verifyRubyInstallation {
       Write-Host "Ruby is installed and available."
     }
   } catch {
+    if (!(Test-Path -Path 'C:\tools\**\bin\ruby.exe')) {
+      choco install ruby -y
+    }
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
-
+    
     try {
       $ruby = ruby -v
       if ($ruby.StartsWith("ruby")) {
@@ -55,29 +58,24 @@ Function verifyChocolateyInstallation {
   }
 }
 
-# Add powershell-package provider
-Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
-
-# Install YAML module
-Install-Module powershell-yaml -Force
-Import-Module powershell-yaml
-
 switch ($mode) {
   "config" {
-    verifyRubyInstallation
-    verifyRakeInstallation
-    executeConfigs
+    verifyChocolateyInstallation
     break
   }
   "setup" {
+    # Add powershell-package provider
+    Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+
+    # Install YAML module
+    Install-Module powershell-yaml -Force
+    Import-Module powershell-yaml
+
     & .\installs.ps1
-    verifyRubyInstallation
-    verifyRakeInstallation
-    executeConfigs
     break
   }
 }
 
-"Restarting in 30 seconds ..."
-Start-Sleep 30
-Restart-Computer
+verifyRubyInstallation
+verifyRakeInstallation
+executeConfigs
