@@ -40,9 +40,6 @@ ForEach ($appId in
   Get-AppXProvisionedPackage -Online | Where-Object DisplayNam -like "$appId" | Remove-AppxProvisionedPackage -Online
 }
 
-"Configuring startlayout ..."
-Import-StartLayout -LayoutPath ($PSScriptRoot + "\..\res\startlayout.xml") -MountPath "C:\"
-
 
 ForEach ($tweak in 
   "DisableTelemetry",                           # disable telemetry (data transmission to microsoft)
