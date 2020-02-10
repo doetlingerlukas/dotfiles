@@ -1,0 +1,13 @@
+trigger:
+  - master
+
+jobs:
+  - job: Dotfiles-Windows
+    pool:
+      vmImage: windows-latest
+    
+    steps:
+      - powershell: |
+          Set-ExecutionPolicy -Force Bypass
+          .\main.ps1
+        displayName: Run `main.ps1`
