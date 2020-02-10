@@ -2,7 +2,7 @@ trigger:
   - master
 
 jobs:
-  - job: Dotfiles-Windows
+  - job: Windows
     pool:
       vmImage: windows-latest
     
