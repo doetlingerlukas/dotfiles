@@ -3,6 +3,7 @@ trigger:
 
 jobs:
   - job: Windows
+    timeoutInMinutes: 240
     pool:
       vmImage: windows-latest
     

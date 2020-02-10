@@ -1,3 +1,5 @@
+<h1 align="center"><a href="https://dev.azure.com/doetlingerlukas/dotfiles/_build"><img src="https://img.shields.io/azure-devops/build/doetlingerlukas/fe448611-4d1d-4cc4-a560-5245d477f399/2"/></a></h1>
+
 # dotfiles
 
 These are my personal setup files.
