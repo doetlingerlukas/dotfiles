@@ -78,5 +78,5 @@ switch ($mode) {
 
 verifyRubyInstallation
 verifyRakeInstallation
-.\res\windows.ps1
+& .\res\windows.ps1
 executeConfigs
