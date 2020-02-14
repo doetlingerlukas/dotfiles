@@ -71,12 +71,12 @@ switch ($mode) {
     Install-Module powershell-yaml -Force
     Import-Module powershell-yaml
 
-    & .\installs.ps1
+    & .\res\installs.ps1
     break
   }
 }
 
 verifyRubyInstallation
 verifyRakeInstallation
-.\configs\windows.ps1
+.\res\windows.ps1
 executeConfigs

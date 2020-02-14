@@ -12,7 +12,7 @@ if ($false -eq $(Test-Path -Path "$env:ProgramData\Chocolatey")) {
 }
 
 
-[string[]]$fileContent = Get-Content '.\choco.yaml'
+[string[]]$fileContent = Get-Content ($PSScriptRoot + '\choco.yaml')
 $content = ''
 foreach ($line in $fileContent) { $content = $content + "`n" + $line }
 $choco = ConvertFrom-YAML $content
