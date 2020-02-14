@@ -62,5 +62,9 @@ ForEach ($tweak in
   "DisableNTFSCompression",                     # disable the builtin NTFS compression
   "SetupOpenPowershellHere"                     # adds a menue tile in explorer to open powershell here as admin
 ) {
-  Invoke-Expression $tweak
+  try {
+    Invoke-Expression $tweak
+  } catch {
+    Write-Error "Failed executing tweak $($tweak) ."
+  }
 }
