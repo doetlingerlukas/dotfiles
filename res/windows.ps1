@@ -65,6 +65,6 @@ ForEach ($tweak in
   try {
     Invoke-Expression $tweak
   } catch {
-    Write-Error "Failed executing tweak $($tweak) ."
+    Write-Host "Failed executing tweak $($tweak) ."
   }
 }
