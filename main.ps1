@@ -46,6 +46,22 @@ Function verifyRakeInstallation {
   }
 }
 
+Function installGems {
+  [string[]]$fileContent = Get-Content ($PSScriptRoot + '\res\gems.yaml')
+  $content = ''
+  foreach ($line in $fileContent) { $content = $content + "`n" + $line }
+  $gems = ConvertFrom-YAML $content
+
+  foreach ($g in $gems.gems) {
+    try {
+      gem install $g
+    } catch {
+      Write-Error "Failed installing gem $($g). Exiting now!"
+      exit
+    }
+  }
+}
+
 Function verifyChocolateyInstallation {
   try {
     $choco = choco -v
@@ -79,4 +95,5 @@ switch ($mode) {
 verifyRubyInstallation
 verifyRakeInstallation
 & .\res\windows.ps1
+installGems
 executeConfigs
