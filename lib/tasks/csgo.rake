@@ -53,7 +53,7 @@ task :csgo do
     
     // Matchmaking 
     cl_color 0
-    
+    mm_dedicated_search_maxping 100
     
     host_writeconfig
   CFG
