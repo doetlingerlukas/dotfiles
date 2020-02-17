@@ -26,3 +26,6 @@ if ($env:COMPUTERNAME.ToLower().contains("razer")) {
 } elseif ($env:COMPUTERNAME.ToLower().contains("pc")) {
   installChocoPackages($choco.desktop)
 }
+
+"Updating PATH ..."
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")

@@ -30,6 +30,8 @@ common:
   - vlc
   - mingw
   - advanced-ip-scanner
+  - miktex
+  - texstudio
 desktop:
   - geforce-experience
   - teamspeak
