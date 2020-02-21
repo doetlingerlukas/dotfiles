@@ -1,17 +1,22 @@
 # frozen_string_literal: true
 
 require 'json'
+require 'os'
 require 'laptop'
-require 'open3'
+require 'command'
 
 task :vscode => [:'vscode:config', :'vscode:extensions']
 
 namespace :vscode do
   desc "Setup config file."
   task :config do
-    
+
     puts "Writing config file for VS Code."
-    config_dir = "C:/Users/#{ENV['USERNAME']}/AppData/Roaming/Code/User"
+
+
+    config_dir = OS.windows? ? 
+      "C:/Users/#{ENV['USERNAME']}/AppData/Roaming/Code/User" :
+      "#{ENV['HOME']}/.config/Code/User"
 
     FileUtils.mkdir_p config_dir
 

@@ -3,7 +3,7 @@
 require 'os'
 
 task :csgo do
-  next unless OS.windows? 
+  next unless OS.windows?
 
   puts "Setting up CS:GO config ..."
 
@@ -13,11 +13,11 @@ task :csgo do
   FileUtils.mkdir_p config_dir_user1
   FileUtils.mkdir_p config_dir_user2
 
-  File.write "#{config_dir_user1}/autoexec.cfg",  <<~CFG
+  File.write "#{config_dir_user1}/autoexec.cfg", <<~CFG
     // General
     gameinstructor_enable 0
     cl_autowepswitch 0
-    
+
     // Crosshair
     cl_crosshair_drawoutline "0"
     cl_crosshair_outlinethickness "0.100000"
@@ -37,28 +37,28 @@ task :csgo do
     cl_crosshairstyle "4"
     cl_crosshairthickness "0.5"
     cl_crosshairusealpha "1"
-    
+
     // Display damage given in game
     developer "1"
     con_enable "1"
     con_filter_text "Damage"
     con_filter_text_out "Player:"
     con_filter_enable "2"
-    
+
     // Show teammates equipment
     cl_teamid_overhead_always "1"
     bind tab "+score;+cl_show_team_equipment"
-    
+
     // Mouse settings
     sensitivity "3.450000"
-    
+
     // Sound settings
     snd_tensecondwarning_volume 0.15
-    
-    // Matchmaking 
+
+    // Matchmaking
     cl_color 0
     mm_dedicated_search_maxping 100
-    
+
     host_writeconfig
   CFG
 
