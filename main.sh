@@ -12,16 +12,16 @@ do
   esac
 done
 
-execute_configs () {
-  for file in ./configs/*.sh; do
-    bash "$file" -H
+execute_tasks () {
+  for file in ./lib/tasks/*.rake; do
+    rake ${file##*/}
   done 
 }
 
 if [ "${MODE}" == "config" ]
 then
   echo -e "\e[30;103mStarting dotfiles in configuration mode ...\e[0m"
-  execute_configs
+  execute_tasks
 else 
   echo -e "\e[30;42mStarting dotfiles in setup mode ...\e[0m"
 
@@ -29,6 +29,8 @@ else
   sudo apt update
   sudo apt upgrade -y
 
+  sudo apt install ruby -y
+
   bash ./installs.sh -H
-  execute_configs
+  execute_tasks
 fi

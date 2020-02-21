@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
+require 'os'
+
 task :csgo do
+  next unless OS.windows? 
+
   puts "Setting up CS:GO config ..."
 
   config_dir_user1 = "C:/Program Files (x86)/Steam/userdata/136275020/730/local/cfg"
