@@ -13,8 +13,7 @@ namespace :vscode do
 
     puts "Writing config file for VS Code."
 
-
-    config_dir = OS.windows? ? 
+    config_dir = OS.windows? ?
       "C:/Users/#{ENV['USERNAME']}/AppData/Roaming/Code/User" :
       "#{ENV['HOME']}/.config/Code/User"
 
@@ -54,12 +53,7 @@ namespace :vscode do
       "visualstudioexptteam.vscodeintellicode",
       "wingrunr21.vscode-ruby"
     ].each do |e|
-      stdout, stderr, status = Open3.capture3("powershell", "-command", "code --install-extension #{e}")
-      if status.success?
-        puts "Installed VS Code extension #{e}."
-      else
-        puts "Failed installing VS Code extension #{e}"
-      end
+      command 'code', '--install-extension', e
     end
 
   end

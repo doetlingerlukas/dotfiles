@@ -5,10 +5,10 @@ require 'os'
 task :csgo do
   next unless OS.windows?
 
-  puts "Setting up CS:GO config ..."
+  puts 'Setting up CS:GO config ...'
 
-  config_dir_user1 = "C:/Program Files (x86)/Steam/userdata/136275020/730/local/cfg"
-  config_dir_user2 = "C:/Program Files (x86)/Steam/userdata/241388330/730/local/cfg"
+  config_dir_user1 = 'C:/Program Files (x86)/Steam/userdata/136275020/730/local/cfg'
+  config_dir_user2 = 'C:/Program Files (x86)/Steam/userdata/241388330/730/local/cfg'
 
   FileUtils.mkdir_p config_dir_user1
   FileUtils.mkdir_p config_dir_user2
@@ -83,5 +83,5 @@ task :csgo do
   FileUtils.cp "#{config_dir_user1}/autoexec.cfg", "#{config_dir_user2}/autoexec.cfg"
   FileUtils.cp "#{config_dir_user1}/training.cfg", "#{config_dir_user2}/training.cfg"
 
-  puts "CS:GO config setup successfully!"
+  puts 'CS:GO config setup successfully!'
 end
