@@ -6,7 +6,16 @@ jobs:
     timeoutInMinutes: 240
     pool:
       vmImage: windows-latest
-    
+
     steps:
       - powershell: .\main.ps1
         displayName: Run `main.ps1`
+  
+  - job: Linux
+    timeoutInMinutes: 240
+    pool:
+      vmImage: ubuntu-latest
+
+    steps:
+      - bash: ./main.sh
+        displayName: Run `main.sh`
