@@ -18,6 +18,21 @@ execute_tasks () {
   done 
 }
 
+verify_ruby_installation () {
+  ruby_version = `ruby -v`
+  if ! [[ "$ruby_version" =~ ^ruby ]]
+  then
+    sudo apt install ruby -y
+  fi
+  rake_version = `rake --version`
+  if ! [[ "$rake_version" =~ ^rake ]]
+  then
+    sudo gem install rake
+  fi
+}
+
+verify_ruby_installation
+
 if [ "${MODE}" == "config" ]
 then
   echo -e "\e[30;103mStarting dotfiles in configuration mode ...\e[0m"
@@ -29,8 +44,7 @@ else
   sudo apt update
   sudo apt upgrade -y
 
-  sudo apt install ruby -y
+  sudo ruby ./res/installs.rb
 
-  bash ./installs.sh -H
   execute_tasks
 fi

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'open3'
+require 'English'
 require 'shellwords'
 
 def ps_command(command)

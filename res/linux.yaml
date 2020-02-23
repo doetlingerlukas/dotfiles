@@ -1,0 +1,15 @@
+apt:
+  - snap
+  - default-jdk
+  - p7zip-full p7zip-rar
+  - git
+  - python3
+  - python3-pip
+snap:
+  - code --classic
+  - telegram-desktop
+  - postman
+  - firefox
+  - powershell --classic
+  - gitkraken
+  - node --channel=10/stable --classic
