@@ -5,13 +5,15 @@ require 'command'
 require 'add_line_to_file'
 require 'which'
 
+task :fish => [:'fish:install']
+
 namespace :fish do
   desc 'Install fish shell.'
   task :install do
     next unless OS.linux?
 
     puts 'Installing fish shell.'
-    command 'sudo', 'apt-add-repository', 'ppa:fish-shell/release-3'
+    command 'sudo', 'apt-add-repository', 'ppa:fish-shell/release-3', '-y'
     command 'sudo', 'apt-get', 'update'
     command 'sudo', 'apt-get', 'install', 'fish', '-y'
 

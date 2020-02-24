@@ -14,17 +14,18 @@ done
 
 execute_tasks () {
   for file in ./lib/tasks/*.rake; do
-    rake ${file##*/}
+    basename=${file##*/}
+    rake ${basename%.*}
   done 
 }
 
 verify_ruby_installation () {
-  ruby_version = `ruby -v`
+  ruby_version=`ruby -v`
   if ! [[ "$ruby_version" =~ ^ruby ]]
   then
     sudo apt install ruby -y
   fi
-  rake_version = `rake --version`
+  rake_version=`rake --version`
   if ! [[ "$rake_version" =~ ^rake ]]
   then
     sudo gem install rake

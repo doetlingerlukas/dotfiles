@@ -1,7 +1,7 @@
 apt:
   - build-essential
+  - software-properties-common
   - curl
-  - file
   - snap
   - default-jdk
   - git
