@@ -31,6 +31,9 @@ verify_ruby_installation () {
   fi
 }
 
+# Abort on errors
+set -e
+
 verify_ruby_installation
 
 if [ "${MODE}" == "config" ]

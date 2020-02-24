@@ -1,7 +1,9 @@
 apt:
+  - build-essential
+  - curl
+  - file
   - snap
   - default-jdk
-  - p7zip-full p7zip-rar
   - git
   - python3
   - python3-pip

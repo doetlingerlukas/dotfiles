@@ -3,9 +3,9 @@
 require 'yaml'
 require 'English'
 
-gems = YAML.load_file('gems.yaml')
+gems = YAML.load_file(File.join(__dir__, 'gems.yaml'))
 
-gems.gems.each do |g|
+gems['gems'].each do |g|
   puts "Installing ruby gem '#{g}."
   system 'sudo', 'gem', 'install', g
   unless $CHILD_STATUS.success?
@@ -13,9 +13,9 @@ gems.gems.each do |g|
   end
 end
 
-linux_packages = YAML.load_file('linux.yaml')
+linux_packages = YAML.load_file(File.join(__dir__, 'linux.yaml'))
 
-linux_packages.apt.each do |pkg|
+linux_packages['apt'].each do |pkg|
   puts "Installing apt package '#{pkg}'."
   system 'sudo', 'apt', 'install', pkg, '-y'
   unless $CHILD_STATUS.success?
@@ -23,7 +23,7 @@ linux_packages.apt.each do |pkg|
   end
 end
 
-linux_packages.snap.each do |s|
+linux_packages['snap'].each do |s|
   puts "Installing snap '#{s}'."
   system 'sudo', 'snap', 'install', s
   unless $CHILD_STATUS.success?
