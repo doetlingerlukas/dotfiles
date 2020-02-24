@@ -2,7 +2,7 @@ apt:
   - build-essential
   - software-properties-common
   - curl
-  - snap
+  - snapd
   - default-jdk
   - git
   - python3
