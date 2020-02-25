@@ -25,7 +25,7 @@ end
 
 linux_packages['snap'].each do |s|
   puts "Installing snap '#{s}'."
-  system 'sudo', 'snap', 'install', s
+  system *['sudo', 'snap', 'install'].push(*s.split)
   unless $CHILD_STATUS.success?
     raise "Installing snap '#{s}' failed."
   end

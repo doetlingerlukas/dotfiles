@@ -21,8 +21,7 @@ namespace :fish do
     add_line_to_file '/etc/shells', fish_executable
 
     unless ENV['SHELL'].eql? fish_executable
-      username = `whoami`
-      command 'sudo', '/usr/bin/chsh', '-s', fish_executable, username
+      command 'sudo', '/usr/bin/chsh', '-s', fish_executable
     end
   end
 end
