@@ -23,6 +23,14 @@ linux_packages['apt'].each do |pkg|
   end
 end
 
+linux_packages['brew'].each do |f|
+  puts "Installing brew formulae '#{f}'."
+  system 'brew', 'install', f
+  unless $CHILD_STATUS.success?
+    raise "Installing brew formulae '#{f}' failed."
+  end
+end
+
 linux_packages['snap'].each do |s|
   puts "Installing snap '#{s}'."
   system *['sudo', 'snap', 'install'].push(*s.split)

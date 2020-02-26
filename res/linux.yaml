@@ -1,12 +1,13 @@
 apt:
-  - build-essential
   - software-properties-common
-  - curl
   - snapd
-  - default-jdk
-  - git
-  - python3
-  - python3-pip
+brew:
+  - ruby
+  - fish
+  - python
+  - openjdk
+  - rust
+  - r
 snap:
   - code --classic
   - telegram-desktop

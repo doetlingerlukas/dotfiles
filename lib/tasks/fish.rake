@@ -5,17 +5,14 @@ require 'command'
 require 'add_line_to_file'
 require 'which'
 
-task :fish => [:'fish:install']
+task :fish => [:'fish:setup']
 
 namespace :fish do
-  desc 'Install fish shell.'
-  task :install do
+  desc 'Setup fish shell.'
+  task :setup do
     next unless OS.linux?
 
-    puts 'Installing fish shell.'
-    command 'sudo', 'apt-add-repository', 'ppa:fish-shell/release-3', '-y'
-    command 'sudo', 'apt-get', 'update'
-    command 'sudo', 'apt-get', 'install', 'fish', '-y'
+    puts 'Setting fish as default shell shell.'
 
     fish_executable = (which 'fish')
     add_line_to_file '/etc/shells', fish_executable

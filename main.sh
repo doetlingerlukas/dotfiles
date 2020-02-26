@@ -19,14 +19,25 @@ execute_tasks () {
   done 
 }
 
-verify_ruby_installation () {
-  ruby_version=`ruby -v`
-  if ! [[ "$ruby_version" =~ ^ruby ]]
+verify_brew_installation () {
+  brew_path=`which brew`
+  if ! [[ "$brew_path" == *brew ]]
   then
-    sudo apt install ruby -y
+    sudo apt install build-essential curl file git -y
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+    test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+    echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
   fi
-  rake_version=`rake --version`
-  if ! [[ "$rake_version" =~ ^rake ]]
+}
+
+verify_ruby_installation () {
+  ruby_path=`which ruby`
+  if ! [[ "$ruby_path" == *ruby ]]
+  then
+    brew install ruby
+  fi
+  rake_path=`which rake`
+  if ! [[ "$rake_path" == *rake ]]
   then
     sudo gem install rake
   fi
@@ -35,6 +46,7 @@ verify_ruby_installation () {
 # Abort on errors
 set -e
 
+verify_brew_installation
 verify_ruby_installation
 
 if [ "${MODE}" == "config" ]
