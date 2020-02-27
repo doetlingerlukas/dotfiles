@@ -5,7 +5,7 @@ require 'command'
 require 'add_line_to_file'
 require 'which'
 
-task :fish => [:'fish:setup']
+task :fish => [:'fish:setup', :'fish:fisher']
 
 namespace :fish do
   desc 'Setup fish shell.'
@@ -20,5 +20,30 @@ namespace :fish do
     unless ENV['SHELL'].eql? fish_executable
       command 'sudo', '/usr/bin/chsh', '-s', fish_executable
     end
+  end
+
+  desc 'Setup fisher and plugins.'
+  task :fisher do
+    next unless OS.linux?
+
+    begin
+      command 'fish', '-c', 'fisher -v'
+    rescue StandardError => e
+      puts 'Installing fischer.'
+      command 'sudo', 'curl', 'https://git.io/fisher', '--create-dirs', '-sLo', '~/.config/fish/functions/fisher.fish'
+    end
+
+    puts 'Updating fischer plugins.'
+    [
+      'jethrokuan/z',
+      'franciscolourenco/done',
+      'jorgebucaran/fish-spark',
+      'omf/bang-bang',
+      'omf/thefuck'
+    ].each do |plugin| 
+      command 'fish', '-c', "fisher add #{plugin}"
+    end
+    command 'fish', '-c', 'fisher'
+
   end
 end
