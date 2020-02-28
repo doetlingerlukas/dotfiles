@@ -20,8 +20,7 @@ execute_tasks () {
 }
 
 verify_brew_installation () {
-  brew_path=`which brew`
-  if ! [[ "$brew_path" == *brew ]]
+  if ! type "brew" &> /dev/null
   then
     sudo apt install build-essential curl file git -y
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
@@ -31,20 +30,18 @@ verify_brew_installation () {
 }
 
 verify_ruby_installation () {
-  ruby_path=`which ruby`
-  if ! [[ "$ruby_path" == *ruby ]]
+  if ! type "ruby" &> /dev/null
   then
     brew install ruby
   fi
-  rake_path=`which rake`
-  if ! [[ "$rake_path" == *rake ]]
+  if ! type "rake" &> /dev/null
   then
     sudo gem install rake
   fi
 }
 
 # Abort on errors
-set -e
+set -euo pipefail
 
 verify_brew_installation
 verify_ruby_installation
