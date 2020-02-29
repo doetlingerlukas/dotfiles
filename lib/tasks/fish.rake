@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'os'
+require 'etc'
 require 'English'
 require 'command'
 require 'add_line_to_file'
@@ -19,7 +20,7 @@ namespace :fish do
     add_line_to_file '/etc/shells', fish_executable
 
     unless ENV['SHELL'].eql? fish_executable
-      command 'sudo', '/usr/bin/chsh', '-s', fish_executable
+      command 'sudo', '/usr/bin/chsh', '-s', fish_executable, Etc.getlogin
     end
   end
 

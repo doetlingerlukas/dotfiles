@@ -9,6 +9,7 @@ def laptop?
     out, _, status = ps_command('Write-Host $env:computername')
     out.downcase.include?('razer')
   else
-    ENV['HOSTNAME'].downcase.include?('razer')
+    out, _, status = Open3.capture3('hostname')
+    out.downcase.include?('razer')
   end
 end
