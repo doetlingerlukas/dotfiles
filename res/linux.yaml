@@ -7,7 +7,7 @@ brew:
   - fish
   - python
   - openjdk
-  - rust
+  - rustup-init
   - r
 snap:
   - code --classic
