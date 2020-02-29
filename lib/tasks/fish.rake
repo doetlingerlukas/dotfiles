@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'os'
+require 'English'
 require 'command'
 require 'add_line_to_file'
 require 'which'
@@ -12,7 +13,7 @@ namespace :fish do
   task :setup do
     next unless OS.linux?
 
-    puts 'Setting fish as default shell shell.'
+    puts 'Setting fish as default shell.'
 
     fish_executable = (which 'fish')
     add_line_to_file '/etc/shells', fish_executable
@@ -28,9 +29,10 @@ namespace :fish do
 
     begin
       command 'fish', '-c', 'fisher -v'
+      raise "Fisher not installed!" unless $CHILD_STATUS.success?
     rescue StandardError => e
       puts 'Installing fischer.'
-      command 'sudo', 'curl', 'https://git.io/fisher', '--create-dirs', '-sLo', '~/.config/fish/functions/fisher.fish'
+      command 'curl', 'https://git.io/fisher', '--create-dirs', '-sLo', ENV['HOME']+'/.config/fish/functions/fisher.fish'
     end
 
     puts 'Updating fischer plugins.'

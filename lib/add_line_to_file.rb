@@ -13,5 +13,5 @@ def add_line_to_file(file, line)
     FileUtils.touch file
   end
 
-  command 'echo', line, '|', 'sudo', 'tee', '-a', file
+  command "echo #{line} | sudo tee -a #{file}"
 end
