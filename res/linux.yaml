@@ -2,6 +2,7 @@ apt:
   - software-properties-common
   - snapd
 brew:
+  - gcc
   - ruby
   - fish
   - python

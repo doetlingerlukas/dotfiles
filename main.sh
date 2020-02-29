@@ -24,6 +24,8 @@ verify_brew_installation () {
   then
     sudo apt install build-essential curl file git -y
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+    test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+    test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
     test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
     echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
   fi
@@ -36,12 +38,12 @@ verify_ruby_installation () {
   fi
   if ! type "rake" &> /dev/null
   then
-    sudo gem install rake
+    gem install rake
   fi
 }
 
 # Abort on errors
-set -euo pipefail
+set -eo pipefail
 
 verify_brew_installation
 verify_ruby_installation
@@ -57,7 +59,7 @@ else
   sudo apt update
   sudo apt upgrade -y
 
-  sudo ruby ./res/installs.rb
+  ruby ./res/installs.rb
 
   execute_tasks
 fi

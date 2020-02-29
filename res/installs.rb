@@ -7,7 +7,7 @@ gems = YAML.load_file(File.join(__dir__, 'gems.yaml'))
 
 gems['gems'].each do |g|
   puts "Installing ruby gem '#{g}."
-  system 'sudo', 'gem', 'install', g
+  system 'gem', 'install', g
   unless $CHILD_STATUS.success?
     raise "Installing ruby gem '#{g}' failed."
   end
