@@ -23,6 +23,11 @@ jobs:
 
     steps:
       - bash: |
+          sudo apt purge ruby -y
+          sudo apt autoremove -y
+        displayName: Clean system.
+
+      - bash: |
           sudo chmod +x ./main.sh
           ./main.sh
         displayName: Run `main.sh`
