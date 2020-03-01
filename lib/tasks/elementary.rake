@@ -2,10 +2,11 @@
 
 require 'os'
 require 'command'
+require 'distro'
 
 desc 'Configure elementary os.'
 task :elementary do
-  next unless OS.linux?
+  next unless OS.linux? && elementary?
 
   puts 'Configuring elementary os.'
 
