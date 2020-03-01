@@ -5,7 +5,7 @@ require 'English'
 require 'shellwords'
 
 def ps_command(command)
-  Open3.capture3("powershell", "-command", "#{command}")
+  Open3.capture3('powershell', '-command', "#{command}")
 end
 
 def command(*args)

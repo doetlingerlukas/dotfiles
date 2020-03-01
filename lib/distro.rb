@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require 'os'
-require 'train'
+require 'open3'
 
 def is_distro?(common_name)
-  return nil unless OS.linux?
-  dist_name = Train.create('local').connection.os[:name]
-  dist_name.lowercase.include? common_name.lowercase
+  return false unless OS.linux?
+  out, _, status = Open3.capture3('cat', '/etc/lsb-release')
+  out.include? common_name
 end
 
 def ubuntu?
