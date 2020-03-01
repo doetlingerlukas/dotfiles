@@ -29,6 +29,7 @@ common:
   - yed
   - vlc
   - mingw
+  - msys2
   - advanced-ip-scanner
   - miktex
   - texstudio

@@ -54,7 +54,9 @@ Function installGems {
 
   foreach ($g in $gems.gems) {
     try {
-      gem install $g
+      if ($g -ne "rubocop") {
+        gem install $g
+      }
     } catch {
       Write-Error "Failed installing gem $($g). Exiting now!"
       exit
