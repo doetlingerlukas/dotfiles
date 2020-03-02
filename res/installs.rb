@@ -27,7 +27,7 @@ linux_packages['brew'].each do |f|
   puts "Installing brew formulae '#{f}'."
   system 'brew', 'install', f
   unless $CHILD_STATUS.success?
-    raise "Installing brew formulae '#{f}' failed."
+    raise "Installing brew formulae '#{f}' failed with status code '#{$CHILD_STATUS}'."
   end
 end
 
