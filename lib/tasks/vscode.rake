@@ -51,7 +51,11 @@ namespace :vscode do
       "ms-azuretools.vscode-docker",
       "rebornix.ruby",
       "visualstudioexptteam.vscodeintellicode",
-      "wingrunr21.vscode-ruby"
+      "wingrunr21.vscode-ruby",
+      "xoronic.pestfile",
+      "rust-lang.rust",
+      "bungcip.better-toml",
+      "serayuzgur.crates"
     ].each do |e|
       command 'code', '--install-extension', e
     end
