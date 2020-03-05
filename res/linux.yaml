@@ -6,9 +6,7 @@ brew:
   - ruby
   - fish
   - python
-  - openjdk
   - rustup-init
-  - r
 snap:
   - code --classic
   - telegram-desktop
