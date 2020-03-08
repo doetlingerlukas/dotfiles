@@ -24,6 +24,7 @@ jobs:
     steps:
       - bash: |
           sudo apt purge ruby -y
+          sudo apt-get purge openjdk* -y
           sudo apt autoremove -y
         displayName: Clean system.
 
