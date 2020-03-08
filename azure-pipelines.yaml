@@ -24,7 +24,8 @@ jobs:
     steps:
       - bash: |
           sudo apt purge ruby -y
-          sudo apt-get purge openjdk* -y
+          sudo apt purge openjdk* -y
+          sudo apt purge msodbcsql17 -y
           sudo apt autoremove -y
         displayName: Clean system.
 
