@@ -56,7 +56,7 @@ else
   echo -e "\e[30;42mStarting dotfiles in setup mode ...\e[0m"
 
   echo "Updating system ..."
-  sudo apt update
+  sudo apt update -y
   sudo apt upgrade -y
 
   ruby ./res/installs.rb
