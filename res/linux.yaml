@@ -1,5 +1,7 @@
 apt:
   - software-properties-common
+  - gnome-tweaks
+  - gnome-shell-extensions
   - snapd
 brew:
   - gcc
