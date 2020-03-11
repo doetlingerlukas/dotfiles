@@ -1,0 +1,19 @@
+apt:
+  - software-properties-common
+  - gnome-tweaks
+  - gnome-shell-extensions
+  - snapd
+brew:
+  - gcc
+  - ruby
+  - fish
+  - python
+  - rustup-init
+snap:
+  - code --classic
+  - telegram-desktop
+  - postman
+  - firefox
+  - powershell --classic
+  - gitkraken
+  - node --channel=10/stable --classic

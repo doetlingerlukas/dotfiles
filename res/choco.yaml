@@ -32,6 +32,7 @@ common:
   - advanced-ip-scanner
   - miktex
   - texstudio
+  - visualcpp-build-tools
 desktop:
   - geforce-experience
   - teamspeak
