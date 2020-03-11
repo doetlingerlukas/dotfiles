@@ -41,8 +41,6 @@ namespace :fish do
       'jethrokuan/z',
       'franciscolourenco/done',
       'jorgebucaran/fish-spark',
-      'omf/bang-bang',
-      'omf/thefuck'
     ].each do |plugin| 
       command 'fish', '-c', "fisher add #{plugin}"
     end
