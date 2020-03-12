@@ -8,10 +8,10 @@ require 'command'
 task :vscode => [:'vscode:config', :'vscode:extensions']
 
 namespace :vscode do
-  desc "Setup config file."
+  desc 'Setup config file.'
   task :config do
 
-    puts "Writing config file for VS Code."
+    puts 'Writing config file for VS Code.'
 
     config_dir = OS.windows? ?
       "C:/Users/#{ENV['USERNAME']}/AppData/Roaming/Code/User" :
@@ -38,24 +38,26 @@ namespace :vscode do
 
   end
 
-  desc "Install extensions."
+  desc 'Install extensions.'
   task :extensions do
 
-    puts "Installing VS Code extensions."
+    puts 'Installing VS Code extensions.'
 
     [
-      "ms-vscode.powershell",
-      "ms-vscode.cpptools",
-      "pivotal.vscode-manifest-yaml",
-      "pivotal.vscode-concourse",
-      "ms-azuretools.vscode-docker",
-      "rebornix.ruby",
-      "visualstudioexptteam.vscodeintellicode",
-      "wingrunr21.vscode-ruby",
-      "xoronic.pestfile",
-      "rust-lang.rust",
-      "bungcip.better-toml",
-      "serayuzgur.crates"
+      'ms-vscode.powershell',
+      'ms-vscode.cpptools',
+      'pivotal.vscode-manifest-yaml',
+      'pivotal.vscode-concourse',
+      'ms-azuretools.vscode-docker',
+      'rebornix.ruby',
+      'visualstudioexptteam.vscodeintellicode',
+      'wingrunr21.vscode-ruby',
+      'xoronic.pestfile',
+      'rust-lang.rust',
+      'bungcip.better-toml',
+      'serayuzgur.crates',
+      'pkief.material-icon-theme',
+      'equinusocio.vsc-material-theme'
     ].each do |e|
       command 'code', '--install-extension', e
     end
