@@ -33,6 +33,8 @@ common:
   - miktex
   - texstudio
   - visualcpp-build-tools
+  - powershell-core
+  - conemu
 desktop:
   - geforce-experience
   - teamspeak
