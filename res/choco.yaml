@@ -34,7 +34,8 @@ common:
   - texstudio
   - visualcpp-build-tools
   - powershell-core
-  - conemu
+  - cmder
+  - hyper
 desktop:
   - geforce-experience
   - teamspeak

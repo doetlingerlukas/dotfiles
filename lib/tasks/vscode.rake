@@ -4,8 +4,9 @@ require 'json'
 require 'os'
 require 'laptop'
 require 'command'
+require 'which'
 
-task :vscode => [:'vscode:config', :'vscode:extensions']
+task :vscode => [:'vscode:extensions', :'vscode:config']
 
 namespace :vscode do
   desc 'Setup config file.'
@@ -20,18 +21,24 @@ namespace :vscode do
     FileUtils.mkdir_p config_dir
 
     config_raw = {
-      "editor.tabSize" => "2",
-      "explorer.confirmDragAndDrop" => "false",
-      "files.exclude" => {
-        "**/.classpath" => "true",
-        "**/.project" => "true",
-        "**/.settings" => "true",
-        "**/.factorypath" => "true"
-      }
+      'editor.tabSize' => 2,
+      'explorer.confirmDragAndDrop' => false,
+      'files.exclude' => {
+        '**/.classpath' => true,
+        '**/.project' => true,
+        '**/.settings' => true,
+        '**/.factorypath' => true
+      },
+      'workbench.colorTheme' => 'Material Theme Darker',
+      'workbench.iconTheme' => 'material-icon-theme'
     }
 
+    if OS.windows?
+      config_raw['terminal.integrated.shell.windows'] = (which 'pwsh.exe')
+    end
+
     if laptop?
-      config_raw["window.zoomLevel"] = "-1"
+      config_raw['window.zoomLevel'] = '-1'
     end
 
     File.write "#{config_dir}/settings.json", JSON.pretty_generate(config_raw)
