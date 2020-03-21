@@ -4,8 +4,11 @@ Import-Module Get-ChildItemColor
 Set-Alias l Get-ChildItemColor -Option AllScope
 Set-Alias ls Get-ChildItemColorFormatWide -Option AllScope
 
+# Set default user for oh-my-posh theme
+$DefaultUser = $env:UserName
+
 # Helper function to change directory to development workspace
-function cdw { Set-Location "C:\Users\$env:UserName\Documents\Git" }
+function cdw { Set-Location "C:\Users\$DefaultUser\Documents\Git" }
 
 # Helper function to set location to the User Profile directory
 function cuserprofile { Set-Location ~ }
@@ -33,3 +36,5 @@ Import-Module -Name oh-my-posh
 
 # Default the prompt to agnoster oh-my-posh theme
 Set-Theme agnoster
+
+~

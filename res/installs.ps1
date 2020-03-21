@@ -29,3 +29,8 @@ if ($env:COMPUTERNAME.ToLower().contains("razer")) {
 
 "Updating PATH ..."
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+"Installing Powerline Fonts ..."
+git clone 'https://github.com/powerline/fonts.git'
+& .\fonts\install.ps1
+Remove-Item -LiteralPath "fonts" -Force -Recurse
