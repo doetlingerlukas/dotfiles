@@ -84,6 +84,7 @@ switch ($mode) {
   "setup" {
     # Add powershell-package provider
     Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+    Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 
     # Install YAML module
     Install-Module powershell-yaml -Force
