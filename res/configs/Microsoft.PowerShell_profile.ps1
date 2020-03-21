@@ -33,6 +33,7 @@ function U {
 
 Import-Module -Name posh-git
 Import-Module -Name oh-my-posh
+Import-Module -Name z
 
 # Default the prompt to agnoster oh-my-posh theme
 Set-Theme agnoster

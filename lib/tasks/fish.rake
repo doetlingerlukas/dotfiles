@@ -26,8 +26,7 @@ namespace :fish do
 
   desc 'Setup fisher and plugins.'
   task :fisher do
-    next unless OS.linux?
-    next if ENV['CI']
+    next if ENV['CI'] or !OS.linux?
 
     begin
       command 'fish', '-c', 'fisher -v'

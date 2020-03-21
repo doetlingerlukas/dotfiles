@@ -7,8 +7,10 @@ desc 'Configure powershell.'
 task :powershell do
   next unless OS.windows?
   
+  puts "Installing powershell modules ..."
   pwsh 'Install-Module', 'posh-git', '-Scope', 'CurrentUser', '-Force'
   pwsh 'Install-Module', 'oh-my-posh', '-Scope', 'CurrentUser', '-Force'
+  pwsh 'Install-Module', '-Name', 'z', '-Scope', 'CurrentUser', '-Force'
   pwsh 'Install-Module', '-Name', 'PSReadLine', '-AllowPrerelease', '-Scope', 'CurrentUser', '-Force', '-SkipPublisherCheck'
   pwsh 'Install-Module', '-AllowClobber', 'Get-ChildItemColor'
 

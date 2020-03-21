@@ -31,6 +31,6 @@ if ($env:COMPUTERNAME.ToLower().contains("razer")) {
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
 "Installing Powerline Fonts ..."
-git clone 'https://github.com/powerline/fonts.git'
+git clone 'https://github.com/powerline/fonts.git' $PSScriptRoot
 & .\fonts\install.ps1
 Remove-Item -LiteralPath "fonts" -Force -Recurse
