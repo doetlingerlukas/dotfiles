@@ -1,4 +1,5 @@
 Import-Module Get-ChildItemColor
+Import-Module -Name z
 
 # Set l and ls alias to use the new Get-ChildItemColor cmdlets
 Set-Alias l Get-ChildItemColor -Option AllScope
@@ -8,34 +9,26 @@ Set-Alias ls Get-ChildItemColorFormatWide -Option AllScope
 $DefaultUser = $env:UserName
 
 # Helper function to change directory to development workspace
-function cdw { Set-Location "C:\Users\$DefaultUser\Documents\Git" }
+Function cdw { Set-Location "C:\Users\$DefaultUser\Documents\Git" }
 
 # Helper function to set location to the User Profile directory
-function cuserprofile { Set-Location ~ }
+Function cuserprofile { Set-Location ~ }
 Set-Alias ~ cuserprofile -Option AllScope
 
-# Helper function to show Unicode character
-function U {
-    param (
-        [int] $Code
-    )
+Function createFile {
+  param ([string]$file)
 
-    if ((0 -le $Code) -and ($Code -le 0xFFFF)) {
-        return [char] $Code
-    }
+  if ($file -eq $null) {
+    throw "No filename supplied"
+  }
 
-    if ((0x10000 -le $Code) -and ($Code -le 0x10FFFF)) {
-        return [char]::ConvertFromUtf32($Code)
-    }
-
-    throw "Invalid character code $Code"
+  if (Test-Path $file) {
+    (Get-ChildItem $file).LastWriteTime = Get-Date
+  }
+  else {
+    Write-Output $null > $file
+  }
 }
-
-Import-Module -Name posh-git
-Import-Module -Name oh-my-posh
-Import-Module -Name z
-
-# Default the prompt to agnoster oh-my-posh theme
-Set-Theme agnoster
-
-~
+  
+Set-Alias touch createFile
+New-Alias which get-command

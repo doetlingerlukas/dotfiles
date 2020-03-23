@@ -6,7 +6,7 @@ require 'command'
 desc 'Configure powershell.'
 task :powershell do
   next unless OS.windows?
-  
+
   puts "Installing powershell modules ..."
   pwsh 'Install-Module', 'posh-git', '-Scope', 'CurrentUser', '-Force'
   pwsh 'Install-Module', 'oh-my-posh', '-Scope', 'CurrentUser', '-Force'
@@ -18,4 +18,5 @@ task :powershell do
 
   FileUtils.mkdir_p ps_config_dir
   FileUtils.cp("#{__dir__}/../../res/configs/Microsoft.PowerShell_profile.ps1", ps_config_dir)
+  FileUtils.cp("#{__dir__}/../../res/configs/profile_extension.ps1", ps_config_dir)
 end
