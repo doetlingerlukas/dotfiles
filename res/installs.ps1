@@ -37,7 +37,7 @@ foreach ($b in $scoop.buckets) {
   scoop bucket add $b
 }
 foreach ($p in $scoop.packages) {
-  scoop add $p
+  scoop install $p
 }
 
 # install common choco packages
