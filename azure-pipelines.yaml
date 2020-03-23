@@ -20,6 +20,9 @@ jobs:
     timeoutInMinutes: 240
     pool:
       vmImage: ubuntu-latest
+    variables:
+    - name: 'CI'
+      value: true
 
     steps:
       - bash: |
