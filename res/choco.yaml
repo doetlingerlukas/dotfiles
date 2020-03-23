@@ -1,19 +1,18 @@
-common:
+required:
   - chocolatey-core.extension
+  - git.install
+  - ruby
+  - winrar
+common:
   - adobereader
   - jdk8
-  - openjdk
-  - winrar
   - firefox
   - googlechrome
   - notepadplusplus.install
-  - git.install
   - gitkraken
   - git-fork
   - nodejs.install
   - yarn
-  - python
-  - ruby
   - intellijidea-ultimate
   - vscode
   - vscode-powershell
@@ -34,8 +33,8 @@ common:
   - texstudio
   - visualcpp-build-tools
   - powershell-core
-  - cmder
-  - hyper
+  - fluent-terminal
+  - graphviz
 desktop:
   - geforce-experience
   - teamspeak

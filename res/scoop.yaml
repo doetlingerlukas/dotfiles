@@ -1,0 +1,19 @@
+buckets:
+  - extras
+  - nerd-fonts
+  - java
+packages:
+  - sudo
+  - aria2
+  - curl
+  - grep
+  - sed
+  - less
+  - make
+  - touch
+  - python
+  - xmllint
+  - DroidSansMono-NF
+  - Cousine-NF
+  - Meslo-NF
+  - openjdk
