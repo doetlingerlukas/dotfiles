@@ -35,6 +35,7 @@ namespace :vscode do
 
     if OS.windows?
       config_raw['terminal.integrated.shell.windows'] = (which 'pwsh.exe')
+      config_raw['terminal.integrated.fontFamily'] = "'Cousine NF'"
     end
 
     if laptop?

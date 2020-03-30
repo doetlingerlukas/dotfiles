@@ -32,3 +32,24 @@ Function createFile {
   
 Set-Alias touch createFile
 New-Alias which get-command
+
+# helper function to show unicode character
+Function U {
+  param ([int] $Code)
+
+  if ((0 -le $Code) -and ($Code -le 0xFFFF)) {
+      return [char] $Code
+  }
+
+  if ((0x10000 -le $Code) -and ($Code -le 0x10FFFF)) {
+      return [char]::ConvertFromUtf32($Code)
+  }
+
+  throw "Invalid character code $Code"
+}
+
+Import-Module -Name posh-git
+Import-Module -Name oh-my-posh
+
+# default the prompt to agnoster oh-my-posh theme
+Set-Theme agnoster
