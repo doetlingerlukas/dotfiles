@@ -9,7 +9,7 @@ require 'which'
 task :vscode => [:'vscode:extensions', :'vscode:config']
 
 namespace :vscode do
-  desc 'Setup config file.'
+  desc 'setup config file for VS Code'
   task :config do
 
     puts 'Writing config file for VS Code.'
@@ -29,7 +29,7 @@ namespace :vscode do
         '**/.settings' => true,
         '**/.factorypath' => true
       },
-      'workbench.colorTheme' => 'Material Theme Darker',
+      'workbench.colorTheme' => 'Community Material Theme Darker',
       'workbench.iconTheme' => 'material-icon-theme'
     }
 
@@ -46,7 +46,7 @@ namespace :vscode do
 
   end
 
-  desc 'Install extensions.'
+  desc 'install extensions for VS Code'
   task :extensions do
 
     puts 'Installing VS Code extensions.'
@@ -56,6 +56,7 @@ namespace :vscode do
       'ms-vscode.cpptools',
       'pivotal.vscode-manifest-yaml',
       'pivotal.vscode-concourse',
+      'ms-vsliveshare.vsliveshare',
       'ms-azuretools.vscode-docker',
       'rebornix.ruby',
       'visualstudioexptteam.vscodeintellicode',
@@ -65,7 +66,10 @@ namespace :vscode do
       'bungcip.better-toml',
       'serayuzgur.crates',
       'pkief.material-icon-theme',
-      'equinusocio.vsc-material-theme'
+      'equinusocio.vsc-material-theme',
+      'james-yu.latex-workshop',
+      'compulim.indent4to2',
+      'ms-azure-devops.azure-pipelines'
     ].each do |e|
       command 'code', '--install-extension', e
     end
