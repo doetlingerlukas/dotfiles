@@ -12,7 +12,10 @@ packages:
   - make
   - touch
   - python
+  - perl
   - xmllint
+  - speedtest-cli
+  - latex
   - DroidSansMono-NF
   - Cousine-NF
   - Meslo-NF

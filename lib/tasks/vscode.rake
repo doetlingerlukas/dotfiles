@@ -27,7 +27,11 @@ namespace :vscode do
         '**/.classpath' => true,
         '**/.project' => true,
         '**/.settings' => true,
-        '**/.factorypath' => true
+        '**/.factorypath' => true,
+        '**/*.aux' => true,
+        '**/*.fdb_latexmk' => true,
+        '**/*.fls' => true,
+        '**/*.gz' => true,
       },
       'workbench.colorTheme' => 'Community Material Theme Darker',
       'workbench.iconTheme' => 'material-icon-theme'
