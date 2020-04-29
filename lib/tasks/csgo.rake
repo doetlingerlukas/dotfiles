@@ -37,6 +37,7 @@ task :csgo do
     cl_crosshairstyle "4"
     cl_crosshairthickness "0.5"
     cl_crosshairusealpha "1"
+    cl_show_observer_crosshair 2
 
     // Display damage given in game
     developer "1"
@@ -53,11 +54,19 @@ task :csgo do
     sensitivity "3.450000"
 
     // Sound settings
-    snd_tensecondwarning_volume 0.15
+    snd_tensecondwarning_volume 0.18
 
     // Matchmaking
     cl_color 0
-    mm_dedicated_search_maxping 100
+    mm_dedicated_search_maxping 75
+
+    // Bindings
+    alias +jumpthrow "+jump;-attack;-attack2"
+    alias -jumpthrow "-jump"
+    bind j +jumpthrow
+    alias +forwardjumpthrow "+forward;+jumpthrow"
+    alias -forwardjumpthrow "-forward;-jumpthrow"
+    bind h +forwardjumpthro
 
     host_writeconfig
   CFG
