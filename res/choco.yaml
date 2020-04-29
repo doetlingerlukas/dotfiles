@@ -1,43 +1,31 @@
 required:
   - chocolatey-core.extension
   - git.install
-  - ruby
   - winrar
 common:
   - adobereader
-  - jdk8
   - firefox
   - googlechrome
   - notepadplusplus.install
   - gitkraken
   - git-fork
-  - nodejs.install
-  - yarn
   - intellijidea-ultimate
   - vscode
   - vscode-powershell
-  - postman
   - telegram.install
   - office365proplus
   - virtualbox
-  - vagrant
-  - mongodb.install
   - steam
   - origin
-  - awscli
-  - yed
   - vlc
-  - mingw
   - advanced-ip-scanner
-  - miktex
   - texstudio
   - visualcpp-build-tools
   - powershell-core
   - fluent-terminal
-  - graphviz
+  - teamspeak
 desktop:
   - geforce-experience
-  - teamspeak
   - cue
   - logitechgaming
   - teamviewer

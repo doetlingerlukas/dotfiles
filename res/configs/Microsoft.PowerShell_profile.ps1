@@ -1,5 +1,6 @@
 Import-Module Get-ChildItemColor
 Import-Module -Name z
+Import-Module PSWriteColor
 
 # Set l and ls alias to use the new Get-ChildItemColor cmdlets
 Set-Alias l Get-ChildItemColor -Option AllScope

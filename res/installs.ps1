@@ -18,16 +18,23 @@ Function installChocoPackages {
 }
 
 if ($false -eq $(Test-Path -Path "$env:ProgramData\Chocolatey")) {
-  "Installing Chocolatey ..."
+  Write-Color -Text "Installing Chocolatey ..." -Color Green
   Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
 
-"Installing Scoop ..."
-Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+try {
+  Get-Command "scoop" | Out-Null
+} catch {
+  Write-Color -Text "Installing Scoop ..." -Color Green
+  Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+}
 
 # parse YAML files
 $choco = parseYaml('choco.yaml')
 $scoop = parseYaml('scoop.yaml')
+$gems = parseYaml('gems.yaml')
+
+Write-Color -Text "Installing programs ..." -Color Green
 
 # install required choco packages
 installChocoPackages($choco.required)
@@ -50,5 +57,12 @@ if ($env:COMPUTERNAME.ToLower().contains("razer")) {
   installChocoPackages($choco.desktop)
 }
 
-"Updating PATH ..."
+Write-Color -Text "Updating PATH ..." -Color Green
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+Write-Color -Text "Installing ruby gems ..." -Color Green
+foreach ($g in $gems.gems) {
+  gem install $g
+}
+
+Write-Color -Text "Installs done!" -Color Green

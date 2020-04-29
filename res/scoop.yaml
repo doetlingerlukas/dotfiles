@@ -9,14 +9,26 @@ packages:
   - grep
   - sed
   - less
+  - gcc
   - make
   - touch
+  - rustup
   - python
   - perl
   - xmllint
   - speedtest-cli
   - latex
+  - openjdk
+  - openjdk-ea
+  - yarn
+  - nodejs
+  - postman
+  - vagrant
+  - mongodb
+  - aws
+  - yed
+  - latex
+  - graphviz
   - DroidSansMono-NF
   - Cousine-NF
   - Meslo-NF
-  - openjdk
