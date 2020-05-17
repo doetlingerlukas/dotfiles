@@ -2,6 +2,7 @@ buckets:
   - extras
   - nerd-fonts
   - java
+  - games
 packages:
   - sudo
   - aria2
@@ -32,3 +33,4 @@ packages:
   - DroidSansMono-NF
   - Cousine-NF
   - Meslo-NF
+  - minecraft
