@@ -8,7 +8,6 @@ task :latex do
 
   puts 'Configuring LaTeX installation ...'
 
-  command 'mpm', '--ugrade'
   command 'mpm', '--update'
 
   command 'mpm', '--install=latexmk'
