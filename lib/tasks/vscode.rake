@@ -74,7 +74,8 @@ namespace :vscode do
       'james-yu.latex-workshop',
       'compulim.indent4to2',
       'ms-azure-devops.azure-pipelines',
-      'geekidos.vdf'
+      'geekidos.vdf',
+      '13xforever.language-x86-64-assembly'
     ].each do |e|
       command 'code', '--install-extension', e
     end

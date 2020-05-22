@@ -16,6 +16,7 @@ packages:
   - rustup
   - python
   - perl
+  - dotnet-sdk
   - xmllint
   - speedtest-cli
   - latex
@@ -30,6 +31,7 @@ packages:
   - yed
   - latex
   - graphviz
+  - powertoys
   - DroidSansMono-NF
   - Cousine-NF
   - Meslo-NF

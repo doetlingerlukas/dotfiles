@@ -11,10 +11,9 @@ common:
   - git-fork
   - intellijidea-ultimate
   - vscode
-  - vscode-powershell
   - telegram.install
   - office365proplus
-  - virtualbox
+  - docker-desktop
   - steam
   - origin
   - vlc

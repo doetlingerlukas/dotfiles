@@ -65,4 +65,11 @@ foreach ($g in $gems.gems) {
   gem install $g
 }
 
+Write-Color -Text "Installing additional Windows features ..." -Color Green
+
+# Windows Sandbox
+Enable-WindowsOptionalFeature -FeatureName "Containers-DisposableClientVM" -All -Online -NoRestart
+
+Enable-WindowsOptionalFeature -FeatureName "Microsoft-Hyper-V" -All -Online -NoRestart
+
 Write-Color -Text "Installs done!" -Color Green
