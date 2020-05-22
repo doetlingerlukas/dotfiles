@@ -73,7 +73,8 @@ namespace :vscode do
       'equinusocio.vsc-material-theme',
       'james-yu.latex-workshop',
       'compulim.indent4to2',
-      'ms-azure-devops.azure-pipelines'
+      'ms-azure-devops.azure-pipelines',
+      'geekidos.vdf'
     ].each do |e|
       command 'code', '--install-extension', e
     end
