@@ -67,9 +67,17 @@ foreach ($g in $gems.gems) {
 
 Write-Color -Text "Installing additional Windows features ..." -Color Green
 
-# Windows Sandbox
-Enable-WindowsOptionalFeature -FeatureName "Containers-DisposableClientVM" -All -Online -NoRestart
+try {
+  # Windows Sandbox
+  Enable-WindowsOptionalFeature -FeatureName "Containers-DisposableClientVM" -All -Online -NoRestart
 
-Enable-WindowsOptionalFeature -FeatureName "Microsoft-Hyper-V" -All -Online -NoRestart
+  Enable-WindowsOptionalFeature -FeatureName "Microsoft-Hyper-V" -All -Online -NoRestart
+}
+catch {
+  if (!$env:CI) {
+    Write-Error "Failed to install Sandbox and Hyper-V!"
+    exit
+  }
+}
 
 Write-Color -Text "Installs done!" -Color Green

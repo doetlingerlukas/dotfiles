@@ -15,5 +15,5 @@ snap:
   - postman
   - firefox
   - powershell --classic
-  - gitkraken
+  - gitkraken --classic
   - node --channel=10/stable --classic
