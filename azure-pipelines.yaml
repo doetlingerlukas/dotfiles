@@ -11,6 +11,9 @@ jobs:
     timeoutInMinutes: 240
     pool:
       vmImage: windows-latest
+    variables:
+    - name: 'CI'
+      value: true
 
     steps:
       - powershell: .\main.ps1
