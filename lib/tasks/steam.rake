@@ -21,11 +21,12 @@ task :steam do
 
   # Don't start Steam with Windows.
   begin
-    capture_pwsh 'Remove-ItemProperty', 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run', 'Steam'
-  rescue RuntimeError => e
-    puts 'Steam was not previously configured with autostart!'
+    Win32::Registry::HKEY_CURRENT_USER.open('Software\Microsoft\Windows\CurrentVersion\Run', desired = Win32::Registry::KEY_ALL_ACCESS) do |reg|
+      reg.delete_value('Steam')
+    end
+  rescue Win32::Registry::Error
+    puts 'Steam did not exist in autostart!'
   end
-
 
   path = 'C:/Program Files (x86)/Steam/userdata/136275020/config/localconfig.vdf'
   FileUtils.mkdir_p File.dirname(path)

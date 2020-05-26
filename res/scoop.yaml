@@ -13,7 +13,7 @@ packages:
   - gcc
   - make
   - touch
-  - rustup
+  - rustup-msvc
   - python
   - perl
   - dotnet-sdk
