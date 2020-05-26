@@ -3,7 +3,7 @@
 require 'command'
 require 'os'
 require 'vdf'
-require 'win32/registry'
+require 'win32/registry' if OS.windows?
 
 desc 'configure Steam client'
 task :steam do
