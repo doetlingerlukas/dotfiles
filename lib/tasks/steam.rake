@@ -3,6 +3,7 @@
 require 'command'
 require 'os'
 require 'vdf'
+require 'win32/registry'
 
 desc 'configure Steam client'
 task :steam do
@@ -10,10 +11,13 @@ task :steam do
 
   puts 'Configuring Steam client ...'
 
-  reg_key = 'HKCU:\Software\Valve\Steam'
+  Win32::Registry::HKEY_CURRENT_USER.create('Software\Valve\Steam') do |reg|
+    reg['Language', Win32::Registry::REG_SZ] = 'english'
 
-  pwsh 'Set-ItemProperty', reg_key, 'Language', 'english'
-  pwsh 'Set-ItemProperty', "#{reg_key}\\steamglobal", 'Language', 'english'
+    reg.create('steamglobal') do |global|
+      global['Language', Win32::Registry::REG_SZ] = 'english'
+    end
+  end
 
   # Don't start Steam with Windows.
   begin
