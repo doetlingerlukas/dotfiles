@@ -4,7 +4,7 @@ require 'command'
 require 'os'
 
 task :latex do
-  next unless OS.windows?
+  next unless OS.windows? && !ENV['CI']
 
   puts 'Configuring LaTeX installation ...'
 
