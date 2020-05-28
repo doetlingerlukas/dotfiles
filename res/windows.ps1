@@ -57,7 +57,6 @@ ForEach ($tweak in
   "ShowHiddenFiles",                            # show hidden files
   "HideRecentShortcuts",                        # hide recent files section in explorer
   "Hide3DObjectsFromExplorer",                  # hide 3D objects in explorer
-  "HidePeopleIcon",                             # hide people icon in right side of taskbar
 
   "DisableNTFSCompression",                     # disable the builtin NTFS compression
   "SetupOpenPowershellHere"                     # adds a menue tile in explorer to open powershell here as admin

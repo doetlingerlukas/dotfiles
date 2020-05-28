@@ -5,13 +5,6 @@ Function DisableNTFSCompression () {
 # functions to tweak settings 
 # curtesy of Disassembler0: https://github.com/Disassembler0/Win10-Initial-Setup-Script
 
-Function HidePeopleIcon {
-  Write-Output "Hiding people icon..."
-  If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People")) {
-    New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" | Out-Null
-  }
-  Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" -Name "PeopleBand" -Type DWord -Value 0
-}
 
 Function DisableTelemetry {
 	Write-Output "Disabling Telemetry..."

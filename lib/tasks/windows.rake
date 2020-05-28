@@ -3,11 +3,12 @@
 require 'os'
 require 'command'
 require 'laptop'
+require 'win32/registry' if OS.windows?
 
-task :windows => [:'windows:energy']
+task :windows => [:'windows:energy', :'windows:ui']
 
 namespace :windows do
-  desc 'Change power settings.'
+  desc 'configure windows power settings'
   task :energy do
     next unless OS.windows?
 
@@ -17,19 +18,27 @@ namespace :windows do
     command 'powercfg', '-change', '-monitor-timeout-dc', '0'
     command 'powercfg', '-change', '-standby-timeout-ac', '0'
     command 'powercfg', '-change', '-standby-timeout-ac', '0'
+  end
 
-    if laptop?
-      puts 'Setting power saver as default plan.'
+  desc 'configure windows ui'
+  task :ui do
+    next unless OS.windows?
 
-      out, _, status = ps_command("powercfg -l | %{if($_.contains(Power saver) || $_.contains('Energiesparmodus')) {$_.split()[3]}}")
-      powersaver_plan = out
-      out, _, status = ps_command("$(powercfg -getactivescheme).split()[3]")
-      current_plan = out
+    puts 'Configuring Windows UI ...'
 
-      if not powersaver_plan.eql? current_plan
-        command 'powercfg', '-setactive', powersaver_plan
-      end
+    # Hide people icon at taskbar.
+    Win32::Registry::HKEY_CURRENT_USER.create('Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People') do |reg|
+      reg['PeopleBand', Win32::Registry::REG_DWORD] = 0
     end
 
+    # Show search icon in taskbar.
+    Win32::Registry::HKEY_CURRENT_USER.create('Software\Microsoft\Windows\CurrentVersion\Search') do |reg|
+      reg['SearchboxTaskbarMode', Win32::Registry::REG_DWORD] = 1
+    end
+
+    # Disable startup sound.
+    Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Microsoft\Windows\CurrentVersion\Authentication\LogonUI\BootAnimation') do |reg|
+      reg['DisableStartupSound', Win32::Registry::REG_DWORD] = 1
+    end
   end
 end
