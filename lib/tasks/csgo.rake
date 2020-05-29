@@ -17,6 +17,7 @@ task :csgo do
     // General
     gameinstructor_enable 0
     cl_autowepswitch 0
+    ui_mainmenu_bkgnd_movie1 "blacksite"
 
     // Crosshair
     cl_crosshair_drawoutline "0"
