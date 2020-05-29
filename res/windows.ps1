@@ -53,13 +53,8 @@ ForEach ($tweak in
   "DisableErrorReporting",                      # disable error reporting to microsoft
   "DisableDiagTrack",                           # disable diagnostics tracking
   "UnpinStartMenuTiles",                        # unpin start menue tiles
-  "ShowKnownExtensions",                        # show file extensions
-  "ShowHiddenFiles",                            # show hidden files
-  "HideRecentShortcuts",                        # hide recent files section in explorer
-  "Hide3DObjectsFromExplorer",                  # hide 3D objects in explorer
 
-  "DisableNTFSCompression",                     # disable the builtin NTFS compression
-  "SetupOpenPowershellHere"                     # adds a menue tile in explorer to open powershell here as admin
+  "DisableNTFSCompression"                     # disable the builtin NTFS compression
 ) {
   try {
     Invoke-Expression $tweak
