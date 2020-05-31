@@ -2,7 +2,6 @@
 
 # import windows settings
 Import-Module -Name ($PSScriptRoot + "\settings.psm1")
-Import-Module -Name ($PSScriptRoot + "\powershell.psm1")
 
 "Uninstalling useless default apps ..."
 
