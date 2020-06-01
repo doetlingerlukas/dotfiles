@@ -5,7 +5,7 @@ require 'command'
 require 'laptop'
 require 'win32/registry' if OS.windows?
 
-task :windows => [:'windows:energy', :'windows:ui']
+task :windows => [:'windows:energy', :'windows:ui', :'windows:cortana']
 
 namespace :windows do
   desc 'configure windows power settings'
@@ -37,8 +37,48 @@ namespace :windows do
     end
 
     # Disable startup sound.
-    Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Microsoft\Windows\CurrentVersion\Authentication\LogonUI\BootAnimation') do |reg|
-      reg['DisableStartupSound', Win32::Registry::REG_DWORD] = 1
+    begin
+      Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Microsoft\Windows\CurrentVersion\Authentication\LogonUI\BootAnimation') do |reg|
+        reg['DisableStartupSound', Win32::Registry::REG_DWORD] = 1
+      end
+    rescue Win32::Registry::Error
+      puts 'Disabling startup sound failed!'
+    end
+  end
+
+  desc 'disable cortana'
+  task :cortana do
+    next unless OS.windows?
+
+    puts 'Disabling Cortana ...'
+    
+    Win32::Registry::HKEY_CURRENT_USER.create('Software\Microsoft\Personalization\Settings') do |reg|
+      reg['AcceptedPrivacyPolicy', Win32::Registry::REG_DWORD] = 0
+    end
+
+    Win32::Registry::HKEY_CURRENT_USER.create('Software\Microsoft\InputPersonalization') do |reg|
+      reg['RestrictImplicitTextCollection', Win32::Registry::REG_DWORD] = 1
+      reg['RestrictImplicitInkCollection', Win32::Registry::REG_DWORD] = 1
+
+      reg.create('TrainedDataStore') do |inner|
+        inner['HarvestContacts', Win32::Registry::REG_DWORD] = 0
+      end
+    end
+
+    begin
+      Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Microsoft\PolicyManager\default\Experience\AllowCortana') do |reg|
+        reg['Value', Win32::Registry::REG_DWORD] = 0
+      end
+
+      Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Policies\Microsoft\Windows\Windows Search') do |reg|
+        reg['AllowCortana', Win32::Registry::REG_DWORD] = 0
+      end
+      
+      Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Policies\Microsoft\InputPersonalization') do |reg|
+        reg['AllowInputPersonalization', Win32::Registry::REG_DWORD] = 0
+      end
+    rescue Win32::Registry::Error
+      puts 'Disabling Cortana failed!'
     end
   end
 end

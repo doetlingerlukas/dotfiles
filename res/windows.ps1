@@ -40,15 +40,13 @@ ForEach ($appId in
   Get-AppXProvisionedPackage -Online | Where-Object DisplayNam -like "$appId" | Remove-AppxProvisionedPackage -Online
 }
 
-ForEach ($tweak in 
-  "DisableTelemetry",                           # disable telemetry (data transmission to microsoft)
+ForEach ($tweak in
   "DisableAppSuggestions",                      # disable app suggestion and automatic installation
   "DisableActivityHistory",                     # disable activity tracking by windows
   "DisableLocationTracking",                    # disable location tracking
   "DisableFeedback",                            # disable automatic feedback
   "DisableTailoredExperiences",                 # disable tailored experience based on diagnostics
   "DisableAdvertisingID",                       # disable custom advertising
-  "DisableCortana",                             # disable cortana
   "DisableErrorReporting",                      # disable error reporting to microsoft
   "DisableDiagTrack",                           # disable diagnostics tracking
   "UnpinStartMenuTiles",                        # unpin start menue tiles
