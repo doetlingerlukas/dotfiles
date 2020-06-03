@@ -42,13 +42,6 @@ ForEach ($appId in
 
 ForEach ($tweak in
   "DisableAppSuggestions",                      # disable app suggestion and automatic installation
-  "DisableActivityHistory",                     # disable activity tracking by windows
-  "DisableLocationTracking",                    # disable location tracking
-  "DisableFeedback",                            # disable automatic feedback
-  "DisableTailoredExperiences",                 # disable tailored experience based on diagnostics
-  "DisableAdvertisingID",                       # disable custom advertising
-  "DisableErrorReporting",                      # disable error reporting to microsoft
-  "DisableDiagTrack",                           # disable diagnostics tracking
   "UnpinStartMenuTiles",                        # unpin start menue tiles
 
   "DisableNTFSCompression"                     # disable the builtin NTFS compression

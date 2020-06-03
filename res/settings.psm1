@@ -37,61 +37,6 @@ Function DisableAppSuggestions {
 		Stop-Process -Name "ShellExperienceHost" -Force -ErrorAction SilentlyContinue
 	}}
 
-Function DisableActivityHistory {
-	Write-Output "Disabling Activity History..."
-	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "EnableActivityFeed" -Type DWord -Value 0
-	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "PublishUserActivities" -Type DWord -Value 0
-	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "UploadUserActivities" -Type DWord -Value 0
-}
-
-Function DisableLocationTracking {
-	Write-Output "Disabling location services..."
-	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors")) {
-		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors" -Force | Out-Null
-	}
-	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors" -Name "DisableLocation" -Type DWord -Value 1
-	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors" -Name "DisableLocationScripting" -Type DWord -Value 1
-}
-
-Function DisableFeedback {
-	Write-Output "Disabling Feedback..."
-	If (!(Test-Path "HKCU:\Software\Microsoft\Siuf\Rules")) {
-		New-Item -Path "HKCU:\Software\Microsoft\Siuf\Rules" -Force | Out-Null
-	}
-	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Siuf\Rules" -Name "NumberOfSIUFInPeriod" -Type DWord -Value 0
-	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name "DoNotShowFeedbackNotifications" -Type DWord -Value 1
-	Disable-ScheduledTask -TaskName "Microsoft\Windows\Feedback\Siuf\DmClient" -ErrorAction SilentlyContinue | Out-Null
-	Disable-ScheduledTask -TaskName "Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload" -ErrorAction SilentlyContinue | Out-Null
-}
-
-Function DisableTailoredExperiences {
-	Write-Output "Disabling Tailored Experiences..."
-	If (!(Test-Path "HKCU:\Software\Policies\Microsoft\Windows\CloudContent")) {
-		New-Item -Path "HKCU:\Software\Policies\Microsoft\Windows\CloudContent" -Force | Out-Null
-	}
-	Set-ItemProperty -Path "HKCU:\Software\Policies\Microsoft\Windows\CloudContent" -Name "DisableTailoredExperiencesWithDiagnosticData" -Type DWord -Value 1
-}
-
-Function DisableAdvertisingID {
-	Write-Output "Disabling Advertising ID..."
-	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo")) {
-		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo" | Out-Null
-	}
-	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo" -Name "DisabledByGroupPolicy" -Type DWord -Value 1
-}
-
-Function DisableErrorReporting {
-	Write-Output "Disabling Error reporting..."
-	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting" -Name "Disabled" -Type DWord -Value 1
-	Disable-ScheduledTask -TaskName "Microsoft\Windows\Windows Error Reporting\QueueReporting" | Out-Null
-}
-
-Function DisableDiagTrack {
-	Write-Output "Stopping and disabling Diagnostics Tracking Service..."
-	Stop-Service "DiagTrack" -WarningAction SilentlyContinue
-	Set-Service "DiagTrack" -StartupType Disabled
-}
-
 Function UnpinStartMenuTiles {
 	Write-Host "Unpinning all Start Menu tiles..."
 	$key = Get-ChildItem 'HKCU:\Software\Microsoft\Windows\CurrentVersion\CloudStore\Store\Cache\DefaultAccount\' -recurse | Where-Object {$_ -like  '*$start.tilegrid$windows.data.curatedtilecollection.tilecollection\Current*'}
