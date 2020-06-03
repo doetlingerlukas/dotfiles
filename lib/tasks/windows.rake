@@ -5,7 +5,7 @@ require 'command'
 require 'laptop'
 require 'win32/registry' if OS.windows?
 
-task :windows => [:'windows:energy', :'windows:ui', :'windows:cortana']
+task :windows => [:'windows:energy', :'windows:ui', :'windows:cortana', :'windows:privacy']
 
 namespace :windows do
   desc 'configure windows power settings'
