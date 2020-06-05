@@ -3,6 +3,7 @@
 require 'os'
 require 'command'
 require 'laptop'
+require 'elevated'
 require 'win32/registry' if OS.windows?
 
 task :windows => [:'windows:energy', :'windows:ui', :'windows:cortana', :'windows:privacy']
@@ -23,6 +24,7 @@ namespace :windows do
   desc 'configure windows ui'
   task :ui do
     next unless OS.windows?
+    elevated?
 
     puts 'Configuring Windows UI ...'
 
@@ -37,18 +39,15 @@ namespace :windows do
     end
 
     # Disable startup sound.
-    begin
-      Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Microsoft\Windows\CurrentVersion\Authentication\LogonUI\BootAnimation') do |reg|
-        reg['DisableStartupSound', Win32::Registry::REG_DWORD] = 1
-      end
-    rescue Win32::Registry::Error
-      puts 'Disabling startup sound failed!'
+    Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Microsoft\Windows\CurrentVersion\Authentication\LogonUI\BootAnimation') do |reg|
+      reg['DisableStartupSound', Win32::Registry::REG_DWORD] = 1
     end
   end
 
   desc 'disable cortana'
   task :cortana do
     next unless OS.windows?
+    elevated?
 
     puts 'Disabling Cortana ...'
     
@@ -65,48 +64,37 @@ namespace :windows do
       end
     end
 
-    begin
-      Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Microsoft\PolicyManager\default\Experience\AllowCortana') do |reg|
-        reg['Value', Win32::Registry::REG_DWORD] = 0
-      end
+    Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Microsoft\PolicyManager\default\Experience\AllowCortana') do |reg|
+      reg['Value', Win32::Registry::REG_DWORD] = 0
+    end
 
-      Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Policies\Microsoft\Windows\Windows Search') do |reg|
-        reg['AllowCortana', Win32::Registry::REG_DWORD] = 0
-      end
-      
-      Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Policies\Microsoft\InputPersonalization') do |reg|
-        reg['AllowInputPersonalization', Win32::Registry::REG_DWORD] = 0
-      end
-    rescue Win32::Registry::Error
-      puts 'Disabling Cortana failed!'
+    Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Policies\Microsoft\Windows\Windows Search') do |reg|
+      reg['AllowCortana', Win32::Registry::REG_DWORD] = 0
+    end
+
+    Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Policies\Microsoft\InputPersonalization') do |reg|
+      reg['AllowInputPersonalization', Win32::Registry::REG_DWORD] = 0
     end
   end
 
   desc 'windows privacy settings'
   task :privacy do
     next unless OS.windows?
+    elevated?
 
     puts 'Configuring Windows privacy settings ...'
 
     # Disable activity history.
-    begin
-      Win32::Registry::HKEY_LOCAL_MACHINE.open('Software\Policies\Microsoft\Windows\System', desired = Win32::Registry::KEY_ALL_ACCESS) do |reg|
-        reg['EnableActivityFeed', Win32::Registry::REG_DWORD] = 0
-        reg['PublishUserActivities', Win32::Registry::REG_DWORD] = 0
-        reg['UploadUserActivities', Win32::Registry::REG_DWORD] = 0
-      end
-    rescue Win32::Registry::Error
-      puts 'Disabling activity history failed!'
+    Win32::Registry::HKEY_LOCAL_MACHINE.open('Software\Policies\Microsoft\Windows\System', desired = Win32::Registry::KEY_ALL_ACCESS) do |reg|
+      reg['EnableActivityFeed', Win32::Registry::REG_DWORD] = 0
+      reg['PublishUserActivities', Win32::Registry::REG_DWORD] = 0
+      reg['UploadUserActivities', Win32::Registry::REG_DWORD] = 0
     end
 
     # Disable location tracking.
-    begin
-      Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Policies\Microsoft\Windows\LocationAndSensors') do |reg|
-        reg['DisableLocation', Win32::Registry::REG_DWORD] = 1
-        reg['DisableLocationScripting', Win32::Registry::REG_DWORD] = 1
-      end
-    rescue Win32::Registry::Error
-      puts 'Disabling location tracking failed!'
+    Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Policies\Microsoft\Windows\LocationAndSensors') do |reg|
+      reg['DisableLocation', Win32::Registry::REG_DWORD] = 1
+      reg['DisableLocationScripting', Win32::Registry::REG_DWORD] = 1
     end
 
     # Disable feedback.
@@ -114,12 +102,8 @@ namespace :windows do
       reg['NumberOfSIUFInPeriod', Win32::Registry::REG_DWORD] = 0
     end
 
-    begin
-      Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Policies\Microsoft\Windows\DataCollection') do |reg|
-        reg['DoNotShowFeedbackNotifications', Win32::Registry::REG_DWORD] = 1
-      end
-    rescue Win32::Registry::Error
-      puts 'Disabling feedback notifications failed!'
+    Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Policies\Microsoft\Windows\DataCollection') do |reg|
+      reg['DoNotShowFeedbackNotifications', Win32::Registry::REG_DWORD] = 1
     end
 
     capture_pwsh 'Disable-ScheduledTask' '-TaskName' 'Microsoft\Windows\Feedback\Siuf\DmClient' '-ErrorAction' 'SilentlyContinue'
@@ -131,21 +115,13 @@ namespace :windows do
     end
 
     # Disable advertising ID.
-    begin
-      Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Policies\Microsoft\Windows\AdvertisingInfo') do |reg|
-        reg['DisabledByGroupPolicy', Win32::Registry::REG_DWORD] = 1
-      end
-    rescue Win32::Registry::Error
-      puts 'Disabling advertising ID failed!'
+    Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Policies\Microsoft\Windows\AdvertisingInfo') do |reg|
+      reg['DisabledByGroupPolicy', Win32::Registry::REG_DWORD] = 1
     end
 
     # Disable error reporting.
-    begin
-      Win32::Registry::HKEY_LOCAL_MACHINE.open('Software\Microsoft\Windows\Windows Error Reporting', desired = Win32::Registry::KEY_ALL_ACCESS) do |reg|
-        reg['Disabled', Win32::Registry::REG_DWORD] = 1
-      end
-    rescue Win32::Registry::Error
-      puts 'Disabling error reporting failed!'
+    Win32::Registry::HKEY_LOCAL_MACHINE.open('Software\Microsoft\Windows\Windows Error Reporting', desired = Win32::Registry::KEY_ALL_ACCESS) do |reg|
+      reg['Disabled', Win32::Registry::REG_DWORD] = 1
     end
 
     capture_pwsh 'Disable-ScheduledTask' '-TaskName' 'Microsoft\Windows\Windows Error Reporting\QueueReporting' '-ErrorAction' 'SilentlyContinue'

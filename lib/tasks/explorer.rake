@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 require 'os'
+require 'elevated'
 require 'win32/registry' if OS.windows?
 
 desc 'configure windows explorer'
 task :explorer do
   next unless OS.windows?
+  elevated?
 
   puts 'Configuring Windows Explorer ...'
 
@@ -31,24 +33,16 @@ task :explorer do
   end
 
   # Hide '3D Objects'.
-  begin
-    Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag') do |reg|
-      reg['ThisPCPolicy', Win32::Registry::REG_SZ] = 'Hide'
-    end
-    Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag') do |reg|
-      reg['ThisPCPolicy', Win32::Registry::REG_SZ] = 'Hide'
-    end
-  rescue Win32::Registry::Error
-    puts '3D Objects could not be hidden!'
+  Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag') do |reg|
+    reg['ThisPCPolicy', Win32::Registry::REG_SZ] = 'Hide'
+  end
+
+  Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag') do |reg|
+    reg['ThisPCPolicy', Win32::Registry::REG_SZ] = 'Hide'
   end
 
   # Remove 'Include in Library' from context menu.
-  begin
-    Win32::Registry::HKEY_CLASSES_ROOT.open('Folder\ShellEx\ContextMenuHandlers', desired = Win32::Registry::KEY_ALL_ACCESS) do |reg|
-      reg.delete_key('Library Location', true)
-    end
-  rescue Win32::Registry::Error
-    puts 'Library Location could not be deleted from context menu!'
+  Win32::Registry::HKEY_CLASSES_ROOT.open('Folder\ShellEx\ContextMenuHandlers', desired = Win32::Registry::KEY_ALL_ACCESS) do |reg|
+    reg.delete_key('Library Location', true)
   end
-
 end
