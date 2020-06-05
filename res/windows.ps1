@@ -41,7 +41,6 @@ ForEach ($appId in
 }
 
 ForEach ($tweak in
-  "DisableAppSuggestions",                      # disable app suggestion and automatic installation
   "UnpinStartMenuTiles",                        # unpin start menue tiles
 
   "DisableNTFSCompression"                     # disable the builtin NTFS compression

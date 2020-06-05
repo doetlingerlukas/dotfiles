@@ -130,5 +130,45 @@ namespace :windows do
     capture_pwsh 'Stop-Service' 'DiagTrack' '-WarningAction SilentlyContinue'
     capture_pwsh 'Set-Service ' 'DiagTrack' '-StartupType Disabled'
 
+    # Disable Wi-Fi Sense.
+    Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting') do |reg|
+      reg['Value', Win32::Registry::REG_DWORD] = 0
+    end
+
+    Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots') do |reg|
+      reg['Value', Win32::Registry::REG_DWORD] = 0
+    end
+
+    Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Microsoft\WcmSvc\wifinetworkmanager\config') do |reg|
+      reg['AutoConnectAllowedOEM', Win32::Registry::REG_DWORD] = 0
+      reg['WiFISenseAllowed', Win32::Registry::REG_DWORD] = 0
+    end
+
+    # Disable app suggestions.
+    Win32::Registry::HKEY_CURRENT_USER.create('Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager') do |reg|
+      reg['ContentDeliveryAllowed', Win32::Registry::REG_DWORD] = 0
+      reg['OemPreInstalledAppsEnabled', Win32::Registry::REG_DWORD] = 0
+      reg['PreInstalledAppsEnabled', Win32::Registry::REG_DWORD] = 0
+      reg['PreInstalledAppsEverEnabled', Win32::Registry::REG_DWORD] = 0
+      reg['SilentInstalledAppsEnabled', Win32::Registry::REG_DWORD] = 0
+      reg['SubscribedContent-310093Enabled', Win32::Registry::REG_DWORD] = 0
+      reg['SubscribedContent-314559Enabled', Win32::Registry::REG_DWORD] = 0
+      reg['SubscribedContent-338387Enabled', Win32::Registry::REG_DWORD] = 0
+      reg['SubscribedContent-338388Enabled', Win32::Registry::REG_DWORD] = 0
+      reg['SubscribedContent-338389Enabled', Win32::Registry::REG_DWORD] = 0
+      reg['SubscribedContent-338393Enabled', Win32::Registry::REG_DWORD] = 0
+      reg['SubscribedContent-353694Enabled', Win32::Registry::REG_DWORD] = 0
+      reg['SubscribedContent-353696Enabled', Win32::Registry::REG_DWORD] = 0
+      reg['SubscribedContent-353698Enabled', Win32::Registry::REG_DWORD] = 0
+      reg['SystemPaneSuggestionsEnabled', Win32::Registry::REG_DWORD] = 0
+    end
+
+    Win32::Registry::HKEY_CURRENT_USER.create('Software\Microsoft\Windows\CurrentVersion\UserProfileEngagement') do |reg|
+      reg['ScoobeSystemSettingEnabled', Win32::Registry::REG_DWORD] = 0
+    end
+
+    Win32::Registry::HKEY_LOCAL_MACHINE.create('Software\Policies\Microsoft\WindowsInkWorkspace') do |reg|
+      reg['AllowSuggestedAppsInWindowsInkWorkspace', Win32::Registry::REG_DWORD] = 0
+    end
   end
 end
