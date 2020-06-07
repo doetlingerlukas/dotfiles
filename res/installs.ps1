@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 Function parseYaml {
   Param([string]$file)
 
@@ -17,6 +19,15 @@ Function installChocoPackages {
   }
 }
 
+Function uninstallApps {
+  Param([String[]]$apps)
+
+  foreach ($a in $apps) {
+    Get-AppxPackage "$a" -AllUsers | Remove-AppxPackage
+    Get-AppXProvisionedPackage -Online | Where-Object DisplayNam -like "$a" | Remove-AppxProvisionedPackage -Online
+  }  
+}
+
 if ($false -eq $(Test-Path -Path "$env:ProgramData\Chocolatey")) {
   Write-Color -Text "Installing Chocolatey ..." -Color Green
   Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
@@ -29,17 +40,17 @@ try {
   Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
 }
 
-# parse YAML files
+# Parse YAML files.
 $choco = parseYaml('choco.yaml')
 $scoop = parseYaml('scoop.yaml')
 $gems = parseYaml('gems.yaml')
 
 Write-Color -Text "Installing programs ..." -Color Green
 
-# install required choco packages
+# Install required choco packages.
 installChocoPackages($choco.required)
 
-# install scoop buckets and packages
+# Install scoop buckets and packages.
 foreach ($b in $scoop.buckets) {
   scoop bucket add $b
 }
@@ -47,10 +58,10 @@ foreach ($p in $scoop.packages) {
   scoop install $p
 }
 
-# install common choco packages
+# Install common choco packages.
 installChocoPackages($choco.common)
 
-# install system specific choco packages
+# Install system specific choco packages.
 if ($env:COMPUTERNAME.ToLower().contains("razer")) {
   installChocoPackages($choco.laptop)
 } elseif ($env:COMPUTERNAME.ToLower().contains("pc")) {
@@ -71,13 +82,39 @@ try {
   # Windows Sandbox
   Enable-WindowsOptionalFeature -FeatureName "Containers-DisposableClientVM" -All -Online -NoRestart
 
+  # Required for WSL 2
+  Enable-WindowsOptionalFeature -FeatureName "VirtualMachinePlatform" -All -Online -NoRestart
+
   Enable-WindowsOptionalFeature -FeatureName "Microsoft-Hyper-V" -All -Online -NoRestart
 }
 catch {
   if (!$env:CI) {
-    Write-Error "Failed to install Sandbox and Hyper-V!"
+    Write-Error "Failed to install optional features!"
     exit
   }
 }
 
 Write-Color -Text "Installs done!" -Color Green
+
+
+Write-Color -Text "Unpinning start menu tiles and taskbar icons ..." -Color Green
+
+# Unpin start menu tiles.
+$key = Get-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\CloudStore\Store\Cache\DefaultAccount\*start.tilegrid`$windows.data.curatedtilecollection.tilecollection\Current"
+$data = $key.Data[0..25] + ([byte[]](202,50,0,226,44,1,1,0,0))
+Set-ItemProperty -Path $key.PSPath -Name "Data" -Type Binary -Value $data
+Stop-Process -Name "ShellExperienceHost" -Force -ErrorAction SilentlyContinue
+
+# Unpin taskbar icons.
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "Favorites" -Type Binary -Value ([byte[]](255))
+Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "FavoritesResolve" -ErrorAction SilentlyContinue
+
+
+Write-Color -Text "Uninstalling default apps ..." -Color Green
+
+$default_apps = parseYaml('default_apps.yaml')
+
+uninstallApps($default_apps.microsoft)
+uninstallApps($default_apps.thirdparty)
+
+Write-Color -Text "Uninstalls done!" -Color Green

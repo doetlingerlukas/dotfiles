@@ -6,19 +6,22 @@ require 'laptop'
 require 'elevated'
 require 'win32/registry' if OS.windows?
 
-task :windows => [:'windows:energy', :'windows:ui', :'windows:cortana', :'windows:privacy']
+task :windows => [:'windows:general', :'windows:ui', :'windows:cortana', :'windows:privacy']
 
 namespace :windows do
   desc 'configure windows power settings'
-  task :energy do
+  task :general do
     next unless OS.windows?
 
-    puts 'Disabling screen timeout and standby mode.'
+    puts 'Disabling screen timeout and standby mode ...'
 
     command 'powercfg', '-change', '-monitor-timeout-ac', '0'
     command 'powercfg', '-change', '-monitor-timeout-dc', '0'
     command 'powercfg', '-change', '-standby-timeout-ac', '0'
     command 'powercfg', '-change', '-standby-timeout-ac', '0'
+
+    puts 'Disabling NTFS compression ...'
+    fsutil behavior set disablecompression 1
   end
 
   desc 'configure windows ui'

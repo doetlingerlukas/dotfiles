@@ -42,5 +42,4 @@ switch ($mode) {
   }
 }
 
-& .\res\windows.ps1
 executeConfigs
