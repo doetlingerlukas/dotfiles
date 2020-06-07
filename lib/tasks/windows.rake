@@ -21,7 +21,7 @@ namespace :windows do
     command 'powercfg', '-change', '-standby-timeout-ac', '0'
 
     puts 'Disabling NTFS compression ...'
-    fsutil behavior set disablecompression 1
+    command 'fsutil', 'behavior', 'set', 'disablecompression', '1'
   end
 
   desc 'configure windows ui'
