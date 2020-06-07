@@ -112,7 +112,7 @@ Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explo
 
 Write-Color -Text "Uninstalling default apps ..." -Color Green
 
-$default_apps = parseYaml('default_apps.yaml')
+$default_apps = parseYaml('default-apps.yaml')
 
 uninstallApps($default_apps.microsoft)
 uninstallApps($default_apps.thirdparty)
