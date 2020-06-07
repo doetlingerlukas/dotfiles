@@ -18,7 +18,11 @@ namespace :vscode do
       "C:/Users/#{ENV['USERNAME']}/AppData/Roaming/Code/User" :
       "#{ENV['HOME']}/.config/Code/User"
 
+    puts 'Debug 1'
+
     FileUtils.mkdir_p config_dir
+
+    puts 'Debug 2'
 
     config_raw = {
       'editor.tabSize' => 2,
@@ -37,17 +41,24 @@ namespace :vscode do
       'workbench.iconTheme' => 'material-icon-theme'
     }
 
+    puts 'Debug 3'
+
     if OS.windows?
       config_raw['terminal.integrated.shell.windows'] = (which 'pwsh.exe')
       config_raw['terminal.integrated.fontFamily'] = "'Cousine NF'"
     end
 
+    puts 'Debug 4'
+
     if laptop?
       config_raw['window.zoomLevel'] = '-1'
     end
 
+    puts 'Debug 5'
+
     File.write "#{config_dir}/settings.json", JSON.pretty_generate(config_raw)
 
+    puts 'Debug 6'
   end
 
   desc 'install extensions for VS Code'
