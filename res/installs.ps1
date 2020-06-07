@@ -44,6 +44,7 @@ try {
 $choco = parseYaml('choco.yaml')
 $scoop = parseYaml('scoop.yaml')
 $gems = parseYaml('gems.yaml')
+$default_apps = parseYaml('default-apps.yaml')
 
 Write-Color -Text "Installing programs ..." -Color Green
 
@@ -111,8 +112,6 @@ Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explo
 
 
 Write-Color -Text "Uninstalling default apps ..." -Color Green
-
-$default_apps = parseYaml('default-apps.yaml')
 
 uninstallApps($default_apps.microsoft)
 uninstallApps($default_apps.thirdparty)
