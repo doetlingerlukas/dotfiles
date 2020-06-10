@@ -10,9 +10,10 @@ task :powershell do
   puts "Installing powershell modules ..."
   pwsh 'Install-Module', 'posh-git', '-Scope', 'CurrentUser', '-Force'
   pwsh 'Install-Module', 'oh-my-posh', '-Scope', 'CurrentUser', '-Force'
-  pwsh 'Install-Module', '-Name', 'z', '-Scope', 'CurrentUser', '-Force'
-  pwsh 'Install-Module', '-Name', 'PSReadLine', '-AllowPrerelease', '-Scope', 'CurrentUser', '-Force', '-SkipPublisherCheck'
-  pwsh 'Install-Module', '-AllowClobber', 'Get-ChildItemColor'
+  pwsh 'Install-Module', 'z', '-Scope', 'CurrentUser', '-Force'
+  pwsh 'Install-Module', 'PSReadLine', '-AllowPrerelease', '-Scope', 'CurrentUser', '-Force', '-SkipPublisherCheck'
+  pwsh 'Install-Module', 'Get-ChildItemColor', '-Scope', 'CurrentUser', '-Force', '-AllowClobber'
+  pwsh 'Install-Module', 'PSWriteColor', '-Scope', 'CurrentUser', '-Force'
 
   ps_config_dir = "C:/Users/#{ENV['USERNAME']}/Documents/PowerShell"
 
