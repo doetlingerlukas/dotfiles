@@ -74,7 +74,8 @@ namespace :vscode do
       'compulim.indent4to2',
       'ms-azure-devops.azure-pipelines',
       'geekidos.vdf',
-      '13xforever.language-x86-64-assembly'
+      '13xforever.language-x86-64-assembly',
+      'ms-vscode-remote.remote-wsl'
     ].each do |e|
       command 'code', '--install-extension', e
     end
