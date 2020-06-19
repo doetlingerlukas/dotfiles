@@ -18,15 +18,13 @@ common:
   - origin
   - vlc
   - advanced-ip-scanner
-  - texstudio
   - visualcpp-build-tools
   - powershell-core
-  - fluent-terminal
+  - microsoft-windows-terminal
   - teamspeak
 desktop:
   - geforce-experience
   - cue
-  - logitechgaming
   - teamviewer
   - uplay
 laptop:
