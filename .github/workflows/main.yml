@@ -5,6 +5,9 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  schedule:
+    # every sunday 10 pm
+    - cron:  '0 22 * * 0'
 
 jobs:
   windows:
