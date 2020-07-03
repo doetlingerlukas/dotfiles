@@ -32,6 +32,7 @@ packages:
   - latex
   - graphviz
   - powertoys
+  - cascadia-code
   - DroidSansMono-NF
   - Cousine-NF
   - Meslo-NF
