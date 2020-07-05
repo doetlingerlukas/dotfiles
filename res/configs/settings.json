@@ -64,12 +64,10 @@
   "keybindings": [
     { "command": {"action": "copy", "singleLine": false }, "keys": "ctrl+c" },
     { "command": "paste", "keys": "ctrl+v" },
-    { "command": "find", "keys": "ctrl+shift+f" },
-
-    // Press Alt+Shift+D to open a new pane.
-    // - "split": "auto" makes this pane open in the direction that provides the most surface area.
-    // - "splitMode": "duplicate" makes the new pane use the focused pane's profile.
-    // To learn more about panes, visit https://aka.ms/terminal-panes
+    { "command": "find", "keys": "ctrl+f" },
+    { "command": "closeWindow", "keys": "alt+f4" },
+    { "command": "closeTab", "keys": "ctrl+x" },
+    { "command": "toggleFullscreen", "keys": "alt+enter" },
     { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" }
   ]
 }
