@@ -1,0 +1,73 @@
+// Config file for Windows Terminal
+{
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+  "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+
+  "copyOnSelect": true,
+  "copyFormatting": false,
+  "theme": "dark",
+  "alwaysShowTabs": true,
+  "confirmCloseAllTabs": false,
+  "initialCols": 120,
+  "initialRows": 40,
+
+  "profiles": {
+    "defaults": {
+      "fontFace" : "Cascadia Code PL",
+      "fontSize": 10,
+      "cursorShape": "bar",
+      "colorScheme": "One Half Dark",
+      "cursorColor" : "#FFFFFD",
+      "useAcrylic": true,
+      "acrylicOpacity" : 0.7,
+      "scrollbarState": "visible"
+    },
+    "list": [
+      {
+        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+        "name": "Windows PowerShell",
+        "tabTitle": "powershell",
+        "commandline": "powershell.exe",
+        "hidden": false
+      },
+      {
+        "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+        "name": "Cmd",
+        "tabTitle": "cmd",
+        "commandline": "cmd.exe",
+        "hidden": false
+      },
+      {
+        "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+        "hidden": false,
+        "name": "PowerShell",
+        "tabTitle": "pwsh",
+        "source": "Windows.Terminal.PowershellCore"
+      },
+      {
+        "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+        "hidden": false,
+        "name": "Ubuntu",
+        "source": "Windows.Terminal.Wsl"
+      },
+      {
+        "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+        "hidden": true,
+        "name": "Azure Cloud Shell",
+        "source": "Windows.Terminal.Azure"
+      }
+    ]
+  },
+
+  "schemes": [],
+
+  "keybindings": [
+    { "command": {"action": "copy", "singleLine": false }, "keys": "ctrl+c" },
+    { "command": "paste", "keys": "ctrl+v" },
+    { "command": "find", "keys": "ctrl+f" },
+    { "command": "closeWindow", "keys": "alt+f4" },
+    { "command": "closeTab", "keys": "ctrl+x" },
+    { "command": "toggleFullscreen", "keys": "alt+enter" },
+    { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" }
+  ]
+}
