@@ -68,6 +68,9 @@ task :csgo do
     alias +forwardjumpthrow "+forward;+jumpthrow"
     alias -forwardjumpthrow "-forward;-jumpthrow"
     bind h +forwardjumpthro
+    alias +djump "+jump; +duck"
+    alias -djump "-jump; -duck"
+    bind ALT +djump
 
     host_writeconfig
   CFG
