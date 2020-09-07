@@ -22,6 +22,7 @@ execute_tasks () {
 verify_brew_installation () {
   if ! type "brew" &> /dev/null
   then
+    echo -e "\e[30;103mInstalling Linuxbrew ...\e[0m"
     sudo apt install build-essential curl file git -y
     echo | sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
     test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
@@ -34,6 +35,7 @@ verify_brew_installation () {
 verify_ruby_installation () {
   if ! type "ruby" &> /dev/null
   then
+    echo -e "\e[30;103mNo ruby installation found!\e[0m"
     brew install ruby
   fi
   if ! type "rake" &> /dev/null
