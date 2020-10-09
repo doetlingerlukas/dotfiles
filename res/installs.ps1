@@ -35,6 +35,7 @@ if ($false -eq $(Test-Path -Path "$env:ProgramData\Chocolatey")) {
 
 try {
   Get-Command "scoop" | Out-Null
+  scoop update
 } catch {
   Write-Color -Text "Installing Scoop ..." -Color Green
   Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')

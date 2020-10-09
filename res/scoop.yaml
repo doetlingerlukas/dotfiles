@@ -3,18 +3,22 @@ buckets:
   - nerd-fonts
   - java
   - games
+  - jetbrains
+  - nonportable
 packages:
-  - sudo
+  - psutils
   - aria2
+  - git
+  - pwsh
   - curl
   - grep
   - sed
   - less
   - gcc
   - make
-  - touch
-  - rustup-msvc
   - ruby
+  - rustup-msvc
+  - cmake
   - perl
   - dotnet-sdk
   - xmllint
@@ -32,7 +36,22 @@ packages:
   - latex
   - graphviz
   - powertoys
+  - windows-terminal
+  - winrar
+  - vscode
+  - gitkraken
+  - notepadplusplus
+  - teamspeak
+  - telegram
+  - discord
+  - zoom
+  - teamviewer
+  - vlc
+  - firefox
+  - googlechrome
   - cascadia-code
+  - IntelliJ-IDEA-Ultimate
   - DroidSansMono-NF
   - Cousine-NF
   - Meslo-NF
+  - microsoft-edge-beta-np

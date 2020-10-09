@@ -1,31 +1,16 @@
 required:
   - chocolatey-core.extension
-  - git.install
-  - winrar
 common:
   - adobereader
-  - firefox
-  - googlechrome
-  - notepadplusplus.install
-  - gitkraken
-  - git-fork
-  - intellijidea-ultimate
-  - vscode
-  - telegram.install
   - office365proplus
   - docker-desktop
   - steam
   - origin
-  - vlc
   - advanced-ip-scanner
   - visualcpp-build-tools
-  - powershell-core
-  - microsoft-windows-terminal
-  - teamspeak
 desktop:
   - geforce-experience
   - cue
-  - teamviewer
   - uplay
 laptop:
   - razer-synapse-2
