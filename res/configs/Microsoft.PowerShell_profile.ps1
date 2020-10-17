@@ -16,6 +16,9 @@ Function cdw { Set-Location "C:\Users\$DefaultUser\Documents\Git" }
 Function cuserprofile { Set-Location ~ }
 Set-Alias ~ cuserprofile -Option AllScope
 
+# Remove 'diff' alias
+Remove-Alias diff -Force
+
 Function createFile {
   param ([string]$file)
 

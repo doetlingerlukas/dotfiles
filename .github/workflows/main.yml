@@ -16,11 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: clean system
-        run: |
-          scoop uninstall scoop
-        shell: powershell
-
       - name: run `main.ps1`
         run: .\main.ps1
         shell: powershell
