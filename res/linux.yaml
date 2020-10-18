@@ -9,6 +9,8 @@ brew:
   - fish
   - python
   - rustup-init
+  - cmake
+  - ninja
 snap:
   - code --classic
   - telegram-desktop

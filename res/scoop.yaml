@@ -16,10 +16,11 @@ packages:
   - less
   - gcc
   - make
+  - cmake
+  - ninja
   - ruby
   - rustup-msvc
   - cmake
-  - perl
   - dotnet-sdk
   - xmllint
   - speedtest-cli
