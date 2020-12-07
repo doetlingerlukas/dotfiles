@@ -28,7 +28,7 @@ packages:
   - openjdk
   - openjdk-ea
   - yarn
-  - nodejs
+  - nvm
   - postman
   - vagrant
   - mongodb
