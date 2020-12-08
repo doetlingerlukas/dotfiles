@@ -84,7 +84,7 @@ namespace :vscode do
       'twxs.cmake',
       'ban.spellright'
     ].each do |e|
-      sh 'code', '--install-extension', e
+      command 'code', '--install-extension', e
     end
 
   end
