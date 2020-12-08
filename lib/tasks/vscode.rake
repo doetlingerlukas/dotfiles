@@ -34,7 +34,8 @@ namespace :vscode do
         '**/*.gz' => true,
       },
       'workbench.colorTheme' => 'Community Material Theme Darker',
-      'workbench.iconTheme' => 'material-icon-theme'
+      'workbench.iconTheme' => 'material-icon-theme',
+      'powershell.integratedConsole.showOnStartup' => false
     }
 
     if OS.windows?
@@ -55,14 +56,20 @@ namespace :vscode do
     puts 'Installing VS Code extensions.'
 
     [
+      'visualstudioexptteam.vscodeintellicode',
       'ms-vscode.powershell',
       'ms-vscode.cpptools',
-      'pivotal.vscode-manifest-yaml',
-      'pivotal.vscode-concourse',
+      'ms-vscode-remote.remote-wsl',
+      'ms-vscode.azure-account',
+      'ms-vscode-remote.remote-containers',
       'ms-vsliveshare.vsliveshare',
       'ms-azuretools.vscode-docker',
+      'ms-azure-devops.azure-pipelines',
+      'ms-kubernetes-tools.vscode-kubernetes-tools',
+      'github.vscode-pull-request-github',
+      'pivotal.vscode-manifest-yaml',
+      'pivotal.vscode-concourse',
       'rebornix.ruby',
-      'visualstudioexptteam.vscodeintellicode',
       'wingrunr21.vscode-ruby',
       'xoronic.pestfile',
       'rust-lang.rust',
@@ -72,12 +79,12 @@ namespace :vscode do
       'equinusocio.vsc-material-theme',
       'james-yu.latex-workshop',
       'compulim.indent4to2',
-      'ms-azure-devops.azure-pipelines',
       'geekidos.vdf',
       '13xforever.language-x86-64-assembly',
-      'ms-vscode-remote.remote-wsl'
+      'twxs.cmake',
+      'ban.spellright'
     ].each do |e|
-      command 'code', '--install-extension', e
+      sh 'code', '--install-extension', e
     end
 
   end
