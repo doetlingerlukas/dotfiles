@@ -32,6 +32,22 @@ namespace :vscode do
         '**/*.fdb_latexmk' => true,
         '**/*.fls' => true,
         '**/*.gz' => true,
+        '**/*.out' => true,
+        '**/*.lb' => true,
+        '**/*.log' => true,
+        '**/*.synctex*' => true,
+        '**/*.bbl' => true,
+        '**/*.bcf' => true,
+        '**/*.blg' => true,
+        '**/*.run.xml' => true,
+        '**/*.xdv' => true,
+        '**/*.nav' => true,
+        '**/*.snm' => true,
+        '**/*.toc' => true,
+        '**/*.gummi' => true
+      },
+      '[latex]' => {
+        'editor.wordWrap' => 'on'
       },
       'workbench.colorTheme' => 'Community Material Theme Darker',
       'workbench.iconTheme' => 'material-icon-theme',
