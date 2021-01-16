@@ -23,6 +23,7 @@ namespace :vscode do
     config_raw = {
       'editor.tabSize' => 2,
       'explorer.confirmDragAndDrop' => false,
+      'files.trimTrailingWhitespace': true,
       'files.exclude' => {
         '**/.classpath' => true,
         '**/.project' => true,
@@ -51,7 +52,7 @@ namespace :vscode do
       },
       'workbench.colorTheme' => 'Community Material Theme Darker',
       'workbench.iconTheme' => 'material-icon-theme',
-      'powershell.integratedConsole.showOnStartup' => false
+      'powershell.integratedConsole.showOnStartup' => false      
     }
 
     if OS.windows?
