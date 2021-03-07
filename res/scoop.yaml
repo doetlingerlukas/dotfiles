@@ -17,6 +17,7 @@ packages:
   - gcc
   - make
   - cmake
+  - shasum
   - ninja
   - ruby
   - rustup-msvc
