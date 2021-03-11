@@ -15,6 +15,7 @@ packages:
   - sed
   - less
   - gcc
+  - llvm
   - make
   - cmake
   - shasum
@@ -31,11 +32,12 @@ packages:
   - yarn
   - nvm
   - postman
-  - vagrant
   - mongodb
   - aws
   - yed
   - latex
+  - pandoc
+  - lessmsi
   - graphviz
   - powertoys
   - windows-terminal
@@ -43,6 +45,7 @@ packages:
   - vscode
   - gitkraken
   - notepadplusplus
+  - arduino
   - teamspeak
   - telegram
   - discord
@@ -51,6 +54,8 @@ packages:
   - vlc
   - firefox
   - googlechrome
+  - hwinfo
+  - audacity
   - cascadia-code
   - IntelliJ-IDEA-Ultimate
   - DroidSansMono-NF

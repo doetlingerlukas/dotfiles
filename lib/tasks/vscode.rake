@@ -83,6 +83,8 @@ namespace :vscode do
       'ms-azuretools.vscode-docker',
       'ms-azure-devops.azure-pipelines',
       'ms-kubernetes-tools.vscode-kubernetes-tools',
+      'ms-toolsai.jupyter',
+      'ms-python.python',
       'github.vscode-pull-request-github',
       'pivotal.vscode-manifest-yaml',
       'pivotal.vscode-concourse',
