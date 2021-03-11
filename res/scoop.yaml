@@ -10,55 +10,56 @@ packages:
   - aria2
   - git
   - pwsh
+  - 7zip
+  - arduino
+  - audacity
+  - aws
+  - cascadia-code
+  - cmake
+  - Cousine-NF
   - curl
-  - grep
-  - sed
-  - less
+  - discord
+  - dotnet-sdk
+  - DroidSansMono-NF
+  - firefox
   - gcc
+  - gitkraken
+  - googlechrome
+  - graphviz
+  - grep
+  - hwinfo
+  - IntelliJ-IDEA-Ultimate
+  - latex
+  - less
+  - lessmsi
   - llvm
   - make
-  - cmake
-  - shasum
-  - ninja
-  - ruby
-  - rustup-msvc
-  - cmake
-  - dotnet-sdk
-  - xmllint
-  - speedtest-cli
-  - latex
-  - openjdk
-  - openjdk-ea
-  - yarn
-  - nvm
-  - postman
-  - mongodb
-  - aws
-  - yed
-  - latex
-  - pandoc
-  - lessmsi
-  - graphviz
-  - powertoys
-  - windows-terminal
-  - winrar
-  - vscode
-  - gitkraken
-  - notepadplusplus
-  - arduino
-  - teamspeak
-  - telegram
-  - discord
-  - zoom
-  - teamviewer
-  - vlc
-  - firefox
-  - googlechrome
-  - hwinfo
-  - audacity
-  - cascadia-code
-  - IntelliJ-IDEA-Ultimate
-  - DroidSansMono-NF
-  - Cousine-NF
   - Meslo-NF
   - microsoft-edge-beta-np
+  - mongodb
+  - ninja
+  - notepadplusplus
+  - nvm
+  - openjdk
+  - openjdk-ea
+  - pandoc
+  - postman
+  - powertoys
+  - python
+  - ruby
+  - rustup-msvc
+  - sed
+  - shasum
+  - speedtest-cli
+  - teamspeak
+  - teamviewer
+  - telegram
+  - touch
+  - vlc
+  - vscode
+  - windows-terminal
+  - winrar
+  - xmllint
+  - yarn
+  - yed
+  - zoom

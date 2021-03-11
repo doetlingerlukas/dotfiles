@@ -101,7 +101,8 @@ namespace :vscode do
       'geekidos.vdf',
       '13xforever.language-x86-64-assembly',
       'twxs.cmake',
-      'ban.spellright'
+      'ban.spellright',
+      'tyriar.sort-lines'
     ].each do |e|
       command 'code', '--install-extension', e
     end
