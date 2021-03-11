@@ -25,7 +25,7 @@ Function uninstallApps {
   foreach ($a in $apps) {
     Get-AppxPackage "$a" -AllUsers | Remove-AppxPackage
     Get-AppXProvisionedPackage -Online | Where-Object DisplayNam -like "$a" | Remove-AppxProvisionedPackage -Online
-  }  
+  }
 }
 
 if ($false -eq $(Test-Path -Path "$env:ProgramData\Chocolatey")) {
@@ -57,7 +57,17 @@ foreach ($b in $scoop.buckets) {
   scoop bucket add $b
 }
 foreach ($p in $scoop.packages) {
-  scoop install $p
+  try {
+    scoop install $p
+  }
+  catch {
+    if ($env:CI) {
+      Write-Error "$p fails to install on CI!"
+    } else {
+      Write-Error "Failed to install scoop package $p!"
+      exit
+    }
+  }
 }
 
 # Install common choco packages.
