@@ -57,9 +57,10 @@ packages:
   - touch
   - vlc
   - vscode
-  - windows-terminal
   - winrar
   - xmllint
   - yarn
   - yed
   - zoom
+no_ci:
+  - windows-terminal

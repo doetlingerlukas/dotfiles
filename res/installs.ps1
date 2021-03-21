@@ -57,16 +57,11 @@ foreach ($b in $scoop.buckets) {
   scoop bucket add $b
 }
 foreach ($p in $scoop.packages) {
-  try {
+  scoop install $p
+}
+if (!$env:CI) {
+  foreach ($p in $scoop.no_ci) {
     scoop install $p
-  }
-  catch {
-    if ($env:CI) {
-      Write-Error "$p fails to install on CI!"
-    } else {
-      Write-Error "Failed to install scoop package $p!"
-      exit
-    }
   }
 }
 
