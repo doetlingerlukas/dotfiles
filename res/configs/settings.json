@@ -47,8 +47,15 @@
       {
         "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
         "hidden": false,
-        "name": "Ubuntu",
+        "name": "Ubuntu-20.04",
         "source": "Windows.Terminal.Wsl"
+      },
+      {
+        "guid": "{e3a6a5b9-b9b8-4b97-ab0b-d2cd5a578676}",
+        "name": "Ubuntu-20.04 (scaled)",
+        "source": "Windows.Terminal.Wsl",
+        "hidden": false,
+        "fontSize": 14
       },
       {
         "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
@@ -66,7 +73,7 @@
     { "command": "paste", "keys": "ctrl+v" },
     { "command": "find", "keys": "ctrl+f" },
     { "command": "closeWindow", "keys": "alt+f4" },
-    { "command": "closeTab", "keys": "ctrl+x" },
+    { "command": "closeTab", "keys": "ctrl+shift+x" },
     { "command": "toggleFullscreen", "keys": "alt+enter" },
     { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" }
   ]
