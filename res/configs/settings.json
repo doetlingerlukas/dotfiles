@@ -45,17 +45,26 @@
         "source": "Windows.Terminal.PowershellCore"
       },
       {
-        "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-        "hidden": false,
+        "guid": "{829c3252-3c45-4389-bca5-b98bca63eaee}",
         "name": "Ubuntu-20.04",
-        "source": "Windows.Terminal.Wsl"
+        "tabTitle": "Ubuntu",
+        "icon": "ms-appdata:///roaming/ubuntu.png",
+        "suppressApplicationTitle": true,
+        "startingDirectory": "//wsl$/Ubuntu-20.04/home/ldoet",
+        "hidden": false,
+        "commandline": "wsl -d Ubuntu-20.04"
       },
       {
         "guid": "{e3a6a5b9-b9b8-4b97-ab0b-d2cd5a578676}",
         "name": "Ubuntu-20.04 (scaled)",
-        "source": "Windows.Terminal.Wsl",
+        "tabTitle": "Ubuntu",
+        "icon": "ms-appdata:///roaming/ubuntu.png",
+        "suppressApplicationTitle": true,
+        "startingDirectory": "//wsl$/Ubuntu-20.04/home/ldoet",
         "hidden": false,
-        "fontSize": 14
+        "acrylicOpacity" : 0.9,
+        "fontSize": 14,
+        "commandline": "wsl -d Ubuntu-20.04"
       },
       {
         "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
@@ -65,6 +74,7 @@
       }
     ]
   },
+  "disabledProfileSources": ["Windows.Terminal.Wsl"],
 
   "schemes": [],
 

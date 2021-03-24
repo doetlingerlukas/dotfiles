@@ -2,3 +2,4 @@ gems:
   - rake
   - os
   - vdf
+  - down
