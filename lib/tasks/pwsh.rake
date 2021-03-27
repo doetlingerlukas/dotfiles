@@ -23,5 +23,6 @@ namespace :pwsh do
 
     FileUtils.mkdir_p ps_config_dir
     FileUtils.cp("#{__dir__}/../../res/configs/Microsoft.PowerShell_profile.ps1", ps_config_dir)
+    FileUtils.cp("#{__dir__}/../../res/configs/posh-theme.omp.json", ps_config_dir)
   end
 end

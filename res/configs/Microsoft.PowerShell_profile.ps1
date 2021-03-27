@@ -1,6 +1,4 @@
 # Set default user for oh-my-posh
-$env:POSH_SESSION_DEFAULT_USER = $env:UserName
-
 Import-Module Get-ChildItemColor
 Import-Module z
 Import-Module PSWriteColor
@@ -38,5 +36,9 @@ Function U {
   throw "Invalid character code $Code"
 }
 
-# default the prompt to Powerline oh-my-posh theme
-Set-PoshPrompt -Theme Powerline
+# set oh-my-posh theme
+if (Test-Path "$env:USERPROFILE\Documents\PowerShell\posh-theme.omp.json") {
+  Set-PoshPrompt -Theme "$env:USERPROFILE\Documents\PowerShell\posh-theme.omp.json"
+} else {
+  Set-PoshPrompt -Theme Powerline
+}
