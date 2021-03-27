@@ -42,7 +42,7 @@
         "hidden": false,
         "name": "PowerShell",
         "tabTitle": "pwsh",
-        "source": "Windows.Terminal.PowershellCore"
+        "commandline": "%USERPROFILE%/scoop/apps/pwsh/current/pwsh.exe"
       },
       {
         "guid": "{829c3252-3c45-4389-bca5-b98bca63eaee}",
