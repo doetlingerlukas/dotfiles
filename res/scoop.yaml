@@ -15,6 +15,7 @@ packages:
   - audacity
   - aws
   - cascadia-code
+  - CascadiaCode-NF
   - cmake
   - Cousine-NF
   - curl
@@ -40,9 +41,11 @@ packages:
   - ninja
   - notepadplusplus
   - nvm
+  - oh-my-posh3
   - openjdk
   - openjdk-ea
   - pandoc
+  - posh-git
   - postman
   - powertoys
   - python

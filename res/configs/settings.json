@@ -13,7 +13,7 @@
 
   "profiles": {
     "defaults": {
-      "fontFace" : "Cascadia Code PL",
+      "fontFace" : "CaskaydiaCove NF",
       "fontSize": 10,
       "cursorShape": "bar",
       "colorScheme": "One Half Dark",
