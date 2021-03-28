@@ -30,11 +30,3 @@ linux_packages['brew'].each do |f|
     raise "Installing brew formulae '#{f}' failed with status code '#{$CHILD_STATUS}'."
   end
 end
-
-linux_packages['snap'].each do |s|
-  puts "Installing snap '#{s}'."
-  system *['sudo', 'snap', 'install'].push(*s.split)
-  unless $CHILD_STATUS.success?
-    raise "Installing snap '#{s}' failed."
-  end
-end

@@ -16,3 +16,8 @@ end
 def elementary?
   is_distro? 'elementary'
 end
+
+def wsl?
+  return false unless OS.linux?
+  File.readlines('/proc/version').grep(/Microsoft/).size > 0
+end

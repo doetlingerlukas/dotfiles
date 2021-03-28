@@ -6,11 +6,11 @@ require 'distro'
 
 desc 'Configure ubuntu.'
 task :ubuntu do
-  next unless OS.linux? && ubuntu?
+  next unless OS.linux? && ubuntu? && !wsl
 
   puts 'Configuring ubuntu.'
 
-  # enable fractional scaling  
+  # enable fractional scaling
   command 'gsettings', 'set', 'org.gnome.mutter', 'experimental-features', "['x11-randr-fractional-scaling']"
 
   puts 'Installing themes.'

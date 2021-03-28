@@ -16,7 +16,7 @@ execute_tasks () {
   for file in ./lib/tasks/*.rake; do
     basename=${file##*/}
     rake ${basename%.*}
-  done 
+  done
 }
 
 verify_brew_installation () {
@@ -50,17 +50,16 @@ set -eo pipefail
 verify_brew_installation
 verify_ruby_installation
 
+echo "Updating system ..."
+sudo apt update -y
+sudo apt upgrade -y
+
 if [ "${MODE}" == "config" ]
 then
   echo -e "\e[30;103mStarting dotfiles in configuration mode ...\e[0m"
   execute_tasks
-else 
+else
   echo -e "\e[30;42mStarting dotfiles in setup mode ...\e[0m"
-
-  echo "Updating system ..."
-  sudo apt update -y
-  sudo apt upgrade -y
-
   ruby ./res/installs.rb
 
   execute_tasks

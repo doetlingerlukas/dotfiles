@@ -19,6 +19,8 @@ namespace :pwsh do
 
   desc 'set startup config for pwsh'
   task :config do
+    next unless OS.windows?
+
     ps_config_dir = "C:/Users/#{ENV['USERNAME']}/Documents/PowerShell"
 
     FileUtils.mkdir_p ps_config_dir
