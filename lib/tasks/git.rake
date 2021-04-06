@@ -41,6 +41,7 @@ task :git do
 
   File.write global_ignore, <<~CFG
     .idea/
+    .vscode/
 
     npm-debug.log*
     yarn-debug.log*
