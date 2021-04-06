@@ -6,3 +6,4 @@ packages:
   - rustup-init
   - cmake
   - ninja
+  - grc
