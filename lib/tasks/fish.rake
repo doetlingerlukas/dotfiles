@@ -26,11 +26,11 @@ namespace :fish do
 
   desc 'setup oh-my-fish and plugins'
   task :omf do
-    next unless OS.linux?
+    next unless OS.linux? and !ENV['CI']
 
     if (which 'omf').nil?
       puts 'Installing oh-my-fish ...'
-      command 'curl', '-L', 'https://get.oh-my.fish', '|', 'fish'
+      Open3.pipeline ['curl', '-L', 'https://get.oh-my.fish'], ['sudo fish']
     end
 
     [
