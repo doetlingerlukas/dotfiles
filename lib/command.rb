@@ -27,7 +27,7 @@ def command(*args)
 end
 
 def wsl(distro, *args)
-  system 'wsl', "#{distro}", *args
+  system 'wsl', '-d', "#{distro}", *args
   return if $CHILD_STATUS.success?
   raise "WSL command '#{args.shelljoin}' failed in #{distro}." if ENV['CI']
 end
