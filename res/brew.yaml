@@ -1,6 +1,5 @@
 packages:
   - gcc
-  - clang-format
   - llvm
   - ruby
   - fish
