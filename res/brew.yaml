@@ -1,0 +1,9 @@
+packages:
+  - gcc
+  - clang-format
+  - llvm
+  - ruby
+  - fish
+  - rustup-init
+  - cmake
+  - ninja

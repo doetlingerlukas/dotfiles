@@ -1,0 +1,8 @@
+snaps:
+  - code --classic
+  - telegram-desktop
+  - postman
+  - firefox
+  - powershell --classic
+  - gitkraken --classic
+  - node --channel=10/stable --classic

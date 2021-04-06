@@ -15,11 +15,11 @@ namespace :snap do
 
     command 'sudo', 'apt', 'install', 'snapd', '-y'
 
-    linux_packages = YAML.load_file(File.join(__dir__, '../../res/linux.yaml'))
+    snap_yaml = YAML.load_file(File.join(__dir__, '../../res/snap.yaml'))
 
-    linux_packages['snap'].each do |s|
+    snap_yaml['snaps'].each do |s|
       puts "Installing snap '#{s}'."
-      system *['sudo', 'snap', 'install'].push(*s.split)
+      system 'sudo', 'snap', 'install', s
       unless $CHILD_STATUS.success?
         raise "Installing snap '#{s}' failed."
       end
