@@ -11,7 +11,7 @@ namespace :brew do
   task :installs do
     next unless OS.linux?
 
-    brew_yaml = YAML.load_file(File.join(__dir__, '../../res/linux.yaml'))
+    brew_yaml = YAML.load_file(File.join(__dir__, '../../res/brew.yaml'))
 
     brew_yaml['packages'].each do |s|
       command 'brew', 'install', s
