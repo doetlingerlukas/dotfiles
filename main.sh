@@ -33,5 +33,7 @@ sudo apt upgrade -y
 
 echo "Installing necessary ruby gems ..."
 gem install os
+gem install vdf
+gem install down
 
 rake linux
