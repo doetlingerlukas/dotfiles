@@ -24,6 +24,8 @@ namespace :fish do
     end
 
     fish_config = "#{ENV['HOME']}/.config/fish/config.fish"
+    FileUtils.cp "#{__dir__}/../../res/configs/config.fish", File.dirname(fish_config)
+
     brew_prefix = '/home/linuxbrew/.linuxbrew'
 
     if !File.directory? brew_prefix
@@ -45,13 +47,12 @@ namespace :fish do
     [
       'z',
       'https://github.com/jethrokuan/fzf',
-      'brew',
-      'grc'
+      'bobthefish'
     ].each do |plugin|
       command 'fish', '-c', "omf install #{plugin}"
     end
 
-    command 'fish', '-c', "omf update"
-    command 'fish', '-c', "omf install"
+    command 'fish', '-c', 'omf update'
+    command 'fish', '-c', 'omf install'
   end
 end
