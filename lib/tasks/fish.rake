@@ -22,13 +22,22 @@ namespace :fish do
     unless ENV['SHELL'].eql? fish_executable
       command 'sudo', '/usr/bin/chsh', '-s', fish_executable, Etc.getlogin
     end
+
+    fish_config = "#{ENV['HOME']}/.config/fish/config.fish"
+    brew_prefix = '/home/linuxbrew/.linuxbrew'
+
+    if !File.directory? brew_prefix
+      brew_prefix = "#{ENV['HOME']}/.linuxbrew"
+    end
+
+    add_line_to_file fish_config, "eval (#{brew_prefix}/bin/brew shellenv)"
   end
 
   desc 'setup oh-my-fish and plugins'
   task :omf do
     next unless OS.linux? and !ENV['CI']
 
-    if (which 'omf').nil?
+    if !ENV['OMF_CONFIG']
       puts 'Installing oh-my-fish ...'
       Open3.pipeline ['curl', '-L', 'https://get.oh-my.fish'], ['fish']
     end
@@ -39,10 +48,10 @@ namespace :fish do
       'brew',
       'grc'
     ].each do |plugin|
-      command 'omf', 'install', plugin
+      command 'fish', '-c', "omf install #{plugin}"
     end
 
-    command 'omf', 'update'
-    command 'omf', 'install'
+    command 'fish', '-c', "omf update"
+    command 'fish', '-c', "omf install"
   end
 end
