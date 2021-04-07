@@ -31,7 +31,42 @@ task :git do
 
   # Display current branch.
   command 'git', 'config', '--global', 'alias.currentBranch', "!git branch --contains HEAD | grep '*' | tr -s ' ' | cut -d ' ' -f2"
-  
+
   # Show all aliases.
   command 'git', 'config', '--global', 'alias.aliases', 'config --get-regexp ^alias\.'
+
+  # Set global .gitignore
+  global_ignore = File.join(Dir.home(), '.gitignore_global')
+  command 'git', 'config', '--global', 'core.excludesfile', global_ignore
+
+  File.write global_ignore, <<~CFG
+    .idea/
+    .vscode/
+
+    npm-debug.log*
+    yarn-debug.log*
+    yarn-error.log*
+
+    .classpath
+    .project
+    .settings
+    .factorypath
+    *.aux
+    *.fdb_latexmk
+    *.fls
+    *.gz
+    *.out
+    *.lb
+    *.log
+    *.synctex*
+    *.bbl
+    *.bcf
+    *.blg
+    *.run.xml
+    *.xdv
+    *.nav
+    *.snm
+    *.toc
+    *.gummi
+  CFG
 end

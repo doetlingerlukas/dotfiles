@@ -5,6 +5,7 @@ require 'os'
 require 'laptop'
 require 'command'
 require 'which'
+require 'distro'
 
 task :vscode => [:'vscode:extensions', :'vscode:config']
 
@@ -52,7 +53,7 @@ namespace :vscode do
       },
       'workbench.colorTheme' => 'Community Material Theme Darker',
       'workbench.iconTheme' => 'material-icon-theme',
-      'powershell.integratedConsole.showOnStartup' => false      
+      'powershell.integratedConsole.showOnStartup' => false
     }
 
     if OS.windows?
@@ -69,6 +70,7 @@ namespace :vscode do
 
   desc 'install extensions for VS Code'
   task :extensions do
+    next if wsl?
 
     puts 'Installing VS Code extensions.'
 

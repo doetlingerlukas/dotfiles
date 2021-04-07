@@ -1,0 +1,9 @@
+packages:
+  - gcc
+  - llvm
+  - ruby
+  - fish
+  - rustup-init
+  - cmake
+  - ninja
+  - grc

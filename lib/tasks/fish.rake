@@ -7,14 +7,14 @@ require 'command'
 require 'add_line_to_file'
 require 'which'
 
-task :fish => [:'fish:setup', :'fish:fisher']
+task :fish => [:'fish:setup', :'fish:omf']
 
 namespace :fish do
-  desc 'Setup fish shell.'
+  desc 'setup fish shell'
   task :setup do
     next unless OS.linux?
 
-    puts 'Setting fish as default shell.'
+    puts 'Setting fish as default shell ...'
 
     fish_executable = (which 'fish')
     add_line_to_file '/etc/shells', fish_executable
@@ -24,27 +24,25 @@ namespace :fish do
     end
   end
 
-  desc 'Setup fisher and plugins.'
-  task :fisher do
-    next if ENV['CI'] or !OS.linux?
+  desc 'setup oh-my-fish and plugins'
+  task :omf do
+    next unless OS.linux? and !ENV['CI']
 
-    begin
-      command 'fish', '-c', 'fisher -v'
-      raise "Fisher not installed!" unless $CHILD_STATUS.success?
-    rescue StandardError => e
-      puts 'Installing fischer.'
-      command 'curl', 'https://git.io/fisher', '--create-dirs', '-sLo', ENV['HOME']+'/.config/fish/functions/fisher.fish'
+    if (which 'omf').nil?
+      puts 'Installing oh-my-fish ...'
+      Open3.pipeline ['curl', '-L', 'https://get.oh-my.fish'], ['sudo fish']
     end
 
-    puts 'Updating fischer plugins.'
     [
-      'jethrokuan/z',
-      'franciscolourenco/done',
-      'jorgebucaran/fish-spark',
-    ].each do |plugin| 
-      command 'fish', '-c', "fisher add #{plugin}"
+      'z',
+      'https://github.com/jethrokuan/fzf',
+      'brew',
+      'grc'
+    ].each do |plugin|
+      command 'omf', 'install', plugin
     end
-    command 'fish', '-c', 'fisher'
 
+    command 'omf', 'update'
+    command 'omf', 'install'
   end
 end

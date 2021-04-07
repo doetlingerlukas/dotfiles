@@ -11,6 +11,15 @@
           "foreground": "#FFEE58"
         },
         {
+          "type": "session",
+          "style": "plain",
+          "foreground": "#ffffff",
+          "properties": {
+            "default_user_name": "ldoet",
+            "display_default": false
+          }
+        },
+        {
           "type": "path",
           "style": "powerline",
           "powerline_symbol": "\uE0B0",
@@ -52,7 +61,7 @@
           "style": "powerline",
           "powerline_symbol": "\uE0B0",
           "foreground": "#ffffff",
-          "background": "#4063D8",
+          "background": "#820c02",
           "properties": {
             "prefix": " \uE791 "
           }

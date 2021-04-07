@@ -1,8 +1,7 @@
-# Set default user for oh-my-posh
 Import-Module Get-ChildItemColor
 Import-Module z
 Import-Module PSWriteColor
-Import-Module posh-git
+# Import-Module posh-git
 Import-Module oh-my-posh
 
 # Set l and ls alias to use the new Get-ChildItemColor cmdlets

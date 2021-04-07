@@ -27,6 +27,7 @@ packages:
   - gcc
   - gitkraken
   - googlechrome
+  - gradle
   - graphviz
   - grep
   - hwinfo
@@ -41,6 +42,7 @@ packages:
   - mongodb
   - ninja
   - notepadplusplus
+  - notion
   - nvm
   - oh-my-posh3
   - openjdk
