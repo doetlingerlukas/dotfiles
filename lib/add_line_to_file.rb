@@ -13,5 +13,11 @@ def add_line_to_file(file, line)
     FileUtils.touch file
   end
 
-  command "echo #{line} | sudo tee -a #{file}"
+  if File.writable?(file)
+    File.open(file, 'a') do |f|
+      f.puts line
+    end
+  else
+    Open3.pipeline ['echo', "\"#{line}\\n\""], ['sudo', 'tee', '-a', file]
+  end
 end
