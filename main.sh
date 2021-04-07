@@ -3,11 +3,15 @@
 # Abort on errors.
 set -eo pipefail
 
+echo "Updating system ..."
+sudo apt-get update -y
+sudo apt-get upgrade -y
+
 # Install Linuxbrew.
 if ! type "brew" &> /dev/null
 then
   echo -e "\e[30;103mInstalling Linuxbrew ...\e[0m"
-  sudo apt install build-essential procps curl file git -y
+  sudo apt-get install build-essential procps curl file git -y
 
   bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
@@ -26,10 +30,6 @@ if ! type "rake" &> /dev/null
 then
   gem install rake
 fi
-
-echo "Updating system ..."
-sudo apt update -y
-sudo apt upgrade -y
 
 echo "Installing necessary ruby gems ..."
 gem install os

@@ -30,7 +30,7 @@ namespace :fish do
 
     if (which 'omf').nil?
       puts 'Installing oh-my-fish ...'
-      Open3.pipeline ['curl', '-L', 'https://get.oh-my.fish'], ['sudo fish']
+      Open3.pipeline ['curl', '-L', 'https://get.oh-my.fish'], ['fish']
     end
 
     [
