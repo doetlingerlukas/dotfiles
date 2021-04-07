@@ -47,12 +47,15 @@ namespace :fish do
     [
       'z',
       'https://github.com/jethrokuan/fzf',
-      'bobthefish'
+      'bobthefish',
+      'fish_logo'
     ].each do |plugin|
       command 'fish', '-c', "omf install #{plugin}"
     end
 
     command 'fish', '-c', 'omf update'
     command 'fish', '-c', 'omf install'
+
+    FileUtils.cp "#{__dir__}/../../res/configs/fish_greeting.fish", "#{ENV['HOME']}/.config/fish/functions"
   end
 end
