@@ -19,7 +19,7 @@ namespace :snap do
 
     snap_yaml['snaps'].each do |s|
       puts "Installing snap '#{s}'."
-      system 'sudo', 'snap', 'install', s.split
+      system 'sudo', 'snap', 'install', *s.split
       unless $CHILD_STATUS.success?
         raise "Installing snap '#{s}' failed."
       end
