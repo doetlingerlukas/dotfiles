@@ -24,6 +24,7 @@ namespace :fish do
     end
 
     fish_config = "#{ENV['HOME']}/.config/fish/config.fish"
+    FileUtils.mkdir_p File.dirname(fish_config)
     FileUtils.cp "#{__dir__}/../../res/configs/config.fish", File.dirname(fish_config)
 
     brew_prefix = '/home/linuxbrew/.linuxbrew'
