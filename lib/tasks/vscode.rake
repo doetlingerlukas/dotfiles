@@ -87,6 +87,7 @@ namespace :vscode do
       'ms-kubernetes-tools.vscode-kubernetes-tools',
       'ms-toolsai.jupyter',
       'ms-python.python',
+      'vscjava.vscode-java-pack',
       'github.vscode-pull-request-github',
       'pivotal.vscode-manifest-yaml',
       'pivotal.vscode-concourse',
@@ -104,7 +105,8 @@ namespace :vscode do
       '13xforever.language-x86-64-assembly',
       'twxs.cmake',
       'ban.spellright',
-      'tyriar.sort-lines'
+      'tyriar.sort-lines',
+      'davidanson.vscode-markdownlint'
     ].each do |e|
       command 'code', '--install-extension', e
     end
