@@ -50,7 +50,7 @@ packages:
   - pandoc
   - posh-git
   - postman
-  - powertoys
+  - powertoys-np
   - python
   - ruby
   - rustup-msvc
