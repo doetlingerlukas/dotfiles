@@ -32,6 +32,7 @@ packages:
   - grep
   - hwinfo
   - IntelliJ-IDEA-Ultimate
+  - keepassxc
   - latex
   - less
   - lessmsi
