@@ -14,15 +14,20 @@ packages:
   - arduino
   - audacity
   - aws
+  - bat
   - cascadia-code
   - CascadiaCode-NF
   - cmake
   - Cousine-NF
   - curl
+  - delta
   - discord
   - dotnet-sdk
   - DroidSansMono-NF
+  - dust
+  - duf
   - faas-cli
+  - fd
   - firefox
   - gcc
   - gitkraken
@@ -37,6 +42,7 @@ packages:
   - less
   - lessmsi
   - llvm
+  - lsd
   - make
   - Meslo-NF
   - microsoft-edge-beta-np
@@ -53,6 +59,7 @@ packages:
   - postman
   - powertoys-np
   - python
+  - ripgrep
   - ruby
   - rustup-msvc
   - sed
@@ -61,6 +68,7 @@ packages:
   - teamspeak
   - teamviewer
   - telegram
+  - tldr
   - touch
   - vlc
   - vscode
