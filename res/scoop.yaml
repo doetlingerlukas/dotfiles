@@ -70,6 +70,7 @@ packages:
   - telegram
   - tldr
   - touch
+  - virtualbox-np
   - vlc
   - vscode
   - winrar
