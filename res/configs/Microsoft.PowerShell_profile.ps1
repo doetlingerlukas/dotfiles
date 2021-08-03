@@ -1,8 +1,9 @@
 Import-Module Get-ChildItemColor
 Import-Module z
 Import-Module PSWriteColor
-# Import-Module posh-git
-Import-Module oh-my-posh
+
+# Setup oh-my-posh
+oh-my-posh --init --shell pwsh --config "$env:USERPROFILE\Documents\PowerShell\posh-theme.omp.json" | Invoke-Expression
 
 # Set l and ls alias to use the new Get-ChildItemColor cmdlets
 Set-Alias l Get-ChildItemColor -Option AllScope
@@ -33,11 +34,4 @@ Function U {
   }
 
   throw "Invalid character code $Code"
-}
-
-# set oh-my-posh theme
-if (Test-Path "$env:USERPROFILE\Documents\PowerShell\posh-theme.omp.json") {
-  Set-PoshPrompt -Theme "$env:USERPROFILE\Documents\PowerShell\posh-theme.omp.json"
-} else {
-  Set-PoshPrompt -Theme Powerline
 }
