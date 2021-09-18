@@ -50,7 +50,8 @@ namespace :fish do
       'https://github.com/jethrokuan/fzf',
       'bobthefish',
       'fish_logo',
-      'https://github.com/danhper/fish-ssh-agent'
+      'https://github.com/danhper/fish-ssh-agent',
+      'rustup'
     ].each do |plugin|
       command 'fish', '-c', "omf install #{plugin}"
     end

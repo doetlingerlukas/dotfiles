@@ -10,5 +10,6 @@ task :linux => [
   :fish,
   :ubuntu,
   :snap,
-  :vscode
+  :vscode,
+  :rustup
 ]
