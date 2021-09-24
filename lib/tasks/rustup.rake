@@ -4,7 +4,7 @@ require 'os'
 require 'open3'
 
 desc 'installs rustup and tab complesion for fish shell'
-task rustup: do
+task :rustup do
   next unless OS.linux?
 
   Open3.pipeline ['curl', '--proto', '\'=https\'', '--tlsv1.2', '-sSf', 'https://sh.rustup.rs'], ['sh']
