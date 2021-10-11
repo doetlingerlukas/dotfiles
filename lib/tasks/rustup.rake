@@ -12,5 +12,5 @@ task :rustup do
   FileUtils.mkdir_p "#{ENV['HOME']}/.config/fish/completions"
 
   out, err, status = Open3.capture3 'rustup', 'completions', 'fish'
-  File.write "#{ENV['HOME']}/.config/fish/completions/rustup.fish"
+  File.write "#{ENV['HOME']}/.config/fish/completions/rustup.fish", out
 end
