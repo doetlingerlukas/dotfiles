@@ -19,6 +19,7 @@ packages:
   - CascadiaCode-NF
   - cmake
   - Cousine-NF
+  - crystaldiskmark
   - curl
   - delta
   - discord
@@ -29,14 +30,13 @@ packages:
   - faas-cli
   - fd
   - firefox
-  - gcc
-  - gitkraken
   - googlechrome
   - gradle
   - graphviz
   - grep
   - hwinfo
   - IntelliJ-IDEA-Ultimate
+  - iperf3
   - keepassxc
   - latex
   - less
@@ -46,6 +46,7 @@ packages:
   - make
   - Meslo-NF
   - microsoft-edge-beta-np
+  - microsoft11-jdk
   - mongodb
   - ninja
   - notepadplusplus
@@ -55,10 +56,12 @@ packages:
   - openjdk
   - openjdk-ea
   - pandoc
+  - perl
   - posh-git
   - postman
   - powertoys-np
   - python
+  - rclone
   - ripgrep
   - ruby
   - rustup-msvc
@@ -70,6 +73,7 @@ packages:
   - telegram
   - tldr
   - touch
+  - vim
   - virtualbox-np
   - vlc
   - vscode
