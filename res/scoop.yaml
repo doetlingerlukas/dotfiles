@@ -73,6 +73,7 @@ packages:
   - telegram
   - tldr
   - touch
+  - treesize-free
   - vncviewer
   - vim
   - virtualbox-np
