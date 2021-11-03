@@ -18,6 +18,7 @@ task :csgo do
     gameinstructor_enable 0
     cl_autowepswitch 0
     ui_mainmenu_bkgnd_movie1 "blacksite"
+    cl_mute_enemy_team 0
 
     // Crosshair
     cl_crosshair_drawoutline "0"
@@ -59,7 +60,7 @@ task :csgo do
 
     // Matchmaking
     cl_color 0
-    mm_dedicated_search_maxping 75
+    mm_dedicated_search_maxping 45
 
     // Bindings
     alias +jumpthrow "+jump;-attack;-attack2"
