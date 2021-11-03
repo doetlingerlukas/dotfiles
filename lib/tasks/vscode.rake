@@ -53,7 +53,8 @@ namespace :vscode do
       },
       'workbench.colorTheme' => 'Community Material Theme Darker',
       'workbench.iconTheme' => 'material-icon-theme',
-      'powershell.integratedConsole.showOnStartup' => false
+      'powershell.integratedConsole.showOnStartup' => false,
+      'rust-analyzer.inlayHints.enable' => false
     }
 
     if OS.windows?
@@ -100,7 +101,6 @@ namespace :vscode do
       'rebornix.ruby',
       'wingrunr21.vscode-ruby',
       'xoronic.pestfile',
-      'rust-lang.rust',
       'bungcip.better-toml',
       'serayuzgur.crates',
       'pkief.material-icon-theme',
@@ -112,7 +112,8 @@ namespace :vscode do
       'twxs.cmake',
       'ban.spellright',
       'tyriar.sort-lines',
-      'davidanson.vscode-markdownlint'
+      'davidanson.vscode-markdownlint',
+      'matklad.rust-analyzer'
     ].each do |e|
       command 'code', '--install-extension', e
     end
