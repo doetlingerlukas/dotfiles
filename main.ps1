@@ -31,9 +31,11 @@ switch ($mode) {
     Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 
     # Install powershell modules
+    Install-Module psake -Force
     Install-Module powershell-yaml -Force
     Install-Module PSWriteColor -Force
 
+    Import-Module psake
     Import-Module powershell-yaml
     Import-Module PSWriteColor
 
