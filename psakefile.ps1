@@ -9,6 +9,6 @@ Task Init {
 
 }
 
-Task Setup -Depends Hello-World {
+Task Setup -Depends installs, csgo {
   Write-Host "Test"
 }
