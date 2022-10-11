@@ -9,7 +9,6 @@ packages:
   - psutils
   - aria2
   - git
-  - pwsh
   - 7zip
   - arduino
   - audacity
@@ -45,14 +44,12 @@ packages:
   - lsd
   - make
   - Meslo-NF
-  - microsoft-edge-beta-np
   - microsoft11-jdk
   - mongodb
   - ninja
   - notepadplusplus
   - notion
   - nvm
-  - oh-my-posh3
   - openjdk
   - openjdk-ea
   - pandoc
@@ -68,7 +65,6 @@ packages:
   - sed
   - shasum
   - speedtest-cli
-  - teamspeak
   - teamviewer
   - telegram
   - tldr
@@ -76,7 +72,6 @@ packages:
   - treesize-free
   - vncviewer
   - vim
-  - virtualbox-np
   - vlc
   - vscode
   - winrar
@@ -84,5 +79,3 @@ packages:
   - yarn
   - yed
   - zoom
-no_ci:
-  - windows-terminal

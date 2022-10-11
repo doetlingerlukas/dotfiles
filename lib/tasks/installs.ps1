@@ -9,14 +9,6 @@ Function parseYaml {
   return ConvertFrom-YAML $content
 }
 
-Function installChocoPackages {
-  Param([String[]]$packages)
-
-  foreach ($p in $packages) {
-    choco install $p -y
-  }
-}
-
 Function uninstallApps {
   Param([String[]]$apps)
 
@@ -28,12 +20,7 @@ Function uninstallApps {
 
 Task installs {
   # Assert that task is run with evelated privileges
-  Assert([Security.Principal.WindowsIdentity]::GetCurrent().Groups -contains 'S-1-5-32-544')
-
-  if ($false -eq $(Test-Path -Path "$env:ProgramData\Chocolatey")) {
-    Write-Color -Text "Installing Chocolatey ..." -Color Green
-    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-  }
+  Assert([Security.Principal.WindowsIdentity]::GetCurrent().Groups -contains 'S-1-5-32-544') "evelated privileges are required"
 
   try {
     Get-Command "scoop" | Out-Null
@@ -43,47 +30,28 @@ Task installs {
     Invoke-RestMethod get.scoop.sh | Invoke-Expression
   }
 
-  # Parse YAML files.
-  $choco = parseYaml('choco.yaml')
+  # Parse YAML files
+  $winget = parseYaml('winget.yaml')
   $scoop = parseYaml('scoop.yaml')
-  $gems = parseYaml('gems.yaml')
   $default_apps = parseYaml('default-apps.yaml')
 
   Write-Color -Text "Installing programs ..." -Color Green
 
-  # Install required choco packages.
-  installChocoPackages($choco.required)
+  # Install required choco packages
+  foreach ($p in $winget.packages) {
+    winget install -e --id $p
+  }
 
-  # Install scoop buckets and packages.
+  # Install scoop buckets and packages
   foreach ($b in $scoop.buckets) {
     scoop bucket add $b
   }
   foreach ($p in $scoop.packages) {
     scoop install $p
   }
-  if (!$env:CI) {
-    foreach ($p in $scoop.no_ci) {
-      scoop install $p
-    }
-  }
-
-  # Install common choco packages.
-  installChocoPackages($choco.common)
-
-  # Install system specific choco packages.
-  if ($env:COMPUTERNAME.ToLower().contains("razer")) {
-    installChocoPackages($choco.laptop)
-  } elseif ($env:COMPUTERNAME.ToLower().contains("pc")) {
-    installChocoPackages($choco.desktop)
-  }
 
   Write-Color -Text "Updating PATH ..." -Color Green
   $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
-
-  Write-Color -Text "Installing ruby gems ..." -Color Green
-  foreach ($g in $gems.gems) {
-    gem install $g
-  }
 
   Write-Color -Text "Installing additional Windows features ..." -Color Green
 
@@ -108,13 +76,13 @@ Task installs {
 
   Write-Color -Text "Unpinning start menu tiles and taskbar icons ..." -Color Green
 
-  # Unpin start menu tiles.
+  # Unpin start menu tiles
   $key = Get-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\CloudStore\Store\Cache\DefaultAccount\*start.tilegrid`$windows.data.curatedtilecollection.tilecollection\Current"
   $data = $key.Data[0..25] + ([byte[]](202,50,0,226,44,1,1,0,0))
   Set-ItemProperty -Path $key.PSPath -Name "Data" -Type Binary -Value $data
   Stop-Process -Name "ShellExperienceHost" -Force -ErrorAction SilentlyContinue
 
-  # Unpin taskbar icons.
+  # Unpin taskbar icons
   Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "Favorites" -Type Binary -Value ([byte[]](255))
   Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "FavoritesResolve" -ErrorAction SilentlyContinue
 
