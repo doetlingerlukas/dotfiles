@@ -1,7 +1,9 @@
+Import-Module -DisableNameChecking $PSScriptRoot\..\"system-info.psm1"
+
 Function parseYaml {
   Param([string]$file)
 
-  [string[]]$fileContent = Get-Content ($PSScriptRoot + "\" + $file)
+  [string[]]$fileContent = Get-Content ($PSScriptRoot + "\..\..\res\" + $file)
   $content = ''
   foreach ($line in $fileContent) {
     $content = $content + "`n" + $line
@@ -13,8 +15,13 @@ Function uninstallApps {
   Param([String[]]$apps)
 
   foreach ($a in $apps) {
-    Get-AppxPackage "$a" -AllUsers | Remove-AppxPackage
-    Get-AppXProvisionedPackage -Online | Where-Object DisplayNam -like "$a" | Remove-AppxProvisionedPackage -Online
+    if ((Get-AppxPackage -AllUsers -Name $a) -or (Get-AppxProvisionedPackage -Online | Where-Object DisplayName -like $a)) {
+      Write-Status "Trying to remove $a ..."
+      Get-AppxPackage "$a" -AllUsers | Remove-AppxPackage
+      Get-AppXProvisionedPackage -Online | Where-Object DisplayNam -like "$a" | Remove-AppxProvisionedPackage -Online -AllUsers
+    } else {
+      Write-Host "$a was already removed or not found."
+    }
   }
 }
 
@@ -33,7 +40,6 @@ Task installs {
   # Parse YAML files
   $winget = parseYaml('winget.yaml')
   $scoop = parseYaml('scoop.yaml')
-  $default_apps = parseYaml('default-apps.yaml')
 
   Write-Color -Text "Installing programs ..." -Color Green
 
@@ -85,12 +91,20 @@ Task installs {
   # Unpin taskbar icons
   Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "Favorites" -Type Binary -Value ([byte[]](255))
   Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "FavoritesResolve" -ErrorAction SilentlyContinue
+}
 
 
-  Write-Color -Text "Uninstalling default apps ..." -Color Green
+Task uninstalls {
+  Write-Color "Uninstalling default apps ..."
+
+  $default_apps = parseYaml('default-apps.yaml')
 
   uninstallApps($default_apps.microsoft)
   uninstallApps($default_apps.thirdparty)
 
-  Write-Color -Text "Uninstalls done!" -Color Green
+  if (IsWindows11) {
+    uninstallApps($default_apps.win11)
+  }
+
+  Write-Color "Uninstalls done!"
 }

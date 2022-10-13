@@ -9,6 +9,6 @@ Task Init {
 
 }
 
-Task Setup -Depends installs, csgo {
+Task Setup -Depends uninstalls, installs, csgo {
   Write-Host "Test"
 }
