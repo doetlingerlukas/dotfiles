@@ -17,22 +17,25 @@ jobs:
       - uses: actions/checkout@v2
 
       # https://github.com/actions/runner-images/issues/910
+      # https://github.com/microsoft/winget-cli/issues/1779
       - name: install winget
         run: |
           Install-Module NtObjectManager -Force
           $vclibs = Invoke-WebRequest -Uri "https://store.rg-adguard.net/api/GetFiles" -Method "POST" -ContentType "application/x-www-form-urlencoded" -Body "type=PackageFamilyName&url=Microsoft.VCLibs.140.00_8wekyb3d8bbwe&ring=RP&lang=en-US" -UseBasicParsing | Foreach-Object Links | Where-Object outerHTML -match "Microsoft.VCLibs.140.00_.+_x64__8wekyb3d8bbwe.appx" | Foreach-Object href
           $vclibsuwp = Invoke-WebRequest -Uri "https://store.rg-adguard.net/api/GetFiles" -Method "POST" -ContentType "application/x-www-form-urlencoded" -Body "type=PackageFamilyName&url=Microsoft.VCLibs.140.00.UWPDesktop_8wekyb3d8bbwe&ring=RP&lang=en-US" -UseBasicParsing | Foreach-Object Links | Where-Object outerHTML -match "Microsoft.VCLibs.140.00.UWPDesktop_.+_x64__8wekyb3d8bbwe.appx" | Foreach-Object href
-          Invoke-WebRequest $vclibsuwp -OutFile Microsoft.VCLibs.140.00.UWPDesktop_8wekyb3d8bbwe.appx
-          Invoke-WebRequest $vclibs -OutFile Microsoft.VCLibs.140.00_8wekyb3d8bbwe.appx
-          Add-AppxPackage -Path .\Microsoft.VCLibs.140.00.UWPDesktop_8wekyb3d8bbwe.appx
-          Add-AppxPackage -Path .\Microsoft.VCLibs.140.00_8wekyb3d8bbwe.appx
+          $uixaml = Invoke-WebRequest -Uri "https://store.rg-adguard.net/api/GetFiles" -Method "POST" -ContentType "application/x-www-form-urlencoded" -Body "type=PackageFamilyName&url=Microsoft.UI.Xaml.2.7_8wekyb3d8bbwe&ring=RP&lang=en-US" -UseBasicParsing | Foreach-Object Links | Where-Object outerHTML -match "Microsoft.UI.Xaml.2.7_.+_x64__8wekyb3d8bbwe.appx" | Foreach-Object href
 
-          Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
-          Register-PackageSource -provider NuGet -name nugetRepository -location https://www.nuget.org/api/v2
-          Install-Package Microsoft.UI.Xaml -Force
+          Invoke-WebRequest $vclibs -OutFile vclibs.appx
+          Invoke-WebRequest $vclibsuwp -OutFile vclibsuwp.appx
+          Invoke-WebRequest $uixaml -OutFile uixaml.appx
 
+          Add-AppxPackage -Path .\vclibs.appx
+          Add-AppxPackage -Path .\vclibsuwp.appx
+          Add-AppxPackage -Path .\uixaml.appx
+
+          Invoke-WebRequest 'https://github.com/microsoft/winget-cli/releases/download/v1.3.2691/7bcb1a0ab33340daa57fa5b81faec616_License1.xml' -OutFile winget_license.xml
           Invoke-WebRequest 'https://github.com/microsoft/winget-cli/releases/download/v1.3.2691/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle' -OutFile winget.msixbundle
-          Add-AppxPackage -Path .\winget.msixbundle
+          Add-AppxProvisionedPackage -Online -PackagePath .\winget.msixbundle -LicensePath .\winget_license.xml -Verbose
         shell: powershell
 
       - run: winget --info
