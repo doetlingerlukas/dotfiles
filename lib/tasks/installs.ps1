@@ -60,9 +60,6 @@ Task installs {
     scoop install $p
   }
 
-  Write-Color -Text "Updating PATH ..." -Color Green
-  $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
-
   Write-Color -Text "Installing additional Windows features ..." -Color Green
 
   try {
@@ -72,7 +69,9 @@ Task installs {
     # Required for WSL 2
     Enable-WindowsOptionalFeature -FeatureName "VirtualMachinePlatform" -All -Online -NoRestart
 
-    Enable-WindowsOptionalFeature -FeatureName "Microsoft-Hyper-V" -All -Online -NoRestart
+    if (IsProEdition) {
+      Enable-WindowsOptionalFeature -FeatureName "Microsoft-Hyper-V" -All -Online -NoRestart
+    }
   }
   catch {
     if (!$env:CI) {
