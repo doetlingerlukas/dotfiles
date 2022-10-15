@@ -59,7 +59,6 @@ packages:
   - perl
   - posh-git
   - postman
-  - powertoys-np
   - pyenv
   - rclone
   - ripgrep

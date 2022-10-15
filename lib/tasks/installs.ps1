@@ -16,7 +16,7 @@ Function uninstallApps {
 
   foreach ($a in $apps) {
     if ((Get-AppxPackage -AllUsers -Name $a) -or (Get-AppxProvisionedPackage -Online | Where-Object DisplayName -like $a)) {
-      Write-Status "Trying to remove $a ..."
+      Write-Host "Trying to remove $a ..."
       Get-AppxPackage "$a" -AllUsers | Remove-AppxPackage
       Get-AppXProvisionedPackage -Online | Where-Object DisplayNam -like "$a" | Remove-AppxProvisionedPackage -Online -AllUsers
     } else {
@@ -34,11 +34,7 @@ Task installs {
     scoop update
   } catch {
     Write-Color -Text "Installing Scoop ..." -Color Green
-    if ($env:CI) {
-      Invoke-Expression "& {$(Invoke-RestMethod get.scoop.sh)} -RunAsAdmin"
-    } else {
-      Invoke-RestMethod get.scoop.sh | Invoke-Expression
-    }
+    Invoke-Expression "& {$(Invoke-RestMethod get.scoop.sh)} -RunAsAdmin"
   }
 
   # Parse YAML files
