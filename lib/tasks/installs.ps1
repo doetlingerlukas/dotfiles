@@ -34,7 +34,11 @@ Task installs {
     scoop update
   } catch {
     Write-Color -Text "Installing Scoop ..." -Color Green
-    Invoke-RestMethod get.scoop.sh | Invoke-Expression
+    if ($env:CI) {
+      Invoke-Expression "& {$(Invoke-RestMethod get.scoop.sh)} -RunAsAdmin"
+    } else {
+      Invoke-RestMethod get.scoop.sh | Invoke-Expression
+    }
   }
 
   # Parse YAML files
@@ -43,7 +47,7 @@ Task installs {
 
   Write-Color -Text "Installing programs ..." -Color Green
 
-  # Install required choco packages
+  # Install required winget packages
   foreach ($p in $winget.packages) {
     winget install -e --id $p
   }
