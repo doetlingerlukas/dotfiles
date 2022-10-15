@@ -9,6 +9,7 @@ packages:
   - psutils
   - aria2
   - git
+  - sudo
   - 7zip
   - arduino
   - audacity
@@ -28,11 +29,12 @@ packages:
   - duf
   - faas-cli
   - fd
-  - firefox
+  - fork
   - googlechrome
   - gradle
   - graphviz
   - grep
+  - handbrake
   - hwinfo
   - IntelliJ-IDEA-Ultimate
   - iperf3
@@ -50,6 +52,7 @@ packages:
   - notepadplusplus
   - notion
   - nvm
+  - obsidian
   - openjdk
   - openjdk-ea
   - pandoc
@@ -57,7 +60,7 @@ packages:
   - posh-git
   - postman
   - powertoys-np
-  - python
+  - pyenv
   - rclone
   - ripgrep
   - ruby
@@ -72,7 +75,6 @@ packages:
   - treesize-free
   - vncviewer
   - vim
-  - vlc
   - vscode
   - winrar
   - xmllint
