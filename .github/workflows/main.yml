@@ -21,8 +21,9 @@ jobs:
       - name: install winget
         uses: nick-fields/retry@v2
         with:
-          timeout_minutes: 1
+          timeout_minutes: 10
           max_attempts: 3
+          retry_on: error
           shell: powershell
           command: |
             Install-Module NtObjectManager -Force
@@ -48,24 +49,24 @@ jobs:
         run: .\main.ps1
         shell: powershell
 
-  linux:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: clean system
-        run: |
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh)"
-          sudo apt purge ruby* -y
-          sudo apt purge openjdk* -y
-          sudo apt purge msodbcsql17 -y
-          sudo apt purge gcc -y
-          sudo apt autoremove -y
-        shell: bash
-
-      - name: run `main.sh`
-        run: |
-          sudo chmod +x ./main.sh
-          ./main.sh
-        shell: bash
+#  linux:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: clean system
+#        run: |
+#          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh)"
+#          sudo apt purge ruby* -y
+#          sudo apt purge openjdk* -y
+#          sudo apt purge msodbcsql17 -y
+#          sudo apt purge gcc -y
+#          sudo apt autoremove -y
+#        shell: bash
+#
+#      - name: run `main.sh`
+#        run: |
+#          sudo chmod +x ./main.sh
+#          ./main.sh
+#        shell: bash

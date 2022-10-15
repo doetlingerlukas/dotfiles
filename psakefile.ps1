@@ -9,6 +9,6 @@ Task Init {
 
 }
 
-Task Setup -Depends uninstalls, installs, csgo {
+Task Setup -Depends uninstalls, installs, csgo, git, latex, nvm {
   Write-Host "Test"
 }
