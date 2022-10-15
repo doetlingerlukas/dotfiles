@@ -49,7 +49,7 @@ Task installs {
 
   # Install required winget packages
   foreach ($p in $winget.packages) {
-    winget install -e --id $p
+    winget install -e --id $p --accept-source-agreements --accept-package-agreements
   }
 
   # Install scoop buckets and packages
