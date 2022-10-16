@@ -64,7 +64,7 @@ Task git {
   *.snm
   *.toc
   *.gummi
-"@ | Out-File -Path $gitignore_global
+"@ | Out-File -FilePath $gitignore_global
 
   Write-Host 'Git config setup successfully!'
 }

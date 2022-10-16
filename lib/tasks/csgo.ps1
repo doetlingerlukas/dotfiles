@@ -4,8 +4,8 @@ Task csgo {
   $config_dir_user1 = 'C:/Program Files (x86)/Steam/userdata/136275020/730/local/cfg'
   $config_dir_user2 = 'C:/Program Files (x86)/Steam/userdata/241388330/730/local/cfg'
 
-  New-Item -Path $config_dir_user1 -ItemType Directory
-  New-Item -Path $config_dir_user2 -ItemType Directory
+  if (!Test-Path $config_dir_user1) { New-Item -Path $config_dir_user1 -ItemType Directory }
+  if (!Test-Path $config_dir_user2) { New-Item -Path $config_dir_user2 -ItemType Directory }
 
   @"
   // General
@@ -68,7 +68,7 @@ Task csgo {
   bind ALT +djump
 
   host_writeconfig
-"@ | Out-File -Path "$config_dir_user1\autoexec.cfg"
+"@ | Out-File -FilePath "$config_dir_user1\autoexec.cfg"
 
   @"
   sv_cheats 1
@@ -86,7 +86,7 @@ Task csgo {
   god
   sv_grenade_trajectory 1
   bind n noclip
-"@ | Out-File -Path "$config_dir_user1\training.cfg"
+"@ | Out-File -FilePath "$config_dir_user1\training.cfg"
 
   Copy-Item "$config_dir_user1\autoexec.cfg" -Destination "$config_dir_user2\autoexec.cfg"
   Copy-Item "$config_dir_user1\training.cfg" -Destination "$config_dir_user2\training.cfg"
