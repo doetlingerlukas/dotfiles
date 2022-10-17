@@ -3,12 +3,16 @@ Get-ChildItem -Filter '*.ps1' '.\lib\tasks\' | ForEach-Object {
   Include $_.FullName
 }
 
-Task default -Depends Setup
+Task default -Depends setup
 
 Task Init {
 
 }
 
-Task Setup -Depends uninstalls, installs, csgo, git, latex, nvm {
+Task setup -Depends uninstalls, installs, configs {
   Write-Host "Test"
+}
+
+Task configs -Depends csgo, git, latex, nvm {
+
 }

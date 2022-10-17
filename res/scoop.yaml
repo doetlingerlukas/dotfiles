@@ -5,12 +5,12 @@ buckets:
   - games
   - jetbrains
   - nonportable
-packages:
+essentials:
   - psutils
   - aria2
   - git
-  - sudo
   - 7zip
+packages:
   - arduino
   - audacity
   - aws
@@ -65,12 +65,10 @@ packages:
   - ruby
   - rustup-msvc
   - sed
-  - shasum
   - speedtest-cli
   - teamviewer
   - telegram
   - tldr
-  - touch
   - treesize-free
   - vncviewer
   - vim

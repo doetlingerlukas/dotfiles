@@ -48,6 +48,10 @@ Task installs {
     winget install -e --id $p --accept-source-agreements --accept-package-agreements
   }
 
+  # Essentials are required to add buckets
+  foreach ($e in $scoop.essentials) {
+    scoop install $e
+  }
   # Install scoop buckets and packages
   foreach ($b in $scoop.buckets) {
     scoop bucket add $b
