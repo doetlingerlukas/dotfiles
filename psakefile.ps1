@@ -13,6 +13,6 @@ Task setup -Depends uninstalls, installs, configs {
   Write-Host "Test"
 }
 
-Task configs -Depends csgo, git, latex, nvm {
+Task configs -Depends csgo, git, latex, nvm, pwsh, ssh, terminal {
 
 }
