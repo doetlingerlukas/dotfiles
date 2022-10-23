@@ -64,13 +64,16 @@ Task installs {
 
   try {
     # Windows Sandbox
-    Enable-WindowsOptionalFeature -FeatureName "Containers-DisposableClientVM" -All -Online -NoRestart
+    Enable-WindowsOptionalFeature -FeatureName 'Containers-DisposableClientVM' -All -Online -NoRestart
 
     # Required for WSL 2
-    Enable-WindowsOptionalFeature -FeatureName "VirtualMachinePlatform" -All -Online -NoRestart
+    Enable-WindowsOptionalFeature -FeatureName 'VirtualMachinePlatform' -All -Online -NoRestart
+    Enable-WindowsOptionalFeature -FeatureName 'Microsoft-Windows-Subsystem-Linux' -All -Online -NoRestart
+
+    wsl --set-default-version 2
 
     if (IsProEdition) {
-      Enable-WindowsOptionalFeature -FeatureName "Microsoft-Hyper-V" -All -Online -NoRestart
+      Enable-WindowsOptionalFeature -FeatureName 'Microsoft-Hyper-V' -All -Online -NoRestart
     }
   }
   catch {
