@@ -8,11 +8,7 @@ Task ssh {
     Copy-Item "$ssh_dir\*" -Destination "$env:USERPROFILE\.ssh" -Recurse
   }
 
-  @"
-  Host github.com
-    HostName github.com
-    IdentityFile ~/.ssh/github_ed25519
-"@ | Out-File -FilePath "$env:USERPROFILE\.ssh\config"
+  $ssh_config | Out-File -FilePath "$env:USERPROFILE\.ssh\config"
 
   # Use OpenSSH as agent for Git
   $openssh_path = (Get-Command ssh).Path
@@ -20,3 +16,9 @@ Task ssh {
 
   Write-Host 'Successfully setup ssh client!'
 }
+
+$ssh_config = @"
+Host github.com
+  HostName github.com
+  IdentityFile ~/.ssh/github_ed25519
+"@

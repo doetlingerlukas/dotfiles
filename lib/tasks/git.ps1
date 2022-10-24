@@ -4,7 +4,7 @@ Task git {
   Exec { git --version } "Error, Git is not available."
 
   git config --global user.name 'Lukas Dötlinger'
-  git config --global user.email 'lukas.doetlinger@student.uibk.ac.at'
+  git config --global user.email 'lukas@doetlinger.at'
 
   git config --global init.defaultBranch 'main'
 
@@ -35,36 +35,38 @@ Task git {
   $gitignore_global = "$env:USERPROFILE\.gitignore_global"
   git config --global core.excludesfile $gitignore_global
 
-  @"
-  .idea/
-  .vscode/
-
-  npm-debug.log*
-  yarn-debug.log*
-  yarn-error.log*
-
-  .classpath
-  .project
-  .settings
-  .factorypath
-  *.aux
-  *.fdb_latexmk
-  *.fls
-  *.gz
-  *.out
-  *.lb
-  *.log
-  *.synctex*
-  *.bbl
-  *.bcf
-  *.blg
-  *.run.xml
-  *.xdv
-  *.nav
-  *.snm
-  *.toc
-  *.gummi
-"@ | Out-File -FilePath $gitignore_global
+  $gitignore_config = Out-File -FilePath $gitignore_global
 
   Write-Host 'Git config setup successfully!'
 }
+
+$gitignore_config =   @"
+.idea/
+.vscode/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+.classpath
+.project
+.settings
+.factorypath
+*.aux
+*.fdb_latexmk
+*.fls
+*.gz
+*.out
+*.lb
+*.log
+*.synctex*
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.xdv
+*.nav
+*.snm
+*.toc
+*.gummi
+"@

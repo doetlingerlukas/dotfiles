@@ -15,7 +15,7 @@ Remove-Alias diff -Force
 New-Alias which get-command
 
 # Helper function to change directory to development workspace
-Function cdw { Set-Location "$env:USERPROFILE\Documents\Git" }
+Function cdw { Set-Location "$env:USERPROFILE\Git" }
 
 # Helper function to set location to the User Profile directory
 Function cuserprofile { Set-Location ~ }

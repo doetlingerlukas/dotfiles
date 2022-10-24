@@ -1,3 +1,5 @@
+Import-Module -DisableNameChecking $PSScriptRoot\..\"file-helpers.psm1"
+
 Task pwsh {
   Write-Host 'Setting up pwsh ...'
 
@@ -10,10 +12,10 @@ Task pwsh {
   # Copy configs to folders
   $config_dir = "$env:USERPROFILE\Documents\PowerShell"
 
-  if (!Test-Path $config_dir) { New-Item -Path $config_dir -ItemType Directory }
+  EnsurePath $config_dir
 
   Copy-Item $PSScriptRoot\..\..\"res\configs\Microsoft.PowerShell_profile.ps1" -Destination $config_dir
   Copy-Item $PSScriptRoot\..\..\"res\configs\posh-theme.omp.json" -Destination $config_dir
 
-  Write-Hoste 'Successfully setup pwsh!'
+  Write-Host 'Successfully setup pwsh!'
 }
