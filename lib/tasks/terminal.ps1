@@ -11,5 +11,13 @@ Task terminal {
 
   Copy-Item $PSScriptRoot\..\..\"res\configs\settings.json" -Destination $config_dir
 
+  @{
+    'ubuntu' = 'https://assets.ubuntu.com/v1/49a1a858-favicon-32x32.png'
+    'kali' = 'https://www.kali.org/images/favicon.png'
+  }.GetEnumerator() | foreach {
+    Write-Host $_.Value
+    Invoke-WebRequest -Uri $_.Value -OutFile "$icon_dir\$($_.Name).png"
+  }
+
   Write-Host 'Successfully configured terminal!'
 }
