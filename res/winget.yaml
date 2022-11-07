@@ -11,6 +11,7 @@ packages:
   - Microsoft.PowerShell
   - Microsoft.PowerToys
   - Microsoft.VisualStudio.2022.Community
+  - Microsoft.VisualStudioCode
   - Microsoft.WindowsTerminal
   - Mozilla.Firefox
   - Mozilla.Thunderbird

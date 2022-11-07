@@ -72,7 +72,6 @@ packages:
   - treesize-free
   - vncviewer
   - vim
-  - vscode
   - winrar
   - xmllint
   - yarn
