@@ -4,7 +4,7 @@ function Initialize-Key {
   )
 
   if (-not (Test-Path $Path)) {
-    New-Item -Path $Path -Force
+    New-Item -Path $Path -Force | Out-Null
   }
 }
 
