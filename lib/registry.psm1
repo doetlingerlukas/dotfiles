@@ -4,19 +4,21 @@ function Initialize-Key {
   )
 
   if (-not (Test-Path $Path)) {
-    New-Item -Path $Path
+    New-Item -Path $Path -Force
   }
 }
 
-function Set-DWord {
+function Set-RegValue {
   param (
     [String] $Path,
     [String] $Name,
-    [int] $Value
+    $Value
   )
 
   Initialize-Key -Path $Path
-  Set-ItemProperty -Path $Path -Name $Name -Type DWord -Value $Value
+
+  $Type = $Value.GetType().Name -eq 'String' ? 'String' : 'DWord'
+  Set-ItemProperty -Path $Path -Name $Name -Type $Type -Value $Value
 }
 
 function Remove-Key {
