@@ -30,3 +30,18 @@ function Remove-Key {
     Remove-Item -Path $Path -Recurse
   }
 }
+
+function Remove-RegValue {
+  param (
+    [String] $Path,
+    [String] $Name
+  )
+
+  try {
+    Get-ItemProperty -Path $Path | Select-Object -ExpandProperty $Name -ErrorAction Stop | Out-Null
+  } catch {
+    return
+  }
+
+  Remove-ItemProperty -Path $Path -Name $Name
+}
