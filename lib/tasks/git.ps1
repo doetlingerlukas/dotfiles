@@ -35,7 +35,7 @@ Task git {
   $gitignore_global = "$env:USERPROFILE\.gitignore_global"
   git config --global core.excludesfile $gitignore_global
 
-  $gitignore_config = Out-File -FilePath $gitignore_global
+  $gitignore_config | Out-File -FilePath $gitignore_global
 
   Write-Host 'Git config setup successfully!'
 }
