@@ -1,6 +1,9 @@
 Import-Module -DisableNameChecking $PSScriptRoot\..\"file-helpers.psm1"
+Import-Module -DisableNameChecking $PSScriptRoot\..\"system-info.psm1"
 
 Task csgo {
+  Assert-ElevatedPrivileges
+
   Write-Host 'Setting up CS:GO config ...'
 
   $config_dir_user1 = 'C:/Program Files (x86)/Steam/userdata/136275020/730/local/cfg'

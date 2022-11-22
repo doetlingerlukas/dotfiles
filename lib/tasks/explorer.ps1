@@ -3,6 +3,8 @@
 Import-Module -DisableNameChecking $PSScriptRoot\..\'registry.psm1'
 
 Task explorer {
+  Assert-ElevatedPrivileges
+
   Write-Host 'Configuring Windows Explorer ...'
 
   $registry_path = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer'

@@ -1,10 +1,10 @@
 # Adapted from: https://github.com/LeDragoX/Win-Debloat-Tools
 
 Import-Module -DisableNameChecking $PSScriptRoot\..\'registry.psm1'
+Import-Module -DisableNameChecking $PSScriptRoot\..\'system-info.psm1'
 
 Task windows -Depends ui {
-  # Assert that task is run with evelated privileges
-  Assert([Security.Principal.WindowsIdentity]::GetCurrent().Groups -contains 'S-1-5-32-544') 'evelated privileges are required'
+  Assert-ElevatedPrivileges
 
   Write-Host 'Configuring Windows ...'
 
@@ -121,8 +121,7 @@ Task windows -Depends ui {
 }
 
 Task ui {
-  # Assert that task is run with evelated privileges
-  Assert([Security.Principal.WindowsIdentity]::GetCurrent().Groups -contains 'S-1-5-32-544') 'evelated privileges are required'
+  Assert-ElevatedPrivileges
 
   Write-Host 'Configuring Windows UI ...'
 

@@ -1,4 +1,8 @@
+Import-Module -DisableNameChecking $PSScriptRoot\..\'system-info.psm1'
+
 Task ssh {
+  Assert-ElevatedPrivileges
+
   Write-Host 'Configuring ssh client ...'
 
   Exec { Set-Service ssh-agent -StartupType Automatic }

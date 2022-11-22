@@ -26,8 +26,7 @@ Function uninstallApps {
 }
 
 Task installs {
-  # Assert that task is run with evelated privileges
-  Assert([Security.Principal.WindowsIdentity]::GetCurrent().Groups -contains 'S-1-5-32-544') "evelated privileges are required"
+  Assert-ElevatedPrivileges
 
   try {
     Get-Command "scoop" | Out-Null
@@ -101,6 +100,8 @@ Task installs {
 
 
 Task uninstalls {
+  Assert-ElevatedPrivileges
+
   Write-Color "Uninstalling default apps ..."
 
   $default_apps = parseYaml('default-apps.yaml')
