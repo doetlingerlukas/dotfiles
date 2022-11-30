@@ -5,12 +5,12 @@ buckets:
   - games
   - jetbrains
   - nonportable
-packages:
+essentials:
   - psutils
   - aria2
   - git
-  - pwsh
   - 7zip
+packages:
   - arduino
   - audacity
   - aws
@@ -29,11 +29,12 @@ packages:
   - duf
   - faas-cli
   - fd
-  - firefox
+  - fork
   - googlechrome
   - gradle
   - graphviz
   - grep
+  - handbrake
   - hwinfo
   - IntelliJ-IDEA-Ultimate
   - iperf3
@@ -45,44 +46,34 @@ packages:
   - lsd
   - make
   - Meslo-NF
-  - microsoft-edge-beta-np
   - microsoft11-jdk
   - mongodb
   - ninja
   - notepadplusplus
   - notion
   - nvm
-  - oh-my-posh3
+  - obsidian
   - openjdk
   - openjdk-ea
   - pandoc
   - perl
   - posh-git
   - postman
-  - powertoys-np
-  - python
+  - pyenv
   - rclone
   - ripgrep
   - ruby
   - rustup-msvc
   - sed
-  - shasum
   - speedtest-cli
-  - teamspeak
   - teamviewer
   - telegram
   - tldr
-  - touch
   - treesize-free
   - vncviewer
   - vim
-  - virtualbox-np
-  - vlc
-  - vscode
   - winrar
   - xmllint
   - yarn
   - yed
   - zoom
-no_ci:
-  - windows-terminal

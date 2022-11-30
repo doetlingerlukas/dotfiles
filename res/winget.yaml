@@ -1,0 +1,22 @@
+packages:
+  - Adobe.Acrobat.Reader.64-bit
+  - angryziber.AngryIPScanner
+  - Canonical.Ubuntu.2204
+  - Corsair.iCUE.4
+  - Docker.DockerDesktop
+  - ElectronicArts.EADesktop
+  - JanDeDobbeleer.OhMyPosh
+  - kalilinux.kalilinux
+  - Microsoft.dotNetFramework
+  - Microsoft.PowerShell
+  - Microsoft.PowerToys
+  - Microsoft.VisualStudio.2022.Community
+  - Microsoft.VisualStudioCode
+  - Microsoft.WindowsTerminal
+  - Mozilla.Firefox
+  - Mozilla.Thunderbird
+  - Oracle.VirtualBox
+  - TeamSpeakSystems.TeamSpeakClient
+  - Ubisoft.Connect
+  - Valve.Steam
+  - VideoLAN.VLC

@@ -12,32 +12,61 @@ on:
 jobs:
   windows:
     runs-on: windows-latest
-    
+
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+
+      # https://github.com/actions/runner-images/issues/910
+      # https://github.com/microsoft/winget-cli/issues/1779
+      - name: install winget
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          retry_on: error
+          shell: powershell
+          command: |
+            Install-Module NtObjectManager -Force
+            $vclibs = Invoke-WebRequest -Uri "https://store.rg-adguard.net/api/GetFiles" -Method "POST" -ContentType "application/x-www-form-urlencoded" -Body "type=PackageFamilyName&url=Microsoft.VCLibs.140.00_8wekyb3d8bbwe&ring=RP&lang=en-US" -UseBasicParsing | Foreach-Object Links | Where-Object outerHTML -match "Microsoft.VCLibs.140.00_.+_x64__8wekyb3d8bbwe.appx" | Foreach-Object href
+            $vclibsuwp = Invoke-WebRequest -Uri "https://store.rg-adguard.net/api/GetFiles" -Method "POST" -ContentType "application/x-www-form-urlencoded" -Body "type=PackageFamilyName&url=Microsoft.VCLibs.140.00.UWPDesktop_8wekyb3d8bbwe&ring=RP&lang=en-US" -UseBasicParsing | Foreach-Object Links | Where-Object outerHTML -match "Microsoft.VCLibs.140.00.UWPDesktop_.+_x64__8wekyb3d8bbwe.appx" | Foreach-Object href
+            $uixaml = Invoke-WebRequest -Uri "https://store.rg-adguard.net/api/GetFiles" -Method "POST" -ContentType "application/x-www-form-urlencoded" -Body "type=PackageFamilyName&url=Microsoft.UI.Xaml.2.7_8wekyb3d8bbwe&ring=RP&lang=en-US" -UseBasicParsing | Foreach-Object Links | Where-Object outerHTML -match "Microsoft.UI.Xaml.2.7_.+_x64__8wekyb3d8bbwe.appx" | Foreach-Object href
+
+            Invoke-WebRequest $vclibs -OutFile vclibs.appx
+            Invoke-WebRequest $vclibsuwp -OutFile vclibsuwp.appx
+            Invoke-WebRequest $uixaml -OutFile uixaml.appx
+
+            Add-AppxPackage -Path .\vclibs.appx
+            Add-AppxPackage -Path .\vclibsuwp.appx
+            Add-AppxPackage -Path .\uixaml.appx
+
+            Invoke-WebRequest 'https://github.com/microsoft/winget-cli/releases/download/v1.3.2691/7bcb1a0ab33340daa57fa5b81faec616_License1.xml' -OutFile winget_license.xml
+            Invoke-WebRequest 'https://github.com/microsoft/winget-cli/releases/download/v1.3.2691/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle' -OutFile winget.msixbundle
+            Add-AppxProvisionedPackage -Online -PackagePath .\winget.msixbundle -LicensePath .\winget_license.xml -Verbose
+
+      - run: winget --info
 
       - name: run `main.ps1`
         run: .\main.ps1
         shell: powershell
 
-  linux:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: clean system
-        run: |
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh)"
-          sudo apt purge ruby* -y
-          sudo apt purge openjdk* -y
-          sudo apt purge msodbcsql17 -y
-          sudo apt purge gcc -y
-          sudo apt autoremove -y
-        shell: bash
-
-      - name: run `main.sh`
-        run: |
-          sudo chmod +x ./main.sh
-          ./main.sh
-        shell: bash
+#  linux:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: clean system
+#        run: |
+#          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh)"
+#          sudo apt purge ruby* -y
+#          sudo apt purge openjdk* -y
+#          sudo apt purge msodbcsql17 -y
+#          sudo apt purge gcc -y
+#          sudo apt autoremove -y
+#        shell: bash
+#
+#      - name: run `main.sh`
+#        run: |
+#          sudo chmod +x ./main.sh
+#          ./main.sh
+#        shell: bash
