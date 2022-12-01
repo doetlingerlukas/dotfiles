@@ -29,8 +29,11 @@ Task installs {
   Assert-ElevatedPrivileges
 
   try {
-    Get-Command "scoop" | Out-Null
+    Get-Command 'scoop' | Out-Null
     scoop update
+
+    # Remove old installation files.
+    scoop cleanup *
   } catch {
     Write-Color -Text "Installing Scoop ..." -Color Green
     Invoke-Expression "& {$(Invoke-RestMethod get.scoop.sh)} -RunAsAdmin"
@@ -44,7 +47,16 @@ Task installs {
 
   # Install required winget packages
   foreach ($p in $winget.packages) {
-    winget install -e --id $p --accept-source-agreements --accept-package-agreements
+    try {
+      Exec { winget list -e --id $p | Out-Null }
+
+      Write-Host "$p is already installed. Trying to upgrade ..."
+      winget upgrade -e --id $p
+    }
+    catch {
+      # App was not found and will be installed.
+      winget install -e --id $p --accept-source-agreements --accept-package-agreements
+    }
   }
 
   # Essentials are required to add buckets
