@@ -35,7 +35,15 @@ Task installs {
     # Remove old installation files.
     scoop cleanup *
   } catch {
-    Write-Color -Text "Installing Scoop ..." -Color Green
+    $msg = 'Scoop should not be installed with elevated privileges. File permissions will have to be changed afterwards for scoop to run correctly. Proceed anyway? [Y/N]'
+    $response = Read-Host -Prompt $msg
+
+    if ($response -eq 'n') {
+      Write-Host 'Please install scoop without elevated privileges first. (See https://scoop.sh/)'
+      return
+    }
+
+    Write-Host 'Installing Scoop ...'
     Invoke-Expression "& {$(Invoke-RestMethod get.scoop.sh)} -RunAsAdmin"
   }
 
@@ -43,7 +51,7 @@ Task installs {
   $winget = parseYaml('winget.yaml')
   $scoop = parseYaml('scoop.yaml')
 
-  Write-Color -Text "Installing programs ..." -Color Green
+  Write-Host 'Installing programs ...'
 
   # Install required winget packages
   foreach ($p in $winget.packages) {
