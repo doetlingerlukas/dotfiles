@@ -79,7 +79,7 @@ Task installs {
     scoop install $p
   }
 
-  Write-Color -Text "Installing additional Windows features ..." -Color Green
+  Write-Host 'Installing additional Windows features ...'
 
   try {
     # Windows Sandbox
@@ -97,32 +97,19 @@ Task installs {
   }
   catch {
     if (!$env:CI) {
-      Write-Error "Failed to install optional features!"
+      Write-Error 'Failed to install optional features!'
       exit
     }
   }
 
-  Write-Color -Text "Installs done!" -Color Green
-
-
-  Write-Color -Text "Unpinning start menu tiles and taskbar icons ..." -Color Green
-
-  # Unpin start menu tiles
-  $key = Get-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\CloudStore\Store\Cache\DefaultAccount\*start.tilegrid`$windows.data.curatedtilecollection.tilecollection\Current"
-  $data = $key.Data[0..25] + ([byte[]](202,50,0,226,44,1,1,0,0))
-  Set-ItemProperty -Path $key.PSPath -Name "Data" -Type Binary -Value $data
-  Stop-Process -Name "ShellExperienceHost" -Force -ErrorAction SilentlyContinue
-
-  # Unpin taskbar icons
-  Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "Favorites" -Type Binary -Value ([byte[]](255))
-  Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "FavoritesResolve" -ErrorAction SilentlyContinue
+  Write-Host 'Installs done!'
 }
 
 
 Task uninstalls {
   Assert-ElevatedPrivileges
 
-  Write-Color "Uninstalling default apps ..."
+  Write-Host 'Uninstalling default apps ...'
 
   $default_apps = parseYaml('default-apps.yaml')
 
@@ -133,5 +120,5 @@ Task uninstalls {
     uninstallApps($default_apps.win11)
   }
 
-  Write-Color "Uninstalls done!"
+  Write-Host 'Uninstalls done!'
 }
