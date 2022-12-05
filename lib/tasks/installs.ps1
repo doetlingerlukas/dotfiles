@@ -112,12 +112,25 @@ Task uninstalls {
   Write-Host 'Uninstalling default apps ...'
 
   $default_apps = parseYaml('default-apps.yaml')
+  $scoop = parseYaml('scoop.yaml')
 
   uninstallApps($default_apps.microsoft)
   uninstallApps($default_apps.thirdparty)
 
   if (IsWindows11) {
     uninstallApps($default_apps.win11)
+  }
+
+  # Remove scoop packages, which should not be installed.
+  $scoop_installed = scoop list | select Name
+
+  foreach ($i in $scoop_installed) {
+    $required_apps = $scoop.essentials + $scoop.packages
+
+    if (-not ($required_apps.contains($i.Name))) {
+      Write-Host "Scoop package was found but should not be installed: $($i.Name)"
+      scoop uninstall $i.Name
+    }
   }
 
   Write-Host 'Uninstalls done!'
