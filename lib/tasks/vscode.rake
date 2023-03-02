@@ -2,7 +2,6 @@
 
 require 'json'
 require 'os'
-require 'laptop'
 require 'command'
 require 'which'
 require 'distro'
@@ -66,10 +65,6 @@ namespace :vscode do
       }
       config_raw['terminal.integrated.defaultProfile.windows'] = 'pwsh'
       config_raw['terminal.integrated.fontFamily'] = 'Cousine NF'
-    end
-
-    if laptop?
-      config_raw['window.zoomLevel'] = '-1'
     end
 
     File.write "#{config_dir}/settings.json", JSON.pretty_generate(config_raw)

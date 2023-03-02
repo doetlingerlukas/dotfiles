@@ -8,8 +8,5 @@ task :linux => [
   :brew,
   :git,
   :fish,
-  :ubuntu,
-  :snap,
-  :vscode,
   :rustup
 ]

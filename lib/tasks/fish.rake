@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'os'
 require 'etc'
 require 'English'
 require 'command'
@@ -12,8 +11,6 @@ task :fish => [:'fish:setup', :'fish:omf']
 namespace :fish do
   desc 'setup fish shell'
   task :setup do
-    next unless OS.linux?
-
     puts 'Setting fish as default shell ...'
 
     fish_executable = (which 'fish')
