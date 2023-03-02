@@ -2,7 +2,6 @@ packages:
   - gcc
   - llvm
   - ruby
-  - fish
   - cmake
   - ninja
   - grc

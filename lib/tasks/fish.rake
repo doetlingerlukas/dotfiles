@@ -11,7 +11,11 @@ task :fish => [:'fish:setup', :'fish:omf']
 namespace :fish do
   desc 'setup fish shell'
   task :setup do
-    puts 'Setting fish as default shell ...'
+    puts 'Installing fish shell ...'
+
+    command 'sudo', 'apt-add-repository', 'ppa:fish-shell/release-3'
+    command 'sudo', 'apt', 'update'
+    command 'sudo', 'apt', 'install', 'fish'
 
     fish_executable = (which 'fish')
     add_line_to_file '/etc/shells', fish_executable
@@ -44,7 +48,6 @@ namespace :fish do
 
     [
       'z',
-      'https://github.com/jethrokuan/fzf',
       'bobthefish',
       'fish_logo',
       'https://github.com/danhper/fish-ssh-agent',
