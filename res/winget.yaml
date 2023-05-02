@@ -10,8 +10,8 @@ packages:
   - Microsoft.dotNetFramework
   - Microsoft.PowerShell
   - Microsoft.PowerToys
-  - Microsoft.VisualStudio.2022.Community
   - Microsoft.VisualStudio.2022.BuildTools
+  - Microsoft.VisualStudio.2022.Community
   - Microsoft.VisualStudioCode
   - Microsoft.WindowsTerminal
   - Mozilla.Firefox
@@ -21,3 +21,4 @@ packages:
   - Ubisoft.Connect
   - Valve.Steam
   - VideoLAN.VLC
+  - WireGuard.WireGuard

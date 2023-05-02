@@ -60,9 +60,11 @@ packages:
   - posh-git
   - postman
   - pyenv
+  - raspberry-pi-imager
   - rclone
   - ripgrep
   - ruby
+  - rufus
   - rustup-msvc
   - sed
   - shasum
