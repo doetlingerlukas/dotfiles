@@ -22,3 +22,5 @@ packages:
   - Valve.Steam
   - VideoLAN.VLC
   - WireGuard.WireGuard
+  - Yubico.Authenticator
+  - Yubico.YubikeyManager
