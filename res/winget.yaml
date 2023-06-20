@@ -5,6 +5,7 @@ packages:
   - Corsair.iCUE.4
   - Docker.DockerDesktop
   - ElectronicArts.EADesktop
+  - GnuPG.Gpg4win
   - JanDeDobbeleer.OhMyPosh
   - kalilinux.kalilinux
   - Microsoft.dotNetFramework

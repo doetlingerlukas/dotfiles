@@ -31,7 +31,6 @@ packages:
   - fd
   - fork
   - googlechrome
-  - gpg4win
   - gradle
   - graphviz
   - grep

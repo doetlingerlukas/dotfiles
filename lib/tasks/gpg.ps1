@@ -1,3 +1,5 @@
+Import-Module -DisableNameChecking $PSScriptRoot\..\"file-helpers.psm1"
+
 Task gpg -Depends git {
   Write-Host "Setting up GPG config ..."
 
@@ -5,9 +7,9 @@ Task gpg -Depends git {
 
   $gpg_binary = (Get-Command gpg).Path
 
-  $ssh_dir = "$env:USERPROFILE\OneDrive\.gpg"
-  if (Test-Path $ssh_dir) {
-    Copy-Item "$ssh_dir\*" -Destination "$env:USERPROFILE\.gpg" -Recurse
+  $gpg_dir = "$env:USERPROFILE\OneDrive\.gpg"
+  if (Test-Path $gpg_dir) {
+    Copy-Item "$gpg_dir\*" -Destination "$env:USERPROFILE\.gpg" -Recurse
   }
 
   git config --global --unset gpg.format
@@ -17,4 +19,14 @@ Task gpg -Depends git {
 
   Write-Host "Don't forget to import your GPG keys and set the ID for git to use:"
   Write-Host "git config --global user.signingkey <ID>"
+
+  $gpg_config_dir = "$env:USERPROFILE\AppData\Roaming\gnupg"
+  EnsurePath $gpg_config_dir
+
+  $gpg_agent_config | Out-File -FilePath "$gpg_config_dir\gpg-agent.conf"
 }
+
+$gpg_agent_config = @"
+default-cache-ttl 34560000
+max-cache-ttl 34560000
+"@
