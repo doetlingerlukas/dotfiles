@@ -59,7 +59,7 @@ packages:
   - perl
   - posh-git
   - postman
-  - pyenv
+  - python
   - raspberry-pi-imager
   - rclone
   - ripgrep
