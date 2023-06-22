@@ -20,6 +20,7 @@ Task vscode {
     'geekidos.vdf',
     'github.vscode-github-actions',
     'github.vscode-pull-request-github',
+    'ionutvmi.reg',
     'james-yu.latex-workshop',
     'ms-azure-devops.azure-pipelines',
     'ms-azuretools.vscode-docker',
